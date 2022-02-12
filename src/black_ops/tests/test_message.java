@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package black_ops;
+package black_ops.tests;
 
 import black_ops.entities.Message;
 import black_ops.services.MessageService;
@@ -20,7 +20,7 @@ import javafx.stage.Stage;
  *
  * @author ASUS
  */
-public class Black_ops {
+public class test_message {
     
     
 
