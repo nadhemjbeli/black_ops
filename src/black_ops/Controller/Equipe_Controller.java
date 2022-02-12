@@ -57,17 +57,58 @@ public class Equipe_Controller {
         return Equipe;
     }
     public void DeleteEquipe(Equipe eq ){
-        
-        String sql ="delete from Equipe where id_Equipe = ? ";
-        try{
-        ste=mc.prepareStatement(sql);
-        ste.setInt(1, eq.getId_Equipe());
-        ste.executeUpdate();
-        System.out.println("Equipe supprimer");
-        }catch (SQLException ex) {
+        String sql =" DELETE FROM joueur WHERE id_equipe = ( SELECT id_equipe from equipe where id_equipe = ? )" ;
+       
+        try {
+            ste=mc.prepareStatement(sql);
+            ste.setInt(1, eq.getId_Equipe());  
+            ste.executeUpdate();
+            System.out.println("Joueur Suprrime");
+            ste.close();
+
+        } 
+         catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-    }
+         String sql3 ="delete from details_defi where EquipeA = ( SELECT id_equipe from equipe where id_equipe = ? )" ;
+        try {
+            ste=mc.prepareStatement(sql3);
+            ste.setInt(1,eq.getId_Equipe());
+            ste.executeUpdate();
+            System.out.println("Detail_defis supprimé");
+            ste.close();
+
+        }
+        catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        String sql4 ="delete from details_defi where EquipeB = ( SELECT id_equipe from equipe where id_equipe = ? )" ;
+        try {
+            ste=mc.prepareStatement(sql3);
+            ste.setInt(1,eq.getId_Equipe());
+            ste.executeUpdate();
+            System.out.println("Detail_defis supprimé");
+            ste.close();
+
+        }
+        catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+         String sql2 ="delete from equipe where id_equipe = ?" ;
+        try {
+            ste=mc.prepareStatement(sql2);
+            ste.setInt(1,eq.getId_Equipe());
+            ste.executeUpdate();
+            System.out.println("Equipe supprimé");
+            ste.close();
+
+        }
+        catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+       
+        }
+    
     public void UpdateEquipe(Equipe eq){
         String sql ="UPDATE equipe SET nom_Equipe= ?, logo_Equipe=? , date= ? , nbr_joueur_Equipe= ?"
                 + " WHERE id_Equipe = ?";
