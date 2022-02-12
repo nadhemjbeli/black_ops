@@ -93,16 +93,25 @@ public class DefiController {
         return Defi;
     }    
     public void DeleteDefi(Defi p ){
-        
-        String sql ="delete from Defi where id_Defi = ?";
+        String sql ="delete from details_defi where id_defi = ( SELECT id_Defi from defi where id_Defi = ? )";
         try{
         ste=mc.prepareStatement(sql);
+        ste.setInt(1, p.getId_Defi());
+        ste.executeUpdate();
+        System.out.println("details_defi supprimer");
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        String sql2 ="DELETE FROM defi WHERE id_Defi = ?";
+        try{
+        ste=mc.prepareStatement(sql2);
         ste.setInt(1, p.getId_Defi());
         ste.executeUpdate();
         System.out.println("Defi supprimer");
         }catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+        
     }
     
 }
