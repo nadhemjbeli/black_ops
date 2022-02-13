@@ -1,0 +1,33 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package black_ops.test.Gestion_Competition;
+
+import black_ops.Controller.JoueurController;
+import black_ops.Entity.Joueur;
+import black_ops.config.DataBase;
+
+/**
+ *
+ * @author medaz
+ */
+public class Joueur_Test {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+                   DataBase db = DataBase.getInstance();
+
+         JoueurController JoueurC = new JoueurController() ;
+        Joueur J1 = new Joueur(4,"Aziz","Gold","Fritchou",6) ;
+        Joueur J2 = new Joueur (2,"Mokhtar","Gold","Valnloya",6) ;
+        //JoueurC.ajouterJoueur(J1);//add
+        //System.out.println(JoueurC.afficherJoueur());
+        //JoueurC.UpdateJoueur(J1); // update
+        //JoueurC.DeleteJoueur(J1);//Delete
+    }
+    
+}

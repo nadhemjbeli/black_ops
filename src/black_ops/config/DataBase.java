@@ -11,15 +11,15 @@ import java.sql.SQLException;
 
 /**
  *
- * @author ASUS
+ * @author medaz
  */
-public class MaConnexion {
-    public String url="jdbc:mysql://localhost:3306/black_ops";
+public class DataBase {
+    public String url="jdbc:mysql://localhost:3306/Black_ops";
     public String user="root";
     public String pwd="";
-    public static MaConnexion cn;
+    public static DataBase cn;
     private Connection cnx;
-    private MaConnexion(){
+    private DataBase(){
         try {
             cnx=DriverManager.getConnection(url, user, pwd);
             System.out.println("Connexion etablie");
@@ -27,9 +27,9 @@ public class MaConnexion {
             System.out.println(ex.getMessage());
         }
     }
-    public static MaConnexion getInstance(){
+    public static DataBase getInstance(){
         if(cn==null)
-            cn= new MaConnexion();
+            cn= new DataBase();
             return cn;
       
     }
@@ -37,6 +37,5 @@ public class MaConnexion {
     public Connection getCnx() {
         return cnx;
     }
-    
     
 }
