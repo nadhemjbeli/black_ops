@@ -23,7 +23,8 @@ public class TestVideoUploade {
         
         
         VideoUploadeController ms = new VideoUploadeController();
-        ms.ajouterVideo(video1);
+//        ms.ajouterVideo(video1);
+        System.out.println(ms.afficherVideos());
     }
     
 }

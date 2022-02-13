@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -38,6 +40,29 @@ public class VideoUploadeController {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+    
+    public List<VideoUploade> afficherVideos(){
+        List<VideoUploade> video = new ArrayList<>();
+        String sql="select * from video_uploade";
+        try {
+            ste=mc.prepareStatement(sql);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+                VideoUploade v = new VideoUploade();
+                v.setId_vdeo(rs.getInt("id_vdeo"));
+                v.setNom_video(rs.getString("nom_video"));
+                v.setDescription_video(rs.getString("description_video"));
+                v.setUrl_video(rs.getString("url_video"));
+                v.setId_souscat(rs.getInt("id_souscat"));
+                v.setId_cl(rs.getInt("id_cl"));
+
+                video.add(v);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return video;
     }
     
 }
