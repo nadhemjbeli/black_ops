@@ -20,6 +20,12 @@ public class Message {
     public Message() {
     }
 
+    public Message(int id_message) {
+        this.id_message = id_message;
+    }
+    
+    
+    
     public Message(int id_message, String contenu_message, int id_cl, int id_sous_cat) {
         this.id_message = id_message;
         this.contenu_message = contenu_message;
