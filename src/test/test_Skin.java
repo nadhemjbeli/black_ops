@@ -6,7 +6,7 @@
 package test;
 
 import Entity.Skin;
-import Controller.SkinService;
+import Controller.SkinController;
 import config.MaConnexion;
 
 /**
@@ -17,7 +17,7 @@ public class test_Skin {
        public static void main(String[] args) {
     MaConnexion m = MaConnexion.getInstance();
     Skin s= new Skin(1,"yyyy",2);
-    SkinService ss= new SkinService();
+    SkinController ss= new SkinController();
     //ss.ajouterSkin(s);
     //ss.updateSkin(s);
     ss.deleteSkin(s);

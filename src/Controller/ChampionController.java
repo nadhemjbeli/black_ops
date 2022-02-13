@@ -17,11 +17,11 @@ import config.MaConnexion;
  *
  * @author jmokh
  */
-public class ChampionService {
+public class ChampionController {
           Connection mc;
     PreparedStatement ste;
     
-    public ChampionService(){
+    public ChampionController(){
        mc=MaConnexion.getInstance().getCnx();
     }
     

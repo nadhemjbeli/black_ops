@@ -6,7 +6,7 @@
 package test;
 
 import Entity.Image;
-import Controller.ImageService;
+import Controller.ImageController;
 import config.MaConnexion;
 
 /**
@@ -17,7 +17,7 @@ public class Test_Image {
     public static void main(String[] args) {
     MaConnexion m = MaConnexion.getInstance();
     Image i1=new Image(2,"E:/Image/Astra.jpg",3);
-    ImageService IS1 = new ImageService();
+    ImageController IS1 = new ImageController();
    // IS1.ajouterImage(i1);
    //IS1.updateImage(i1);
    IS1.deleteImage(i1);
