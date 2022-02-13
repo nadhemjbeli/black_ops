@@ -19,6 +19,12 @@ public class VideoUploade {
     public VideoUploade() {
     }
 
+    public VideoUploade(int id_vdeo) {
+        this.id_vdeo = id_vdeo;
+    }
+    
+    
+
     public VideoUploade(int id_vdeo, String nom_video, String description_video, String url_video, int id_souscat, int id_cl) {
         this.id_vdeo = id_vdeo;
         this.nom_video = nom_video;

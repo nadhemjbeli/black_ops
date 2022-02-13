@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package black_ops.test;
+package black_ops.test.gestion_communaute;
 
 import black_ops.Entity.Message;
 import black_ops.Controller.MessageController;
