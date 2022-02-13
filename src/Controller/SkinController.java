@@ -18,11 +18,11 @@ import config.MaConnexion;
  *
  * @author jmokh
  */
-public class SkinService {
+public class SkinController {
   Connection mc;
     PreparedStatement ste;
     
-    public SkinService(){
+    public SkinController(){
        mc=MaConnexion.getInstance().getCnx();
     }
     public void ajouterSkin(Skin s){

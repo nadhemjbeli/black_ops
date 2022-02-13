@@ -18,11 +18,11 @@ import config.MaConnexion;
  *
  * @author jmokh
  */
-public class JeuService {
+public class JeuController {
       Connection mc;
     PreparedStatement ste;
     
-    public JeuService(){
+    public JeuController(){
        mc=MaConnexion.getInstance().getCnx();
     }
     

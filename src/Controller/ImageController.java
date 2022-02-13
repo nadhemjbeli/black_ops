@@ -18,11 +18,11 @@ import config.MaConnexion;
  *
  * @author jmokh
  */
-public class ImageService {
+public class ImageController {
     Connection mc;
     PreparedStatement ste;
     
-    public ImageService(){
+    public ImageController(){
        mc=MaConnexion.getInstance().getCnx();
     }
     
