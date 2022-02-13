@@ -80,13 +80,13 @@ public class JeuController {
         
     }
      public void deletejeu(Jeu j){
-        String sql ="delete from champion where Id_jeu = ( SELECT Id_jeu from jeu where nom = ? )";
-        String sql2 = "delete from jeu where nom= ?";
+        String sql ="delete from champion where Id_jeu = ( SELECT Id_jeu from jeu where Id_Jeu = ? )";
+        String sql2 = "delete from jeu where Id_Jeu= ?";
         try {
             ste=mc.prepareStatement(sql);
             //ste=mc.prepareStatement(sql2);
           
-            ste.setString(1, j.getNom());
+            ste.setInt(1, j.getId_Jeu());
             
             ste.executeUpdate();
        
@@ -100,7 +100,7 @@ public class JeuController {
             ste=mc.prepareStatement(sql2);
             //ste=mc.prepareStatement(sql2);
           
-            ste.setString(1, j.getNom());
+            ste.setInt(1, j.getId_Jeu());
             
             ste.executeUpdate();
             System.out.println("jeu supprimé");
