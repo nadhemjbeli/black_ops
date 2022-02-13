@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package black_ops.tests;
+package black_ops.test;
 
-import black_ops.entities.Message;
-import black_ops.services.MessageService;
-import black_ops.tools.MaConnexion;
+import black_ops.Entity.Message;
+import black_ops.Controller.MessageController;
+import black_ops.config.MaConnexion;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,7 +20,7 @@ import javafx.stage.Stage;
  *
  * @author ASUS
  */
-public class test_message {
+public class TestMessage {
     
     
 
@@ -32,7 +32,7 @@ public class test_message {
         
         Message message1 = new Message("bonjour, je suis un nouveau membre", 1, 1);
         Message message2 = new Message(2, "bonsoir, je suis un nouveau membre", 1, 1);
-        MessageService ms = new MessageService();
+        MessageController ms = new MessageController();
 //        ms.ajouterMessage(message1);
 //        ms.UpdatePersonne(message2);
 //        ms.ajouterMessage(message1);

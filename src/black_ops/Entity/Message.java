@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package black_ops.entities;
+package black_ops.Entity;
 
 import java.sql.Timestamp;
 

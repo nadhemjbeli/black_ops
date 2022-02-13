@@ -1,12 +1,13 @@
+// nadhem jbeli
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package black_ops.services;
+package black_ops.Controller;
 
-import black_ops.entities.Message;
-import black_ops.tools.MaConnexion;
+import black_ops.Entity.Message;
+import black_ops.config.MaConnexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,11 +19,11 @@ import java.util.List;
  *
  * @author ASUS
  */
-public class MessageService {
-    Connection mc;
-    PreparedStatement ste;
+public class MessageController {
+    private Connection mc;
+    private PreparedStatement ste;
 
-    public MessageService() {
+    public MessageController() {
         mc=MaConnexion.getInstance().getCnx();
     }
     
