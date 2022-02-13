@@ -1,5 +1,5 @@
 
-package config;
+package black_ops.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
