@@ -86,10 +86,10 @@ public class ChampionController {
         
     }
        public void deleteChampion(Champion c){
-        String sql ="delete from champion where Nom_Champ = ? ";      
+        String sql ="delete from champion where Id_Champ = ? ";      
         try {
             ste=mc.prepareStatement(sql);                  
-           ste.setString(1, c.getNom_Champ());           
+           ste.setInt(1, c.getId_Champ());           
             ste.executeUpdate();       
             ste.close();
         } 

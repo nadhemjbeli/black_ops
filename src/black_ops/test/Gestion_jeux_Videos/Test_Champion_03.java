@@ -18,11 +18,11 @@ import black_ops.config.MaConnexion;
 public class Test_Champion_03 {
      public static void main(String[] args) {
     MaConnexion m = MaConnexion.getInstance();
-    Champion c1 = new Champion(1,"killjoy","champion valorant23","iniator","8","D",3);
+    Champion c1 = new Champion(2,"killjoy","champion valorant23","iniator","8","D",3);
     ChampionController cs = new ChampionController();
     //cs.ajouterChampion(c1);
    // cs.updateChampion(c1);
-    // cs.deleteChampion(c1);
+     cs.deleteChampion(c1);
      System.out.println(cs.afficherChampions());
 }
 }
