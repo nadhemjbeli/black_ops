@@ -1,25 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package black_ops.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- *
- * @author ASUS
- */
-public class MaConnexion {
+public class Maconnexion {
     public String url="jdbc:mysql://localhost:3306/black_ops";
     public String user="root";
     public String pwd="";
-    public static MaConnexion cn;
+    public static Maconnexion cn;
     private Connection cnx;
-    private MaConnexion(){
+    private Maconnexion(){
         try {
             cnx=DriverManager.getConnection(url, user, pwd);
             System.out.println("Connexion etablie");
@@ -27,9 +21,9 @@ public class MaConnexion {
             System.out.println(ex.getMessage());
         }
     }
-    public static MaConnexion getInstance(){
+    public static Maconnexion getInstance(){
         if(cn==null)
-            cn= new MaConnexion();
+            cn= new Maconnexion();
             return cn;
       
     }
