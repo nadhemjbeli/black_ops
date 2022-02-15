@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package black_ops.test.gestion_stream;
+package black_ops.test.gestion_commande;
 
 import black_ops.Controller.LigneCommController;
 
