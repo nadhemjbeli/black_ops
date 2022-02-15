@@ -2,7 +2,7 @@
 package black_ops.Controller;
 
 import black_ops.Entity.Equipe;
-import black_ops.config.DataBase;
+import black_ops.config.MaConnexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +16,7 @@ public class Equipe_Controller {
     PreparedStatement ste;
 
     public Equipe_Controller() {
-        mc = DataBase.getInstance().getCnx();
+        mc = MaConnexion.getInstance().getCnx();
     }
     public void ajouterEquipe(Equipe eq){
     String sql = "INSERT INTO equipe(nom_Equipe,"

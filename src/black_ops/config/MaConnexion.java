@@ -13,13 +13,13 @@ import java.sql.SQLException;
  *
  * @author medaz
  */
-public class DataBase {
+public class MaConnexion {
     public String url="jdbc:mysql://localhost:3306/Black_ops";
     public String user="root";
     public String pwd="";
-    public static DataBase cn;
+    public static MaConnexion cn;
     private Connection cnx;
-    private DataBase(){
+    private MaConnexion(){
         try {
             cnx=DriverManager.getConnection(url, user, pwd);
             System.out.println("Connexion etablie");
@@ -27,9 +27,9 @@ public class DataBase {
             System.out.println(ex.getMessage());
         }
     }
-    public static DataBase getInstance(){
+    public static MaConnexion getInstance(){
         if(cn==null)
-            cn= new DataBase();
+            cn= new MaConnexion();
             return cn;
       
     }

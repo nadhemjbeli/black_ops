@@ -13,7 +13,7 @@ import black_ops.Entity.Defi;
 import black_ops.Entity.Details_Defi;
 import black_ops.Entity.Equipe;
 import black_ops.Entity.Joueur;
-import black_ops.config.DataBase;
+import black_ops.config.MaConnexion;
 import static java.time.LocalTime.now;
 import java.util.Calendar;
 
@@ -27,7 +27,7 @@ public class Black_ops {
 
     public static void main(String[] args) {
         //test Connextion Base de Donne
-          DataBase db = DataBase.getInstance();
+          MaConnexion db = MaConnexion.getInstance();
          
         java.util.Date date = Calendar.getInstance().getTime();
         java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
