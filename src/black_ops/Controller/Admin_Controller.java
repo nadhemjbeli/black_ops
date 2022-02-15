@@ -7,14 +7,13 @@ package black_ops.Controller;
 
 import black_ops.Entity.Super;
 import black_ops.Entity.Contact;
+import black_ops.config.MaConnexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import black_ops.config.Maconnexion;
-
 
 public class Admin_Controller {
     
@@ -22,7 +21,7 @@ public class Admin_Controller {
     PreparedStatement ste;
 
     public Admin_Controller() {
-        mc=Maconnexion.getInstance().getCnx();
+        mc=MaConnexion.getInstance().getCnx();
     }
     
     

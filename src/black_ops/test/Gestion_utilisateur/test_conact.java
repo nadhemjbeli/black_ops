@@ -4,12 +4,11 @@
  * and open the template in the editor.
  */
 package black_ops.test.Gestion_utilisateur;
-import black_ops.config.Maconnexion;
 import static java.time.LocalTime.now;
 import java.util.Calendar;
 import black_ops.Entity.Contact;
 import black_ops.Controller.Contact_Controller;
-import black_ops.config.Maconnexion;
+import black_ops.config.MaConnexion;
 
 /**
  *
@@ -17,7 +16,7 @@ import black_ops.config.Maconnexion;
  */
 public class test_conact {
      public static void main(String[] args) {
-        Maconnexion m=Maconnexion.getInstance();
+        MaConnexion m=MaConnexion.getInstance();
         java.util.Date date = Calendar.getInstance().getTime();
         java.sql.Date sqlDate = new java.sql.Date(date.getTime());
         Contact A=new Contact(1,"kamya","khalil.khalil@gmail.com","ok",sqlDate);
