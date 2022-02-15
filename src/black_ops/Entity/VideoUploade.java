@@ -19,9 +19,7 @@ public class VideoUploade {
     public VideoUploade() {
     }
 
-    public VideoUploade(int id_vdeo) {
-        this.id_vdeo = id_vdeo;
-    }
+    
     
     
 
@@ -34,13 +32,7 @@ public class VideoUploade {
         this.id_cl = id_cl;
     }
 
-    public VideoUploade(String nom_video, String description_video, String url_video, int id_souscat, int id_cl) {
-        this.nom_video = nom_video;
-        this.description_video = description_video;
-        this.url_video = url_video;
-        this.id_souscat = id_souscat;
-        this.id_cl = id_cl;
-    }
+    
 
     public int getId_vdeo() {
         return id_vdeo;

@@ -81,12 +81,12 @@ public class MessageController {
         return messages;
     } 
     
-    public void DeleteMessage(Message message ){
+    public void DeleteMessage(int m){
 //        String sql1 ="";
         String sql2 ="DELETE FROM message WHERE id_message = ?";
         try{
         ste=mc.prepareStatement(sql2);
-        ste.setInt(1, message.getId_message());
+        ste.setInt(1, m);
         ste.executeUpdate();
         System.out.println("Personne supprimee");
         }catch (SQLException ex) {

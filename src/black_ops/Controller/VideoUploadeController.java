@@ -85,11 +85,11 @@ public class VideoUploadeController {
         
     }
     
-    public void DeleteVideo(VideoUploade video ){
+    public void DeleteVideo(int v){
         String sql1 ="DELETE FROM video_uploade WHERE id_vdeo = ?";
         try{
         ste=mc.prepareStatement(sql1);
-        ste.setInt(1, video.getId_vdeo());
+        ste.setInt(1, v);
         ste.executeUpdate();
         System.out.println("video supprime");
         }catch (SQLException ex) {
