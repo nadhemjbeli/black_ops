@@ -7,7 +7,7 @@ package black_ops.test.Gestion_Competition;
 
 import black_ops.Controller.Equipe_Controller;
 import black_ops.Entity.Equipe;
-import black_ops.config.DataBase;
+import black_ops.config.MaConnexion;
 import java.util.Calendar;
 
 /**
@@ -20,7 +20,7 @@ public class Equipe_Test {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-         DataBase db = DataBase.getInstance();
+         MaConnexion db = MaConnexion.getInstance();
          
         java.util.Date date = Calendar.getInstance().getTime();
         java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 

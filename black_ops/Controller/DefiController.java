@@ -1,7 +1,7 @@
 
 package black_ops.Controller;
 import black_ops.Entity.Defi;
-import black_ops.config.DataBase;
+import black_ops.config.MaConnexion;
 import java.sql.Connection;
 import java.util.Date;
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ public class DefiController {
     PreparedStatement ste;
 
     public DefiController() {
-        mc = DataBase.getInstance().getCnx();
+        mc = MaConnexion.getInstance().getCnx();
     }
     public void ajouterDefi(Defi d){
         String sql ="INSERT INTO defi(nom_Defi, Description_Defi,"

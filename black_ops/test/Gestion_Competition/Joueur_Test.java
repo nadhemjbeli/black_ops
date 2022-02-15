@@ -7,7 +7,7 @@ package black_ops.test.Gestion_Competition;
 
 import black_ops.Controller.JoueurController;
 import black_ops.Entity.Joueur;
-import black_ops.config.DataBase;
+import black_ops.config.MaConnexion;
 
 /**
  *
@@ -19,13 +19,13 @@ public class Joueur_Test {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-                   DataBase db = DataBase.getInstance();
+                   MaConnexion db = MaConnexion.getInstance();
 
          JoueurController JoueurC = new JoueurController() ;
         Joueur J1 = new Joueur(4,"Aziz","Gold","Fritchou",6) ;
         Joueur J2 = new Joueur (2,"Mokhtar","Gold","Valnloya",6) ;
         //JoueurC.ajouterJoueur(J1);//add
-        //System.out.println(JoueurC.afficherJoueur());
+        System.out.println(JoueurC.afficherJoueur());
         //JoueurC.UpdateJoueur(J1); // update
         //JoueurC.DeleteJoueur(J1);//Delete
     }
