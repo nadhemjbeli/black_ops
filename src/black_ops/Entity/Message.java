@@ -22,7 +22,13 @@ public class Message {
 
     
     
-    
+    public Message(int id_message,Timestamp date_message, String contenu_message, int id_cl, int id_sous_cat) {
+        this.id_message = id_message;
+        this.date_message = date_message;
+        this.contenu_message = contenu_message;
+        this.id_cl = id_cl;
+        this.id_sous_cat = id_sous_cat;
+    }
     
     public Message(int id_message, String contenu_message, int id_cl, int id_sous_cat) {
         this.id_message = id_message;
@@ -30,6 +36,8 @@ public class Message {
         this.id_cl = id_cl;
         this.id_sous_cat = id_sous_cat;
     }
+
+    
 
     
 
