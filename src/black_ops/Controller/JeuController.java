@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import black_ops.config.MaConnexion;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -41,8 +43,9 @@ public class JeuController {
         }
         
     }
-      public List<Jeu> afficherjeux(){
-        List<Jeu> jeux = new ArrayList<>();
+       public ObservableList<Jeu> AfficherJeux(){
+        ObservableList<Jeu> jeux = FXCollections.observableArrayList();
+       
         String sql="select * from jeu";
         try {
             ste=mc.prepareStatement(sql);
@@ -81,6 +84,7 @@ public class JeuController {
     }
      public void deletejeu(Jeu j){
         String sql ="delete from champion where Id_jeu = ( SELECT Id_jeu from jeu where Id_Jeu = ? )";
+        String sql3 ="delete from image where Id_jeu = ( SELECT Id_jeu from jeu where Id_Jeu = ? )";
         String sql2 = "delete from jeu where Id_Jeu= ?";
         try {
             ste=mc.prepareStatement(sql);
@@ -95,7 +99,21 @@ public class JeuController {
         } 
          catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            
         }
+        try {
+            ste=mc.prepareStatement(sql3);
+            //ste=mc.prepareStatement(sql2);
+          
+            ste.setInt(1, j.getId_Jeu());
+            
+            ste.executeUpdate();
+       
+            ste.close();
+
+        } 
+         catch (SQLException ex) {
+            System.out.println(ex.getMessage());}
         try {
             ste=mc.prepareStatement(sql2);
             //ste=mc.prepareStatement(sql2);

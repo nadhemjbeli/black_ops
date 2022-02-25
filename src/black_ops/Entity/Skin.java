@@ -21,6 +21,8 @@ public class Skin {
         this.image_skin = image_skin;
         this.id_champ = id_champ;
     }
+     public Skin(int Id_skin)
+     {  this.Id_skin = Id_skin;}
 
     public int getId_skin() {
         return Id_skin;
