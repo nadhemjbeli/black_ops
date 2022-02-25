@@ -6,7 +6,7 @@
  */
 package black_ops.Controller;
 
-import black_ops.Entity.Message;
+import black_ops.Entity.Messagee;
 import black_ops.config.MaConnexion;
 import java.net.URL;
 import java.sql.Connection;
@@ -30,38 +30,38 @@ import javafx.scene.control.cell.PropertyValueFactory;
  *
  * @author ASUS
  */
-public class MessageController{
+public class Message_Controller{
     private Connection mc;
     private PreparedStatement ste, preparedStatement;
     private String querry;
     
     
     @FXML
-    private TableColumn<Message, String> contenu;
+    private TableColumn<Messagee, String> contenu;
 
     @FXML
-    private TableColumn<Message, String> date;
+    private TableColumn<Messagee, String> date;
 
     @FXML
-    private TableColumn<Message, String> id;
+    private TableColumn<Messagee, String> id;
 
     @FXML
-    private TableColumn<Message, String> id_cl;
+    private TableColumn<Messagee, String> id_cl;
 
     @FXML
-    private TableColumn<Message, String> id_sous_cat;
+    private TableColumn<Messagee, String> id_sous_cat;
     
     @FXML
-    private TableView<Message> message_table;
+    private TableView<Messagee> message_table;
 
-    public MessageController() {
+    public Message_Controller() {
         mc=MaConnexion.getInstance().getCnx();
     }
     
     
     
     
-    public void ajouterMessage(Message message){
+    public void ajouterMessage(Messagee message){
         String sql ="INSERT INTO `message`(`Contenu_message`, `id_cl`, `id_souscat`) VALUES (?, ?, ?)";
         try {
             ste=mc.prepareStatement(sql);
@@ -75,7 +75,7 @@ public class MessageController{
         }
     }
     
-    public void UpdatePersonne(Message message){
+    public void UpdatePersonne(Messagee message){
         String sql ="UPDATE message SET contenu_message = ? where id_message = ? ";
         try {
             ste=mc.prepareStatement(sql);
@@ -91,14 +91,14 @@ public class MessageController{
         
     }
     
-    public List<Message> afficherMessages(){
-        List<Message> messages = new ArrayList<>();
+    public List<Messagee> afficherMessages(){
+        List<Messagee> messages = new ArrayList<>();
         String sql="select * from message";
         try {
             ste=mc.prepareStatement(sql);
             ResultSet rs=ste.executeQuery();
             while(rs.next()){
-                Message message = new Message();
+                Messagee message = new Messagee();
                 message.setId_message(rs.getInt("id_message"));
                 message.setContenu_message(rs.getString("contenu_message"));
                 message.setDate_message(rs.getTimestamp("date_message"));

@@ -18,11 +18,11 @@ import java.util.List;
  *
  * @author ASUS
  */
-public class VideoUploadeController {
+public class Video_UploadeController {
         private Connection mc;
         private PreparedStatement ste;
 
-    public VideoUploadeController() {
+    public Video_UploadeController() {
         mc=MaConnexion.getInstance().getCnx();
     }
     

@@ -11,18 +11,18 @@ import java.sql.Timestamp;
  *
  * @author ASUS
  */
-public class Message {
+public class Messagee {
     private int id_message;
     private Timestamp date_message;
     private String contenu_message;
     private int id_cl, id_sous_cat;
 
-    public Message() {
+    public Messagee() {
     }
 
     
     
-    public Message(int id_message,Timestamp date_message, String contenu_message, int id_cl, int id_sous_cat) {
+    public Messagee(int id_message,Timestamp date_message, String contenu_message, int id_cl, int id_sous_cat) {
         this.id_message = id_message;
         this.date_message = date_message;
         this.contenu_message = contenu_message;
@@ -30,7 +30,7 @@ public class Message {
         this.id_sous_cat = id_sous_cat;
     }
     
-    public Message(int id_message, String contenu_message, int id_cl, int id_sous_cat) {
+    public Messagee(int id_message, String contenu_message, int id_cl, int id_sous_cat) {
         this.id_message = id_message;
         this.contenu_message = contenu_message;
         this.id_cl = id_cl;
