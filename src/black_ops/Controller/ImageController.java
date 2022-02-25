@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import black_ops.config.MaConnexion;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -39,14 +41,15 @@ public class ImageController {
         }
         
     }
-       public List<Image> afficherImages(){
-        List<Image> Images = new ArrayList<>();
+      public ObservableList<Image> afficherImages(){
+        ObservableList<Image> Images = FXCollections.observableArrayList();
         String sql="select * from image";
         try {
             ste=mc.prepareStatement(sql);
             ResultSet rs=ste.executeQuery();
             while(rs.next()){
                 Image i = new Image();
+                i.setId_Image(rs.getInt("Id_Image"));
                 i.setUrl_Image(rs.getString("Url_Image"));
                 i.setId_jeu(rs.getInt("Id_jeu"));
                 Images.add(i);
