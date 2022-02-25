@@ -13,7 +13,7 @@ import black_ops.config.MaConnexion;
  *
  * @author ASUS
  */
-public class TestVideoUploade {
+public class Test_VideoUploade {
     
     public static void main(String[] args){
         VideoUploade video1 = new VideoUploade(1, "video 1", "jeux video de lol","video1.mp4", 1, 1);
