@@ -20,6 +20,8 @@ public class Image {
         this.Url_Image = Url_Image;
         this.Id_jeu = Id_jeu;
     }
+     public Image(int Id_Image){
+     this.Id_Image=Id_Image;}
 
     public int getId_Image() {
         return Id_Image;

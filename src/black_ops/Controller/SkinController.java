@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import black_ops.config.MaConnexion;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -38,8 +40,8 @@ public class SkinController {
         }
         
     }
-public List<Skin> afficherSkins(){
-        List<Skin> skins = new ArrayList<>();
+ public ObservableList<Skin> afficherSkins(){
+        ObservableList<Skin> skins = FXCollections.observableArrayList();
         String sql="select * from skin";
         try {
             ste=mc.prepareStatement(sql);

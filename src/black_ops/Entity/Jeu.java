@@ -23,6 +23,9 @@ public Jeu (){}
         this.Url = Url;
         this.id_souscat = id_souscat;
     }
+     public Jeu(int Id_Jeu){  
+      this.Id_Jeu=Id_Jeu;
+     }
 
     public int getId_Jeu() {
         return Id_Jeu;

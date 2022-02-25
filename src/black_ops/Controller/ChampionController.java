@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import black_ops.config.MaConnexion;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -43,8 +45,8 @@ public class ChampionController {
         
     }
     
-      public List<Champion> afficherChampions(){
-        List<Champion> Champions = new ArrayList<>();
+      public ObservableList<Champion> afficherChampions(){
+        ObservableList<Champion> Champions = FXCollections.observableArrayList();
         String sql="select * from champion";
         try {
             ste=mc.prepareStatement(sql);
