@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 public class DefiController {
     Connection mc;
     PreparedStatement ste;
@@ -66,8 +68,8 @@ public class DefiController {
         }
         
     }
-    public List<Defi> afficherDefi(){
-        List<Defi> Defi = new ArrayList<>();
+    public ObservableList<Defi> afficherDefi(){
+        ObservableList<Defi> Defi = FXCollections.observableArrayList();;
         String sql="select * from Defi";
         try {
             ste=mc.prepareStatement(sql);

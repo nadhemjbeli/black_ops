@@ -126,6 +126,18 @@ public class Defi {
     public Defi(int id_Defi) {
         this.id_Defi = id_Defi;
     }
+
+    public Defi(int id_Defi, String nom_Defi, String Description, String img_Defi, int prix, String jeu_Defis, int nbr_equipe_Defi, String Régle_Defi, String Recompense_Defi) {
+        this.id_Defi = id_Defi;
+        this.nom_Defi = nom_Defi;
+        this.Description = Description;
+        this.img_Defi = img_Defi;
+        this.prix = prix;
+        this.jeu_Defis = jeu_Defis;
+        this.nbr_equipe_Defi = nbr_equipe_Defi;
+        this.Régle_Defi = Régle_Defi;
+        this.Recompense_Defi = Recompense_Defi;
+    }
     
     
     
