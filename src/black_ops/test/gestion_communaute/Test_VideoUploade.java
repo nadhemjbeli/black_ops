@@ -5,7 +5,7 @@
  */
 package black_ops.test.gestion_communaute;
 
-import black_ops.Entity.VideoUploade;
+import black_ops.Entity.VideoUploadee;
 import black_ops.Controller.Video_UploadeController;
 import black_ops.config.MaConnexion;
 
@@ -16,8 +16,8 @@ import black_ops.config.MaConnexion;
 public class Test_VideoUploade {
     
     public static void main(String[] args){
-        VideoUploade video1 = new VideoUploade(1, "video 1", "jeux video de lol","video1.mp4", 1, 1);
-        VideoUploade video2 = new VideoUploade(1, "video 2", "jeux video de cs","video2.mp4", 1, 1);
+        VideoUploadee video1 = new VideoUploadee(1, "video 1", "jeux video de lol","video1.mp4", 1, 1);
+        VideoUploadee video2 = new VideoUploadee(1, "video 2", "jeux video de cs","video2.mp4", 1, 1);
         MaConnexion v = MaConnexion.getInstance();
         
         

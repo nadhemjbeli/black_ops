@@ -5,7 +5,7 @@
  */
 package black_ops.Controller;
 
-import black_ops.Entity.VideoUploade;
+import black_ops.Entity.VideoUploadee;
 import black_ops.config.MaConnexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,7 +26,7 @@ public class Video_UploadeController {
         mc=MaConnexion.getInstance().getCnx();
     }
     
-    public void ajouterVideo(VideoUploade video){
+    public void ajouterVideo(VideoUploadee video){
         String sql ="INSERT INTO `video_uploade`(`nom_video`, `description_video`, `url_video`, `id_cl`, `id_souscat`) VALUES (?, ?, ?, ?, ?)";
         try {
             ste=mc.prepareStatement(sql);
@@ -42,14 +42,14 @@ public class Video_UploadeController {
         }
     }
     
-    public List<VideoUploade> afficherVideos(){
-        List<VideoUploade> video = new ArrayList<>();
+    public List<VideoUploadee> afficherVideos(){
+        List<VideoUploadee> video = new ArrayList<>();
         String sql="select * from video_uploade";
         try {
             ste=mc.prepareStatement(sql);
             ResultSet rs=ste.executeQuery();
             while(rs.next()){
-                VideoUploade v = new VideoUploade();
+                VideoUploadee v = new VideoUploadee();
                 v.setId_vdeo(rs.getInt("id_vdeo"));
                 v.setNom_video(rs.getString("nom_video"));
                 v.setDate_video(rs.getDate("date_video"));
@@ -66,7 +66,7 @@ public class Video_UploadeController {
         return video;
     }
     
-    public void UpdateVideo(VideoUploade v){
+    public void UpdateVideo(VideoUploadee v){
         String sql ="UPDATE video_uploade SET nom_video=?,description_video=?,"
                 + "url_video=? WHERE id_vdeo= ? ";
         try {
