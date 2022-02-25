@@ -30,7 +30,7 @@ public class Defi_Test {
         //df.UpdateDefi(up_lol);
         //Defi  Lol = new Defi(2);
         //df.DeleteDefi(Lol);
-        //System.out.println(df.afficherDefi());
+        System.out.println(df.afficherDefi());
     }
     
 }

@@ -31,7 +31,7 @@ public class Detail_Defi_Test {
       Details_Defi match2 = new Details_Defi(2,1,"_",2,"", 2);
 //      D_DefiC.Create_Details_Defi(match2);
 //      D_DefiC.Update_Details_Defi(match2);
-//      D_DefiC.Select_Detail(match2);
+   //     System.out.println(D_DefiC.Select_Detail(sql_match1).toString());
 //      D_DefiC.Delete_Details_Defi(match2);
 //      System.out.println(D_DefiC.View_Details_defi());
     }
