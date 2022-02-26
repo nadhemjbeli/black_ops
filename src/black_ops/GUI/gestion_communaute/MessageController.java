@@ -139,6 +139,11 @@ public class MessageController implements Initializable {
 
     @FXML
     private void refreshTable(ActionEvent event) {
+        Message_Controller m_c = new Message_Controller();
+        ObservableList<Messagee> list = m_c.afficherMessages();
+        list.clear();
+        showMessages();
+//        disselect(event);
     }
     
     public void showMessages(){
@@ -169,7 +174,7 @@ public class MessageController implements Initializable {
     }
 
     @FXML
-    private void diselect(ActionEvent event) {
+    private void disselect(ActionEvent event) {
         id_message.setText("");
         txt_contenu.setText("");
         txt_id_cl.setText("");
@@ -190,6 +195,10 @@ public class MessageController implements Initializable {
 //        col_id_sous.setCellValueFactory(new PropertyValueFactory<>("id_sous_cat"));
 //        table_messages.setItems(list);
 //    }
+
+    @FXML
+    private void search_messages_par_contenu(ActionEvent event) {
+    }
     
     
     
