@@ -8,7 +8,6 @@ package black_ops.Controller;
 
 import black_ops.Entity.Messagee;
 import black_ops.config.MaConnexion;
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -75,12 +74,14 @@ public class Message_Controller{
         }
     }
     
-    public void UpdatePersonne(Messagee message){
-        String sql ="UPDATE message SET contenu_message = ? where id_message = ? ";
+    public void UpdateMessage(Messagee message){
+        String sql ="UPDATE message SET contenu_message = ?, id_cl = ?, id_souscat = ? where id_message = ? ";
         try {
             ste=mc.prepareStatement(sql);
             ste.setString(1, message.getContenu_message());
-            ste.setInt(2, message.getId_message());
+            ste.setInt(2, message.getId_cl());
+            ste.setInt(3, message.getId_sous_cat());
+            ste.setInt(4, message.getId_message());
             ste.executeUpdate();
             System.out.println("Message modifiee");
             ste.close();
@@ -91,8 +92,10 @@ public class Message_Controller{
         
     }
     
-    public List<Messagee> afficherMessages(){
-        List<Messagee> messages = new ArrayList<>();
+    public ObservableList<Messagee> afficherMessages(){
+
+        ObservableList<Messagee> messages;
+        messages = FXCollections.observableArrayList();
         String sql="select * from message";
         try {
             ste=mc.prepareStatement(sql);
@@ -112,6 +115,19 @@ public class Message_Controller{
         
         return messages;
     } 
+    
+    public void DeleteMessage(int m){
+//        String sql1 ="";
+        String sql2 ="DELETE FROM message WHERE id_message = ?";
+        try{
+        ste=mc.prepareStatement(sql2);
+        ste.setInt(1, m);
+        ste.executeUpdate();
+        System.out.println("Personne supprimee");
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
     
     
     

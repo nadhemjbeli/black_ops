@@ -28,7 +28,7 @@ public class Test_jeu_01 {
        // js1.ajouterJeu(j1);
          //js1.updateJeu(j1);
        js1.deletejeu(j1);
-         System.out.println(js1.afficherjeux());
+         System.out.println(js1.AfficherJeux());
     }
     
 }

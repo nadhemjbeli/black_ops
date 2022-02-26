@@ -12,7 +12,7 @@ import black_ops.Controller.Contact_Controller;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import black_ops.config.Maconnexion;
+import black_ops.config.MaConnexion;
 
 /**
  *

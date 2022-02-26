@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import black_ops.config.Maconnexion;
+import black_ops.config.MaConnexion;
 
 /**
  *
@@ -24,7 +24,7 @@ public class Client_Controller {
     PreparedStatement ste;
 
     public Client_Controller() {
-        mc=Maconnexion.getInstance().getCnx();
+        mc=MaConnexion.getInstance().getCnx();
     }
     
     

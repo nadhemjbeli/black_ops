@@ -6,12 +6,12 @@
 package black_ops.test.Gestion_utilisateur;
 import black_ops.Entity.Super;
 import black_ops.Controller.Admin_Controller;
-import black_ops.config.Maconnexion;
+import black_ops.config.MaConnexion;
 
 
 public class test_admin {
     public static void main(String[] args) {
-        Maconnexion m=Maconnexion.getInstance();
+        MaConnexion m=MaConnexion.getInstance();
         Super A=new Super(2,"khalilkhemiri@gmail.om","987654",7,0);
         Admin_Controller AS=new Admin_Controller();
         //AS.ajouterAdmin(A);
