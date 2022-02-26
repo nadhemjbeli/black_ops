@@ -5,7 +5,7 @@
  */
 package black_ops.test.Gestion_Competition;
 
-import black_ops.Controller.Equipe_Controller;
+import black_ops.Controller.EquipeController;
 import black_ops.Entity.Equipe;
 import black_ops.config.MaConnexion;
 import java.util.Calendar;
@@ -24,7 +24,7 @@ public class Equipe_Test {
          
         java.util.Date date = Calendar.getInstance().getTime();
         java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
-       Equipe_Controller EquipeC = new Equipe_Controller();
+       EquipeController EquipeC = new EquipeController();
          Equipe  eq1 = new Equipe(5,"Blac_ops","url",sqlDate,5) ;
          Equipe  eq1u = new Equipe(4,"Blac_ops","url",sqlDate,7) ;
          Equipe  e = new Equipe(6) ;

@@ -5,8 +5,8 @@
  */
 package black_ops.test.Gestion_Competition;
 
-import black_ops.Controller.Details_DefiController;
-import black_ops.Entity.Details_Defi;
+import black_ops.Controller.DetailsDefiController;
+import black_ops.Entity.DetailsDefi;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -39,8 +39,8 @@ public class MainController implements Initializable {
 
     @FXML
     private void BtnQr(ActionEvent event) {
-        Details_DefiController D_DefiC = new Details_DefiController();
-        Details_Defi sql_match1 = new Details_Defi(2);
+        DetailsDefiController D_DefiC = new DetailsDefiController();
+        DetailsDefi sql_match1 = new DetailsDefi(2);
         String Match = D_DefiC.Select_Detail(sql_match1).toString();
         ByteArrayOutputStream out = QRCode.from(Match)
                     .to(ImageType.PNG).stream() ;

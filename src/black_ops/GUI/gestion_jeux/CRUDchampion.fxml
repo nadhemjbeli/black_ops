@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="837.0" prefWidth="1248.0" style="-fx-background-color: #82e9de;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.gui.CRUDchampionController">
+   <children>
+      <VBox layoutX="26.0" layoutY="41.0" prefHeight="206.0" prefWidth="130.0" spacing="15.0">
+         <children>
+            <Label text="Id_Champ" />
+            <Label text="Nom_Champ">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label text="description_Champ">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label text="Role_Champ">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label text="Difficulte_Champ">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label text="Image_Champ" />
+            <Label text="Id_jeu" />
+         </children>
+      </VBox>
+      <VBox layoutX="159.0" layoutY="33.0" prefHeight="196.0" prefWidth="250.0" spacing="10.0">
+         <children>
+            <TextField fx:id="txtid_champ" prefHeight="36.0" prefWidth="232.0" />
+            <TextField fx:id="txtNom_champ" />
+            <TextField fx:id="txtdescription_champ" />
+            <TextField fx:id="txtRole_champ" />
+            <TextField fx:id="txtDiff_champ" />
+            <TextField fx:id="txtimg_champ" />
+            <TextField fx:id="txtId_jeu" />
+         </children>
+      </VBox>
+      <TableView fx:id="TVChamps" layoutX="428.0" layoutY="15.0" onMouseClicked="#handleMouseAction" prefHeight="494.0" prefWidth="790.0">
+        <columns>
+          <TableColumn fx:id="colId_champ" prefWidth="94.0" text="Id_Champ" />
+          <TableColumn fx:id="colNom_champ" prefWidth="96.0" text="Nom_Champ" />
+            <TableColumn fx:id="colDescription_champ" prefWidth="98.0" text="description_Champ" />
+            <TableColumn fx:id="colRole_champ" prefWidth="107.0" text="Role_Champ" />
+            <TableColumn fx:id="colDiff_champ" prefWidth="120.0" text="Difficulte_Champ" />
+            <TableColumn fx:id="colImg_champ" prefWidth="146.0" text="Image_Champ" />
+            <TableColumn fx:id="colId_jeu" prefWidth="513.0" text="Id_jeu" />
+        </columns>
+      </TableView>
+      <Button fx:id="btnInsert" layoutX="61.0" layoutY="349.0" mnemonicParsing="false" onAction="#AddChamp" prefHeight="32.0" prefWidth="91.0" text="Insert" />
+      <Button fx:id="btnUpdate" layoutX="181.0" layoutY="349.0" mnemonicParsing="false" onAction="#UpdateChamp" prefHeight="32.0" prefWidth="91.0" text="Update">
+         <graphic>
+            <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/Actions-edit-redo-icon.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <Button fx:id="btnDelete" layoutX="293.0" layoutY="349.0" mnemonicParsing="false" onAction="#DeleteChamp" prefHeight="32.0" prefWidth="91.0" text="Delete" />
+      <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="72.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons/Button-Add-icon.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="293.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@icons/Button-Delete-icon.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="491.0" layoutY="606.0" mnemonicParsing="false" onAction="#JeuScene" text="Jeu" />
+      <Button layoutX="758.0" layoutY="607.0" mnemonicParsing="false" onAction="#ImageScene" text="Image" />
+      <Button layoutX="991.0" layoutY="607.0" mnemonicParsing="false" onAction="#SkinScene" text="Skin" />
+      <Button layoutX="181.0" layoutY="486.0" mnemonicParsing="false" onAction="#Refresh" text="Refresh" />
+   </children>
+</AnchorPane>
