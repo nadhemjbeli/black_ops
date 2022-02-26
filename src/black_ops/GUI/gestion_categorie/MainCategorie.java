@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package black_ops.GUI.Gestion_Competition.Gestion_Details_Defis;
+package black_ops.GUI.gestion_categorie;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -15,9 +15,9 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author medaz
+ * @author ASUS
  */
-public class Gestion_Details_Defis extends Application {
+public class MainCategorie extends Application {
     
     @Override
     public void start(Stage primaryStage) {

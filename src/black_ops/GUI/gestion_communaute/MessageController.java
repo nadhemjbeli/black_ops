@@ -143,7 +143,7 @@ public class MessageController implements Initializable {
         ObservableList<Messagee> list = m_c.afficherMessages();
         list.clear();
         showMessages();
-//        disselect(event);
+        disselect(event);
     }
     
     public void showMessages(){

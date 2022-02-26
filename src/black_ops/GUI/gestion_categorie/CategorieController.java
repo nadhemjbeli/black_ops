@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package black_ops.GUI.Gestion_Competition.Gestion_Details_Defis;
+package black_ops.GUI.gestion_categorie;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,9 +12,9 @@ import javafx.fxml.Initializable;
 /**
  * FXML Controller class
  *
- * @author medaz
+ * @author ASUS
  */
-public class Gestion_Details_DefisController implements Initializable {
+public class CategorieController implements Initializable {
 
     /**
      * Initializes the controller class.
