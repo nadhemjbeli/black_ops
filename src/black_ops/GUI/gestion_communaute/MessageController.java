@@ -33,22 +33,11 @@ import javafx.stage.Stage;
  */
 public class MessageController implements Initializable {
 
-    @FXML
     private TextField id_message;
-    @FXML
     private TextArea txt_contenu;
-    @FXML
     private TextField txt_id_cl;
-    @FXML
     private TextField txt_id_sous_cat;
-    @FXML
     private TextField date_message;
-    @FXML
-    private Button btn_add;
-    @FXML
-    private Button btn_delete;
-    @FXML
-    private Button btn_edit;
     @FXML
     private Button btn_refresh;
     @FXML
@@ -58,22 +47,53 @@ public class MessageController implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
-    @FXML
     private TableColumn<Messagee, Integer> col_id;
-    @FXML
     private TableColumn<Messagee, Timestamp> col_date;
-    @FXML
     private TableColumn<Messagee, Integer> col_id_client;
-    @FXML
     private TableColumn<Messagee, Integer> col_id_sous;
-    @FXML
     private TableColumn<Messagee, String> col_contenu_message;
-    @FXML
     private TableView<Messagee> table_messages;
     @FXML
     private TextField txt_search;
     @FXML
     private Button btn_diselect;
+    @FXML
+    private TableView<?> TVChamps;
+    @FXML
+    private TableColumn<?, ?> colId_champ;
+    @FXML
+    private TableColumn<?, ?> colNom_champ;
+    @FXML
+    private TableColumn<?, ?> colDescription_champ;
+    @FXML
+    private TableColumn<?, ?> colRole_champ;
+    @FXML
+    private TableColumn<?, ?> colDiff_champ;
+    @FXML
+    private TableColumn<?, ?> colImg_champ;
+    @FXML
+    private TableColumn<?, ?> colId_jeu;
+    @FXML
+    private TextField txtid_champ;
+    @FXML
+    private TextArea txtNom_champ;
+    @FXML
+    private TextField txtdescription_champ;
+    @FXML
+    private TextField txtRole_champ;
+    @FXML
+    private TextField txtDiff_champ;
+    @FXML
+    private TextField txtimg_champ;
+    @FXML
+    private TextField txtId_jeu;
+    @FXML
+    private Button btnInsert;
+    @FXML
+    private Button btn_delete;
+    @FXML
+    private Button btnUpdate;
+    
 
     /**
      * Initializes the controller class.
@@ -84,7 +104,6 @@ public class MessageController implements Initializable {
         showMessages();
     }    
 
-    @FXML
     private void add_message(ActionEvent event) {
         try{
            String contenu = txt_contenu.getText();
@@ -103,7 +122,6 @@ public class MessageController implements Initializable {
         }
     }
 
-    @FXML
     private void delete_message(ActionEvent event) {
         try{
             String idmsg=id_message.getText();
@@ -116,7 +134,6 @@ public class MessageController implements Initializable {
         }
     }
 
-    @FXML
     private void edit_message(ActionEvent event) {
         try{
             String idmsg=id_message.getText();
@@ -137,7 +154,6 @@ public class MessageController implements Initializable {
         }
     }
 
-    @FXML
     private void refreshTable(ActionEvent event) {
         Message_Controller m_c = new Message_Controller();
         ObservableList<Messagee> list = m_c.afficherMessages();
@@ -173,7 +189,6 @@ public class MessageController implements Initializable {
         txt_id_sous_cat.setText(""+msg.getId_sous_cat());
     }
 
-    @FXML
     private void disselect(ActionEvent event) {
         id_message.setText("");
         txt_contenu.setText("");
@@ -182,22 +197,29 @@ public class MessageController implements Initializable {
         txt_id_sous_cat.setText("");
     }
 
-//    @FXML
-//    private void search_messages_par_contenu(ActionEvent event) {
-//        Message_Controller mcl = new Message_Controller();
-//       
-//        ObservableList<Messagee> list = mcl.afficherMessages();
-//     
-//        col_id.setCellValueFactory(new PropertyValueFactory<Messagee, Integer>("id_message"));
-//        col_date.setCellValueFactory(new PropertyValueFactory<>("date_message"));
-//        col_contenu_message.setCellValueFactory(new PropertyValueFactory<>("contenu_message"));
-//        col_id_client.setCellValueFactory(new PropertyValueFactory<>("id_cl"));
-//        col_id_sous.setCellValueFactory(new PropertyValueFactory<>("id_sous_cat"));
-//        table_messages.setItems(list);
-//    }
 
     @FXML
-    private void search_messages_par_contenu(ActionEvent event) {
+    private void Refresh(ActionEvent event) {
+    }
+
+    @FXML
+    private void AddChamp(ActionEvent event) {
+    }
+
+    @FXML
+    private void DeleteChamp(ActionEvent event) {
+    }
+
+    @FXML
+    private void UpdateChamp(ActionEvent event) {
+    }
+
+    @FXML
+    private void Diselect(ActionEvent event) {
+    }
+
+    @FXML
+    private void Search(ActionEvent event) {
     }
     
     
