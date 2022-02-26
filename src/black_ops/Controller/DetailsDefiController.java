@@ -1,7 +1,7 @@
 
 package black_ops.Controller;
 
-import black_ops.Entity.Details_Defi;
+import black_ops.Entity.DetailsDefi;
 import black_ops.config.MaConnexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,18 +9,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
-public class Details_DefiController {
+public class DetailsDefiController {
     Connection mc;
     PreparedStatement ste;
 
-    public Details_DefiController() {
+    public DetailsDefiController() {
                 mc = MaConnexion.getInstance().getCnx();
 
     }
     
-    public void Create_Details_Defi(Details_Defi d_f){
+    public void Create_Details_Defi(DetailsDefi d_f){
     String sql = "INSERT INTO details_defi( EquipeA, imgScore, EquipeB,Score_finale, id_defi) VALUES (?,?,?,?,?)";
     try {
             ste=mc.prepareStatement(sql);
@@ -36,14 +38,14 @@ public class Details_DefiController {
         }
     
     }
-    public List<Details_Defi> View_Details_defi(){
-        List<Details_Defi> Details_Defi = new ArrayList<>();
+    public ObservableList<DetailsDefi>  View_Details_defi(){
+        ObservableList<DetailsDefi> match = FXCollections.observableArrayList();
         String sql="select * from details_defi";
         try {
             ste=mc.prepareStatement(sql);
             ResultSet rs=ste.executeQuery();
             while(rs.next()){
-                Details_Defi df = new Details_Defi();
+                DetailsDefi df = new DetailsDefi();
               df.setId_Statistique(rs.getInt("id_Statistique"));
               df.setEquipeA(rs.getInt("EquipeA"));
               df.setImgScore(rs.getString("imgScore"));
@@ -52,18 +54,19 @@ public class Details_DefiController {
               df.setId_defi(rs.getInt("id_defi"));
                 
 
-                Details_Defi.add(df);
+              match.add(df);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         
-        return Details_Defi;
+        return match;
     }
     
-    public List<Details_Defi> Select_Detail(Details_Defi De_Se){
+    public  ObservableList<DetailsDefi> Select_Detail(DetailsDefi De_Se){
+        ObservableList<DetailsDefi> match = FXCollections.observableArrayList();
         String sql="SELECT * FROM details_defi WHERE id_Statistique = ?";
-        List<Details_Defi> match = new ArrayList<>();
+        
         try{
         ste=mc.prepareStatement(sql);
         ste.setInt(1, De_Se.getId_Statistique());
@@ -85,7 +88,7 @@ public class Details_DefiController {
         return match ;
     }
     
-    public void Delete_Details_Defi(Details_Defi ddf ){
+    public void Delete_Details_Defi(DetailsDefi ddf ){
         
         String sql ="delete from details_defi where id_Statistique = ?";
         try{
@@ -97,7 +100,7 @@ public class Details_DefiController {
             System.out.println(ex.getMessage());
         }
     }
-    public void Update_Details_Defi(Details_Defi d_f){
+    public void Update_Details_Defi(DetailsDefi d_f){
         String sql ="UPDATE details_defi SET EquipeA=?,imgScore=?,"
                 + "EquipeB=?,Score_finale=?,id_defi=? WHERE id_Statistique= ? ";
         try {

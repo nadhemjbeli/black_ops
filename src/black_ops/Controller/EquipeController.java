@@ -9,13 +9,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
-public class Equipe_Controller {
+public class EquipeController {
     Connection mc;
     PreparedStatement ste;
 
-    public Equipe_Controller() {
+    public EquipeController() {
         mc = MaConnexion.getInstance().getCnx();
     }
     public void ajouterEquipe(Equipe eq){
@@ -35,9 +37,9 @@ public class Equipe_Controller {
     
     }
     
-    public List<Equipe> afficherEquipe(){
-        List<Equipe> Equipe = new ArrayList<>();
-        String sql="select * from Equipe";
+    public ObservableList<Equipe> afficherEquipe(){
+ObservableList<Equipe> Equipe = FXCollections.observableArrayList();
+String sql="select * from Equipe";
         try {
             ste=mc.prepareStatement(sql);
             ResultSet rs=ste.executeQuery();

@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package black_ops.test.Gestion_Competition;
-import black_ops.Controller.Details_DefiController;
-import black_ops.Entity.Details_Defi;
+import black_ops.Controller.DetailsDefiController;
+import black_ops.Entity.DetailsDefi;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.LuminanceSource;
 import com.google.zxing.MultiFormatReader;
@@ -31,8 +31,8 @@ import net.glxn.qrgen.image.ImageType;
 public class Detail_Defis_Code_Qr extends javax.swing.JFrame {
     
     
-            Details_DefiController D_DefiC = new Details_DefiController();
-            Details_Defi sql_match1 = new Details_Defi(2);
+            DetailsDefiController D_DefiC = new DetailsDefiController();
+            DetailsDefi sql_match1 = new DetailsDefi(2);
             String Match = D_DefiC.Select_Detail(sql_match1).toString();
     
 

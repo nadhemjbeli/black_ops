@@ -2,7 +2,7 @@
 package black_ops.Entity;
 
 
-public class Details_Defi {
+public class DetailsDefi {
     private int id_Statistique ;
     private int EquipeA;
     private String imgScore ;
@@ -10,7 +10,7 @@ public class Details_Defi {
     private String Score_finale;
     private int id_defi;
 
-    public Details_Defi() {
+    public DetailsDefi() {
     }
 
     public int getId_Statistique() {
@@ -61,7 +61,7 @@ public class Details_Defi {
         this.id_defi = id_defi;
     }
 
-    public Details_Defi( int EquipeA, String imgScore, int EquipeB, String Score_finale, int id_defi) {
+    public DetailsDefi( int EquipeA, String imgScore, int EquipeB, String Score_finale, int id_defi) {
        
         this.EquipeA = EquipeA;
         this.imgScore = imgScore;
@@ -75,11 +75,11 @@ public class Details_Defi {
         return "Details_Defi{" + "id_Statistique=" + id_Statistique + ", EquipeA=" + EquipeA + ", imgScore=" + imgScore + ", EquipeB=" + EquipeB + ", Score_finale=" + Score_finale + ", id_defi=" + id_defi + '}';
     }
 
-    public Details_Defi(int id_Statistique) {
+    public DetailsDefi(int id_Statistique) {
         this.id_Statistique = id_Statistique;
     }
 
-    public Details_Defi(int id_Statistique, int EquipeA, String imgScore, int EquipeB, String Score_finale, int id_defi) {
+    public DetailsDefi(int id_Statistique, int EquipeA, String imgScore, int EquipeB, String Score_finale, int id_defi) {
         this.id_Statistique = id_Statistique;
         this.EquipeA = EquipeA;
         this.imgScore = imgScore;
