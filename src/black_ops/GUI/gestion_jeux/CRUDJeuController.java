@@ -24,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -55,28 +56,26 @@ public class CRUDJeuController implements Initializable {
     @FXML
     private Button btnDelete;
     @FXML
-    private Label txtId_jeu;
-    @FXML
-    private Label txtNom;
-    @FXML
-    private Label txtDescription;
-    @FXML
     private TextField txtid;
     @FXML
-    private TextField txtnom;
+    private TextArea txtnom;
     @FXML
     private TextField txtdescription;
     @FXML
     private TextField txturl;
     @FXML
     private TextField txtIdScat;
-    @FXML
-    private Label txtUrl;
-    @FXML
-    private Label txtSscat;
      private Stage stage;
  private Scene scene;
  private Parent root;
+    @FXML
+    private Button btn_diselect;
+    @FXML
+    private Button btn_refresh;
+    @FXML
+    private TextField txt_search;
+    @FXML
+    private Button btn_search;
  
 
     /**
@@ -151,7 +150,6 @@ public class CRUDJeuController implements Initializable {
          
     }
 
-    @FXML
     private void ImageScene(ActionEvent event) throws IOException {
         
   root = FXMLLoader.load(getClass().getResource("CRUDimage.fxml"));
@@ -162,7 +160,6 @@ public class CRUDJeuController implements Initializable {
   stage.show();
     }
 
-    @FXML
     private void ChampSccene(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("CRUDchampion.fxml"));
           
@@ -172,7 +169,6 @@ public class CRUDJeuController implements Initializable {
   stage.show();
     }
 
-    @FXML
     private void SkinScene(ActionEvent event) throws IOException {
    root = FXMLLoader.load(getClass().getResource("CRUDSkin.fxml"));     
   stage = (Stage)((Node)event.getSource()).getScene().getWindow();
@@ -190,5 +186,19 @@ public class CRUDJeuController implements Initializable {
             list.clear();
             showgames();
         
+    }
+
+    @FXML
+    private void disselect(ActionEvent event) {
+       
+       txtid.setText("");
+     txtnom.setText("");
+    txtdescription.setText("");
+     txturl.setText("");
+     txtIdScat.setText("");
+    }
+
+    @FXML
+    private void SearchNom(ActionEvent event) {
     }
 }

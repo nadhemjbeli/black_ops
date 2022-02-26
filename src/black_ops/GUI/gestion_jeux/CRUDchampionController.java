@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -65,14 +66,22 @@ public class CRUDchampionController implements Initializable {
     @FXML
     private Button btnUpdate;
     @FXML
-    private Button btnDelete;
-    @FXML
     private TextField txtid_champ;
     @FXML
-    private TextField txtNom_champ;
+    private TextArea txtNom_champ;
      private Stage stage;
  private Scene scene;
  private Parent root;
+    @FXML
+    private Button btn_delete;
+    @FXML
+    private Button btn_diselect;
+    @FXML
+    private Button btn_refresh;
+    @FXML
+    private TextField txt_search;
+    @FXML
+    private Button btn_search;
 
     /**
      * Initializes the controller class.
@@ -154,7 +163,6 @@ public class CRUDchampionController implements Initializable {
               showchamps();
     }
 
-    @FXML
     private void JeuScene(ActionEvent event) throws IOException {
    root = FXMLLoader.load(getClass().getResource("CRUDjeu.fxml"));
           
@@ -164,7 +172,6 @@ public class CRUDchampionController implements Initializable {
   stage.show();
     }
 
-    @FXML
     private void ImageScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("CRUDimage.fxml"));
           
@@ -174,7 +181,6 @@ public class CRUDchampionController implements Initializable {
   stage.show();
     }
 
-    @FXML
     private void SkinScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("CRUDSkin.fxml"));
           
@@ -191,5 +197,21 @@ public class CRUDchampionController implements Initializable {
             ObservableList<Champion> list = jc1.afficherChampions();
             list.clear();
             showchamps();
+    }
+
+    @FXML
+    private void Diselect(ActionEvent event) {
+         txtid_champ.setText("");
+       txtNom_champ.setText("");
+     txtdescription_champ.setText("");
+    txtRole_champ.setText("");
+     txtDiff_champ.setText("");
+     txtimg_champ.setText("");
+     txtId_jeu.setText("");
+        
+    }
+
+    @FXML
+    private void Search(ActionEvent event) {
     }
 }

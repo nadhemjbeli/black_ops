@@ -24,6 +24,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -38,13 +39,7 @@ public class CRUDImageController implements Initializable {
     
 
     @FXML
-    private Label txtId_jeu;
-    @FXML
-    private Label txtNom;
-    @FXML
-    private Label txtDescription;
-    @FXML
-    private TextField txtid_image;
+    private TextArea txtid_image;
     @FXML
     private TextField txt_Url_image;
     @FXML
@@ -58,14 +53,24 @@ public class CRUDImageController implements Initializable {
     @FXML
     private TableColumn<Image, Integer> col_Id_jeu;
     @FXML
-    private Button btnInsert;
-    @FXML
     private Button btnUpdate;
     @FXML
     private Button btnDelete;
     private Stage stage;
  private Scene scene;
  private Parent root;
+    @FXML
+    private TextField id_message;
+    @FXML
+    private TextField date_message;
+    @FXML
+    private Button btn_add;
+    @FXML
+    private Button btn_search;
+    @FXML
+    private Button DIselect;
+    @FXML
+    private Button btn_refresh;
     
  
 
@@ -88,7 +93,7 @@ public class CRUDImageController implements Initializable {
     }
 
     @FXML
-    private void AddGame(ActionEvent event) {
+    private void AddPic(ActionEvent event) {
             String url = txt_Url_image.getText();
            String text = txt_id_jeu.getText();
            int h = Integer.parseInt(text);
@@ -99,7 +104,7 @@ public class CRUDImageController implements Initializable {
     }
 
     @FXML
-    private void UpdateGame(ActionEvent event) {
+    private void UpdatePic(ActionEvent event) {
         String idimg=txtid_image.getText();
          int v = Integer.parseInt(idimg);
         String url_img = txt_Url_image.getText();
@@ -112,7 +117,7 @@ public class CRUDImageController implements Initializable {
     }
 
     @FXML
-    private void DeleteGame(ActionEvent event) {
+    private void DeletePic(ActionEvent event) {
          String idJeu=txtid_image.getText();
          int v = Integer.parseInt(idJeu);
              Image i1 = new Image(v);
@@ -134,7 +139,6 @@ public class CRUDImageController implements Initializable {
     }
 
 
-    @FXML
     private void SkinScene(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("CRUDSkin.fxml"));
           
@@ -144,7 +148,6 @@ public class CRUDImageController implements Initializable {
   stage.show();
     }
 
-    @FXML
     private void JeuScene(ActionEvent event) throws IOException {
          root = FXMLLoader.load(getClass().getResource("CRUDjeu.fxml"));
           
@@ -154,7 +157,6 @@ public class CRUDImageController implements Initializable {
   stage.show();
     }
 
-    @FXML
     private void ChampScene(ActionEvent event) throws IOException {
              root = FXMLLoader.load(getClass().getResource("CRUDchampion.fxml"));
           
@@ -171,6 +173,18 @@ public class CRUDImageController implements Initializable {
             ObservableList<Image> list = jc1.afficherImages();
             list.clear();
             showpics();
+    }
+
+
+    @FXML
+    private void Search(ActionEvent event) {
+    }
+
+    @FXML
+    private void DIselect(ActionEvent event) {
+         txtid_image.setText("");
+     txt_Url_image.setText("");
+    txt_id_jeu.setText("");    
     }
 
 

@@ -7,6 +7,7 @@ package black_ops.GUI.gestion_jeux;
 
 import black_ops.Controller.SkinController;
 import black_ops.Entity.Skin;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,6 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -35,7 +37,7 @@ import javafx.stage.Stage;
 public class CRUDSkinController implements Initializable {
 
     @FXML
-    private TextField txtid_skin;
+    private TextArea txtid_skin;
     @FXML
     private TextField txt_ImgSkin;
     @FXML
@@ -49,14 +51,26 @@ public class CRUDSkinController implements Initializable {
     @FXML
     private Button btnInsert;
     @FXML
-    private Button btnUpdate;
-    @FXML
     private Button btnDelete;
     @FXML
     private TableView<Skin> TVskin;
      private Stage stage;
  private Scene scene;
  private Parent root;
+    @FXML
+    private TextField id_message;
+    @FXML
+    private TextField date_message;
+    @FXML
+    private Button DIselect;
+    @FXML
+    private FontAwesomeIconView btn_Diselect;
+    @FXML
+    private Button btn_search;
+    @FXML
+    private Button btn_refresh;
+    @FXML
+    private Button btnupdate;
 
     /**
      * Initializes the controller class.
@@ -118,7 +132,6 @@ public class CRUDSkinController implements Initializable {
      TVskin.setItems(list);
 }
 
-    @FXML
     private void jeuScene(ActionEvent event) throws IOException {
          root = FXMLLoader.load(getClass().getResource("CRUDjeu.fxml"));
           
@@ -128,7 +141,6 @@ public class CRUDSkinController implements Initializable {
   stage.show();
     }
 
-    @FXML
     private void ImageScene(ActionEvent event) throws IOException {
           root = FXMLLoader.load(getClass().getResource("CRUDimage.fxml"));
           
@@ -138,7 +150,6 @@ public class CRUDSkinController implements Initializable {
   stage.show();
     }
 
-    @FXML
     private void ChampionScene(ActionEvent event) throws IOException {
                root = FXMLLoader.load(getClass().getResource("CRUDchampion.fxml"));
           
@@ -155,5 +166,17 @@ public class CRUDSkinController implements Initializable {
             ObservableList<Skin> list = jc1.afficherSkins();
             list.clear();
             showSkins();
+    }
+
+
+    @FXML
+    private void DIselect(ActionEvent event) {
+        txtid_skin.setText("");
+    txt_ImgSkin.setText("");
+    txt_id_Champ.setText("");
+    }
+
+    @FXML
+    private void Search(ActionEvent event) {
     }
 }

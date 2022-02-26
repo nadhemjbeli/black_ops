@@ -16,7 +16,7 @@ public class Main extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("CRUDjeu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("CRUDSkin.fxml"));
         
         Scene scene = new Scene(root);
         stage.setTitle("Black Ops");
