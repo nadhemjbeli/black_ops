@@ -15,24 +15,22 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: #e0e4e7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI.gestion_jeux.CRUDchampionController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: #e0e4e7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI.gestion_jeux.gestionjeu.CRUDJeuController">
    <children>
-      <TableView fx:id="TVChamps" layoutX="360.0" layoutY="82.0" onMouseClicked="#handleMouseAction" prefHeight="518.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+      <TableView fx:id="TVGames" layoutX="360.0" layoutY="82.0" onMouseClicked="#handleMouseAction" prefHeight="518.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
         <columns>
-          <TableColumn fx:id="colId_champ" maxWidth="300.0" prefWidth="78.0" text="id" />
-          <TableColumn fx:id="colNom_champ" maxWidth="300.0" prefWidth="116.0" text="Nom" />
-            <TableColumn fx:id="colDescription_champ" maxWidth="353.0" prefWidth="179.0" text="Description" />
-            <TableColumn fx:id="colRole_champ" maxWidth="334.0" prefWidth="152.0" text="Rôle" />
-            <TableColumn fx:id="colDiff_champ" minWidth="0.0" prefWidth="180.0" text="Difficulté" />
-            <TableColumn fx:id="colImg_champ" prefWidth="177.0" text="Image" />
-            <TableColumn fx:id="colId_jeu" maxWidth="339.0" prefWidth="117.0" text="ID_jeu" />
+          <TableColumn fx:id="colId" maxWidth="300.0" prefWidth="180.0" text="id" />
+          <TableColumn fx:id="colNom" maxWidth="300.0" prefWidth="180.0" text="Nom" />
+            <TableColumn fx:id="colDescription" maxWidth="300.0" prefWidth="180.0" text="Description" />
+            <TableColumn fx:id="colUrl" maxWidth="300.0" prefWidth="180.0" text="Url" />
+            <TableColumn fx:id="colIdSoucat" prefWidth="300.0" text="ID sous catégorie" />
         </columns>
       </TableView>
       <AnchorPane prefHeight="600.0" prefWidth="300.0" style="-fx-background-color: #0f1316;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox layoutX="59.0" layoutY="93.0" prefHeight="345.0" prefWidth="176.0">
+            <VBox layoutX="62.0" layoutY="78.0" prefHeight="345.0" prefWidth="176.0">
                <children>
-                  <TextField fx:id="txtid_champ" editable="false" style="-fx-text-fill: #000; -fx-background-color: #fff;">
+                  <TextField fx:id="txtid" editable="false" style="-fx-text-fill: #000; -fx-background-color: #fff;">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -41,9 +39,8 @@
                      </cursor>
                      <VBox.margin>
                         <Insets bottom="15.0" top="15.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextArea fx:id="txtNom_champ" prefHeight="60.0" prefWidth="200.0" promptText="Nom" style="-fx-background-color: #e0e4e7; -fx-prompt-text-fill: #707070;">
+                     </VBox.margin></TextField>
+                  <TextArea fx:id="txtnom" prefHeight="60.0" prefWidth="200.0" promptText="Nom" style="-fx-background-color: #e0e4e7; -fx-prompt-text-fill: #707070;">
                      <VBox.margin>
                         <Insets bottom="15.0" top="15.0" />
                      </VBox.margin>
@@ -51,17 +48,17 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextArea>
-                  <TextField fx:id="txtdescription_champ" layoutX="10.0" layoutY="50.0" promptText="Description" style="-fx-background-color: #fff; -fx-prompt-text-fill: #707070;">
+                  <TextField fx:id="txtdescription" layoutX="10.0" layoutY="50.0" prefHeight="31.0" prefWidth="225.0" promptText="Description" style="-fx-background-color: #fff; -fx-prompt-text-fill: #707070;">
                      <VBox.margin>
                         <Insets bottom="15.0" top="15.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="txtRole_champ" layoutX="10.0" layoutY="164.0" promptText="Rôle" style="-fx-background-color: #fff; -fx-prompt-text-fill: #707070;">
+                  <TextField fx:id="txturl" layoutX="10.0" layoutY="164.0" promptText="Url" style="-fx-background-color: #fff; -fx-prompt-text-fill: #707070;">
                      <VBox.margin>
                         <Insets bottom="15.0" top="15.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="txtDiff_champ" layoutX="10.0" layoutY="10.0" promptText="Difficulté" style="-fx-text-fill: #000; -fx-background-color: #fff;">
+                  <TextField fx:id="txtIdScat" layoutX="10.0" layoutY="10.0" promptText=" N° sous catégorie" style="-fx-text-fill: #000; -fx-background-color: #fff;">
                      <VBox.margin>
                         <Insets bottom="15.0" top="15.0" />
                      </VBox.margin>
@@ -71,32 +68,13 @@
                      <cursor>
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
-                  </TextField>
-                  <TextField fx:id="txtimg_champ" layoutX="10.0" layoutY="10.0" promptText="Image" style="-fx-text-fill: #000; -fx-background-color: #fff;">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
-                     <VBox.margin>
-                        <Insets bottom="15.0" top="15.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="txtId_jeu" layoutX="10.0" layoutY="250.0" promptText="ID_jeu" style="-fx-text-fill: #000; -fx-background-color: #fff;">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="DEFAULT" />
-                     </cursor>
-                     <VBox.margin>
-                        <Insets bottom="15.0" top="15.0" />
-                     </VBox.margin>
                   </TextField>
                </children>
+               <padding>
+                  <Insets bottom="15.0" top="15.0" />
+               </padding>
             </VBox>
-            <Button fx:id="btnInsert" layoutX="19.0" layoutY="490.0" mnemonicParsing="false" onAction="#AddChamp" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;" textFill="WHITE" AnchorPane.bottomAnchor="55.0">
+            <Button fx:id="btnInsert" layoutX="19.0" layoutY="490.0" mnemonicParsing="false" onAction="#AddGame" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;" textFill="WHITE" AnchorPane.bottomAnchor="55.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -106,7 +84,7 @@
                <graphic>
                   <FontAwesomeIconView fill="#e0e4e7" glyphName="PLUS" size="40" />
                </graphic></Button>
-            <Button fx:id="btn_delete" layoutX="156.0" layoutY="490.0" mnemonicParsing="false" onAction="#DeleteChamp" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;" AnchorPane.bottomAnchor="55.0">
+            <Button fx:id="btnDelete" layoutX="156.0" layoutY="490.0" mnemonicParsing="false" onAction="#DeleteGame" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;" AnchorPane.bottomAnchor="55.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -120,7 +98,7 @@
                   <FontAwesomeIconView fill="#e0e4e7" glyphName="TRASH" size="40" />
                </graphic>
             </Button>
-            <Button fx:id="btnUpdate" layoutX="87.0" layoutY="490.0" mnemonicParsing="false" onAction="#UpdateChamp" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 100%; -fx-background-color: #0F1316;" AnchorPane.bottomAnchor="55.0">
+            <Button fx:id="btnUpdate" layoutX="87.0" layoutY="490.0" mnemonicParsing="false" onAction="#UpdateGame" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 100%; -fx-background-color: #0F1316;" AnchorPane.bottomAnchor="55.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -134,17 +112,17 @@
                   <FontAwesomeIconView fill="#e0e4e7" glyphName="EDIT" size="40" />
                </graphic>
             </Button>
-            <Label layoutX="32.0" layoutY="102.0" text="ID" textFill="#e0e4e7">
+            <Label layoutX="26.0" layoutY="94.0" text="ID" textFill="#e0e4e7">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="56.0" layoutY="28.0" text="Gestion des champions" textFill="#e0e4e7">
+            <Label layoutX="56.0" layoutY="28.0" text="Gestion des jeux" textFill="#e0e4e7">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="btn_diselect" layoutX="222.0" layoutY="490.0" mnemonicParsing="false" onAction="#Diselect" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;" AnchorPane.bottomAnchor="55.0">
+            <Button fx:id="btn_diselect" layoutX="222.0" layoutY="490.0" mnemonicParsing="false" onAction="#disselect" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;" AnchorPane.bottomAnchor="55.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -177,7 +155,7 @@
       <HBox alignment="CENTER_RIGHT" layoutX="810.0" layoutY="10.0" prefHeight="50.0" prefWidth="343.0" AnchorPane.rightAnchor="0.0">
          <children>
             <TextField fx:id="txt_search" prefHeight="31.0" prefWidth="251.0" promptText="Chercher par contenu" style="-fx-background-color: #e0e4e7; -fx-prompt-text-fill: #707070;" />
-            <Button fx:id="btn_search" mnemonicParsing="false" onAction="#Search" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 100%; -fx-background-color: #e0e4e7;">
+            <Button fx:id="btn_search" mnemonicParsing="false" onAction="#SearchNom" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 100%; -fx-background-color: #e0e4e7;">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

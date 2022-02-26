@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package black_ops.GUI.gestion_jeux;
+package black_ops.GUI.gestion_jeux.gestionSkins;
 
 import black_ops.Controller.SkinController;
 import black_ops.Entity.Skin;

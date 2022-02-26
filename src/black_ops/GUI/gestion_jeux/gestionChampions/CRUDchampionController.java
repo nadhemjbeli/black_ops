@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package black_ops.GUI.gestion_jeux;
+package black_ops.GUI.gestion_jeux.gestionChampions;
 
 import black_ops.Controller.ChampionController;
 import black_ops.Entity.Champion;
