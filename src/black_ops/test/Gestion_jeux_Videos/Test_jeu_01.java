@@ -27,8 +27,8 @@ public class Test_jeu_01 {
          JeuController js1 = new JeuController();
        // js1.ajouterJeu(j1);
          //js1.updateJeu(j1);
-       js1.deletejeu(j1);
-         System.out.println(js1.AfficherJeux());
+       //js1.deletejeu(j1);
+         System.out.println(js1.RechercherJeux("valorant"));
     }
     
 }

@@ -7,15 +7,29 @@ package black_ops.GUI.gestion_jeux.gestionSkins;
 
 import black_ops.Controller.SkinController;
 import black_ops.Entity.Skin;
+import black_ops.Entity.Super;
+import black_ops.GUI.gestion_jeux.gestionChampions.ImageChampionController;
+import black_ops.config.MaConnexion;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -26,8 +40,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -57,10 +77,7 @@ public class CRUDSkinController implements Initializable {
      private Stage stage;
  private Scene scene;
  private Parent root;
-    @FXML
-    private TextField id_message;
-    @FXML
-    private TextField date_message;
+   
     @FXML
     private Button DIselect;
     @FXML
@@ -71,6 +88,16 @@ public class CRUDSkinController implements Initializable {
     private Button btn_refresh;
     @FXML
     private Button btnupdate;
+    @FXML
+    private TextField srchskin;
+    @FXML
+    private Button btnImport;
+    @FXML
+    private TextField id_message;
+    @FXML
+    private TextField date_message;
+    @FXML
+    private Button btnAffSkin;
 
     /**
      * Initializes the controller class.
@@ -78,6 +105,7 @@ public class CRUDSkinController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        showSkins();
+       showActualId();
     }    
 
     @FXML
@@ -90,13 +118,40 @@ public class CRUDSkinController implements Initializable {
 
     @FXML
     private void AddSkin(ActionEvent event) {
-         String imgskin = txt_ImgSkin.getText();
+        String imgskin = txt_ImgSkin.getText();
+         
            String text = txt_id_Champ.getText();
            int h = Integer.parseInt(text);
              Skin i1 = new Skin(4,imgskin,h);
           SkinController ic1 = new SkinController();
             ic1.ajouterSkin(i1);
+            //notification code 
+            String path="src\\ImagesChampions\\confirm.png";
+            String Path_name = new File(path).getAbsolutePath();
+        System.out.println(Path_name);
+        ImageView i = new ImageView();
+        File f =  new File (Path_name);
+        Image im =new Image(f.toURI().toString());
+             
+      Notifications notificationBuilder;
+        notificationBuilder = Notifications.create()
+                .title("skin ajouté avec succès")
+                .text("Le skin a bien été ajouté")
+                .graphic(new ImageView(im))
+                .hideAfter(Duration.seconds(4))
+                .position(Pos.TOP_RIGHT)
+                
+                .onAction((ActionEvent event1) -> {
+                    System.out.println("Click on notification");
+                });
+          
+         notificationBuilder.darkStyle();
+       notificationBuilder.show();
+      
+            
+            //
              showSkins();
+             showActualId();
     }
 
     @FXML
@@ -109,7 +164,32 @@ public class CRUDSkinController implements Initializable {
              Skin i1 = new Skin(v,imgskin,h);
           SkinController ic1 = new SkinController();
             ic1.updateSkin(i1);
+             //notif 
+            String path="src\\ImagesChampions\\updateicone.png";
+            String Path_name = new File(path).getAbsolutePath();
+        System.out.println(Path_name);
+        ImageView i = new ImageView();
+        File f =  new File (Path_name);
+        Image im =new Image(f.toURI().toString());
+             
+      Notifications notificationBuilder;
+        notificationBuilder = Notifications.create()
+                .title("skin modifié avec succès")
+                .text("Le skin a bien été modifié")
+                .graphic(new ImageView(im))
+                .hideAfter(Duration.seconds(4))
+                .position(Pos.TOP_RIGHT)
+                
+                .onAction((ActionEvent event1) -> {
+                    System.out.println("Click on notification");
+                });
+          
+         notificationBuilder.darkStyle();
+       notificationBuilder.show();
+      
+            //
              showSkins();
+             showActualId();
     }
 
     @FXML
@@ -119,7 +199,32 @@ public class CRUDSkinController implements Initializable {
             Skin i1 = new Skin(v);
            SkinController jc1 = new SkinController();
             jc1.deleteSkin(i1);
+             //notif 
+            String path="src\\ImagesChampions\\suppression.png";
+            String Path_name = new File(path).getAbsolutePath();
+        System.out.println(Path_name);
+        ImageView i = new ImageView();
+        File f =  new File (Path_name);
+        Image im =new Image(f.toURI().toString());
+             
+      Notifications notificationBuilder;
+        notificationBuilder = Notifications.create()
+                .title("skin supprimé avec succès")
+                .text("Le skin a bien été supprimé")
+                .graphic(new ImageView(im))
+                .hideAfter(Duration.seconds(4))
+                .position(Pos.TOP_RIGHT)
+                
+                .onAction((ActionEvent event1) -> {
+                    System.out.println("Click on notification");
+                });
+          
+         notificationBuilder.darkStyle();
+       notificationBuilder.show();
+      
+            //
             showSkins();
+            showActualId();
     }
     public void showSkins(){
      SkinController ic1 = new SkinController();
@@ -166,6 +271,7 @@ public class CRUDSkinController implements Initializable {
             ObservableList<Skin> list = jc1.afficherSkins();
             list.clear();
             showSkins();
+            showActualId();
     }
 
 
@@ -174,9 +280,138 @@ public class CRUDSkinController implements Initializable {
         txtid_skin.setText("");
     txt_ImgSkin.setText("");
     txt_id_Champ.setText("");
-    }
+    showActualId();}
+    
 
     @FXML
     private void Search(ActionEvent event) {
+        String skin =srchskin.getText();
+         SkinController ic1 = new SkinController();
+       
+            ObservableList<Skin> list = ic1.RechercherSkin(skin);
+     
+     colId_id_skin.setCellValueFactory(new PropertyValueFactory<Skin,Integer>("Id_skin") );
+     col_img_skin.setCellValueFactory(new PropertyValueFactory<Skin,String>("image_skin") );
+     col_Id_champ.setCellValueFactory(new PropertyValueFactory<Skin,Integer>("Id_champ") );
+     TVskin.setItems(list);
+      //notif 
+            String path="src\\ImagesChampions\\Recherche.png";
+            String Path_name = new File(path).getAbsolutePath();
+        System.out.println(Path_name);
+        ImageView i = new ImageView();
+        File f =  new File (Path_name);
+        Image im =new Image(f.toURI().toString());
+             
+      Notifications notificationBuilder;
+        notificationBuilder = Notifications.create()
+                .title("opération terminé")
+                .text("Recherche terminé avec succès")
+                .graphic(new ImageView(im))
+                .hideAfter(Duration.seconds(4))
+                .position(Pos.TOP_RIGHT)
+                
+                .onAction((ActionEvent event1) -> {
+                    System.out.println("Click on notification");
+                });
+          
+         notificationBuilder.darkStyle();
+       notificationBuilder.show();
+      showActualId();
+            //
     }
-}
+
+    @FXML
+    private String ImportSkin(ActionEvent event) {
+        String idskin=txtid_skin.getText();
+        Path to1=null;
+        Path to2 = null;
+         String  m = null;
+         String path = "\\SkinImages";
+         JFileChooser chooser = new JFileChooser();
+        
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "JPG & PNG Images", "jpg","jpeg","PNG");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(null);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+           m = chooser.getSelectedFile().getAbsolutePath();
+//            System.out.println("You chose to open this file: " +m
+//                    );
+            
+            if(chooser.getSelectedFile() != null){
+                
+               try {
+                   Path from = Paths.get(chooser.getSelectedFile().toURI());
+                    to1 = Paths.get(path+"\\"+idskin+".png");
+                    to2=Paths.get("src\\"+path+"\\"+idskin+".png");
+                   CopyOption[] options = new CopyOption[]{
+                       StandardCopyOption.REPLACE_EXISTING,
+                       StandardCopyOption.COPY_ATTRIBUTES
+                   };
+                   Files.copy(from, to2, options);
+                   System.out.println("added");
+//                saveSystem(selectedFile, )
+               } catch (IOException ex) {
+                   System.out.println();
+               }
+            }
+             txt_ImgSkin.setText(to1.toString());
+        
+    }
+      return to1.toString(); 
+    }
+
+    @FXML
+    private void AfficherSkin(ActionEvent event) {
+       String path1= txt_ImgSkin.getText();
+       String nom=txt_id_Champ.getText();
+        String path2="src"+'\\'+path1;
+        System.out.println(path2);
+        String Path_name = new File(path2).getAbsolutePath();
+        System.out.println(Path_name);
+        ImageView i = new ImageView();
+        File f =  new File (Path_name);
+        Image im =new Image(f.toURI().toString());
+       
+        
+         
+      
+        try {
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("AfficherSkin.fxml"));
+            Parent root=(Parent)loader.load();
+            AfficherSkinController ic = loader.getController();
+            ic.function(im,nom);
+            Scene scene = new Scene(root);
+            Stage stage=new Stage();
+            
+        stage.setScene(scene);
+        stage.show();
+            
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+      public void showActualId()
+      {       Connection mc;
+    PreparedStatement ste;
+      mc=MaConnexion.getInstance().getCnx();
+    String sql ="SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = \"black_ops\" AND TABLE_NAME = \"skin\";";
+      
+        try {
+            ste=mc.prepareStatement(sql);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+               int h= rs.getInt("AUTO_INCREMENT");
+              String u = Integer.toString(h, 1);
+               txtid_skin.setText(u);
+            } } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    
+    }
+      
+      
+    }
+   
+    
+    

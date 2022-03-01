@@ -17,18 +17,18 @@
 
 <AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: #e0e4e7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI.gestion_jeux.gestionjeu.CRUDJeuController">
    <children>
-      <TableView fx:id="TVGames" layoutX="360.0" layoutY="82.0" onMouseClicked="#handleMouseAction" prefHeight="518.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+      <TableView fx:id="TVGames" layoutX="360.0" layoutY="82.0" onMouseClicked="#handleMouseAction" prefHeight="600.0" prefWidth="999.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="100.0">
         <columns>
-          <TableColumn fx:id="colId" maxWidth="300.0" prefWidth="180.0" text="id" />
-          <TableColumn fx:id="colNom" maxWidth="300.0" prefWidth="180.0" text="Nom" />
-            <TableColumn fx:id="colDescription" maxWidth="300.0" prefWidth="180.0" text="Description" />
-            <TableColumn fx:id="colUrl" maxWidth="300.0" prefWidth="180.0" text="Url" />
-            <TableColumn fx:id="colIdSoucat" prefWidth="300.0" text="ID sous catégorie" />
+          <TableColumn fx:id="colId" maxWidth="300.0" prefWidth="117.0" text="id" />
+          <TableColumn fx:id="colNom" maxWidth="300.0" prefWidth="243.0" text="Nom" />
+            <TableColumn fx:id="colIdSoucat" maxWidth="300.0" prefWidth="180.0" text="id sous catégorie" />
+            <TableColumn fx:id="colUrl" maxWidth="300.0" prefWidth="132.0" text="Url" />
+            <TableColumn fx:id="colDescription" prefWidth="326.0" text="Description" />
         </columns>
       </TableView>
       <AnchorPane prefHeight="600.0" prefWidth="300.0" style="-fx-background-color: #0f1316;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox layoutX="62.0" layoutY="78.0" prefHeight="345.0" prefWidth="176.0">
+            <VBox layoutX="68.0" layoutY="28.0" prefHeight="345.0" prefWidth="176.0">
                <children>
                   <TextField fx:id="txtid" editable="false" style="-fx-text-fill: #000; -fx-background-color: #fff;">
                      <font>
@@ -112,12 +112,12 @@
                   <FontAwesomeIconView fill="#e0e4e7" glyphName="EDIT" size="40" />
                </graphic>
             </Button>
-            <Label layoutX="26.0" layoutY="94.0" text="ID" textFill="#e0e4e7">
+            <Label layoutX="32.0" layoutY="60.0" text="ID" textFill="#e0e4e7">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="56.0" layoutY="28.0" text="Gestion des jeux" textFill="#e0e4e7">
+            <Label layoutX="81.0" layoutY="14.0" text="Gestion des jeux" textFill="#e0e4e7">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

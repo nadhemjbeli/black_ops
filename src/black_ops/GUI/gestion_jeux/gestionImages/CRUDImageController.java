@@ -7,8 +7,20 @@ package black_ops.GUI.gestion_jeux.gestionImages;
 
 import black_ops.Controller.ImageController;
 import black_ops.Entity.Image;
+import black_ops.GUI.gestion_jeux.gestionChampions.ImageChampionController;
+import black_ops.config.MaConnexion;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,6 +29,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,8 +40,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -60,10 +78,6 @@ public class CRUDImageController implements Initializable {
  private Scene scene;
  private Parent root;
     @FXML
-    private TextField id_message;
-    @FXML
-    private TextField date_message;
-    @FXML
     private Button btn_add;
     @FXML
     private Button btn_search;
@@ -71,6 +85,12 @@ public class CRUDImageController implements Initializable {
     private Button DIselect;
     @FXML
     private Button btn_refresh;
+    @FXML
+    private TextField searimage;
+    @FXML
+    private Button btnAffjeu;
+    @FXML
+    private Button btnaffi;
     
  
 
@@ -80,6 +100,7 @@ public class CRUDImageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         showpics();
+        showActualId();
     }    
 
     @FXML
@@ -97,10 +118,36 @@ public class CRUDImageController implements Initializable {
             String url = txt_Url_image.getText();
            String text = txt_id_jeu.getText();
            int h = Integer.parseInt(text);
-             Image i1 = new Image(4,url,h);
+             Image i1 = new Image(3,url,h);
            ImageController ic1 = new ImageController();
             ic1.ajouterImage(i1);
+            //notification code 
+            String path="src\\ImagesChampions\\confirm.png";
+            String Path_name = new File(path).getAbsolutePath();
+        System.out.println(Path_name);
+        ImageView i = new ImageView();
+        File f =  new File (Path_name);
+        javafx.scene.image.Image im =new javafx.scene.image.Image(f.toURI().toString());
+             
+      Notifications notificationBuilder;
+        notificationBuilder = Notifications.create()
+                .title("image ajouté avec succès")
+                .text("L'image a bien été ajoutée")
+                .graphic(new ImageView(im))
+                .hideAfter(Duration.seconds(4))
+                .position(Pos.TOP_RIGHT)
+                
+                .onAction((ActionEvent event1) -> {
+                    System.out.println("Click on notification");
+                });
+          
+         notificationBuilder.darkStyle();
+       notificationBuilder.show();
+      
+            
+            //
              showpics();
+             showActualId();
     }
 
     @FXML
@@ -113,7 +160,32 @@ public class CRUDImageController implements Initializable {
             Image i1 = new Image(v,url_img,h);
             ImageController jc1 = new ImageController();
             jc1.updateImage(i1);
+              //notif 
+            String path="src\\ImagesChampions\\updateicone.png";
+            String Path_name = new File(path).getAbsolutePath();
+        System.out.println(Path_name);
+        ImageView i = new ImageView();
+        File f =  new File (Path_name);
+        javafx.scene.image.Image im =new javafx.scene.image.Image(f.toURI().toString());
+             
+      Notifications notificationBuilder;
+        notificationBuilder = Notifications.create()
+                .title("Image modifié avec succès")
+                .text("L'image a bien été modifiée")
+                .graphic(new ImageView(im))
+                .hideAfter(Duration.seconds(4))
+                .position(Pos.TOP_RIGHT)
+                
+                .onAction((ActionEvent event1) -> {
+                    System.out.println("Click on notification");
+                });
+          
+         notificationBuilder.darkStyle();
+       notificationBuilder.show();
+      
+            //
              showpics();
+             showActualId();
     }
 
     @FXML
@@ -123,7 +195,32 @@ public class CRUDImageController implements Initializable {
              Image i1 = new Image(v);
             ImageController jc1 = new ImageController();
             jc1.deleteImage(i1);
+                //notif 
+            String path="src\\ImagesChampions\\suppression.png";
+            String Path_name = new File(path).getAbsolutePath();
+        System.out.println(Path_name);
+        ImageView i = new ImageView();
+        File f =  new File (Path_name);
+        javafx.scene.image.Image im =new javafx.scene.image.Image(f.toURI().toString());
+             
+      Notifications notificationBuilder;
+        notificationBuilder = Notifications.create()
+                .title("image supprimé avec succès")
+                .text("L'image a bien été supprimée")
+                .graphic(new ImageView(im))
+                .hideAfter(Duration.seconds(4))
+                .position(Pos.TOP_RIGHT)
+                
+                .onAction((ActionEvent event1) -> {
+                    System.out.println("Click on notification");
+                });
+          
+         notificationBuilder.darkStyle();
+       notificationBuilder.show();
+      
+            //
              showpics();
+             showActualId();
     }
     public void showpics()
     {
@@ -134,6 +231,7 @@ public class CRUDImageController implements Initializable {
      col_Url_img.setCellValueFactory(new PropertyValueFactory<Image,String>("Url_Image") );
      col_Id_jeu.setCellValueFactory(new PropertyValueFactory<Image,Integer>("Id_jeu") );
      TVpics.setItems(list);
+     
      
      
     }
@@ -178,6 +276,39 @@ public class CRUDImageController implements Initializable {
 
     @FXML
     private void Search(ActionEvent event) {
+        String url=searimage.getText();
+         ImageController ic1 = new ImageController();
+        ObservableList<Image> list = ic1.RechercherImage(url);
+        System.out.println(list);
+     colId_id_img.setCellValueFactory(new PropertyValueFactory<Image,Integer>("Id_Image"));
+     col_Url_img.setCellValueFactory(new PropertyValueFactory<Image,String>("Url_Image") );
+     col_Id_jeu.setCellValueFactory(new PropertyValueFactory<Image,Integer>("Id_jeu") );
+     TVpics.setItems(list);
+      //notif 
+            String path="src\\ImagesChampions\\Recherche.png";
+            String Path_name = new File(path).getAbsolutePath();
+        System.out.println(Path_name);
+        ImageView i = new ImageView();
+        File f =  new File (Path_name);
+        javafx.scene.image.Image im =new javafx.scene.image.Image(f.toURI().toString());
+             
+      Notifications notificationBuilder;
+        notificationBuilder = Notifications.create()
+                .title("opération terminé")
+                .text("Recherche terminé avec succès")
+                .graphic(new ImageView(im))
+                .hideAfter(Duration.seconds(4))
+                .position(Pos.TOP_RIGHT)
+                
+                .onAction((ActionEvent event1) -> {
+                    System.out.println("Click on notification");
+                });
+          
+         notificationBuilder.darkStyle();
+       notificationBuilder.show();
+       showActualId();
+      
+            //
     }
 
     @FXML
@@ -185,7 +316,106 @@ public class CRUDImageController implements Initializable {
          txtid_image.setText("");
      txt_Url_image.setText("");
     txt_id_jeu.setText("");    
+    showActualId();
+    }
+
+    @FXML
+    private String Importer_img_Jeu(ActionEvent event) {
+        String idimg=txtid_image.getText();
+        Path to = null;
+        Path to2=null;
+         String  m = null;
+         String path = "\\ImagesJeux";
+         JFileChooser chooser = new JFileChooser();
+        
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "JPG & PNG Images", "jpg","jpeg","PNG");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(null);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+           m = chooser.getSelectedFile().getAbsolutePath();
+//            System.out.println("You chose to open this file: " +m
+//                    );
+            
+            if(chooser.getSelectedFile() != null){
+                
+               try {
+                   Path from = Paths.get(chooser.getSelectedFile().toURI());
+                    to = Paths.get(path+"\\"+idimg+".png");
+                      to2 = Paths.get("src\\"+path+"\\"+idimg+".png"); 
+                   CopyOption[] options = new CopyOption[]{
+                       StandardCopyOption.REPLACE_EXISTING,
+                       StandardCopyOption.COPY_ATTRIBUTES
+                   };
+                   Files.copy(from, to2, options);
+                   System.out.println("added");
+//                saveSystem(selectedFile, )
+               } catch (IOException ex) {
+                   System.out.println();
+               }
+            }
+             txt_Url_image.setText(to.toString());
+        
+    }
+      return to.toString(); 
+        
+    }
+
+    @FXML
+    private void AfficherImage(ActionEvent event) {
+         String path1= txt_Url_image.getText();
+         String path_2="src\\"+path1;
+         
+       String idjeu=txt_id_jeu.getText();
+        String Path_name = new File(path_2).getAbsolutePath();
+        System.out.println(Path_name);
+        ImageView i = new ImageView();
+        File f =  new File (Path_name);
+        javafx.scene.image.Image im =new javafx.scene.image.Image(f.toURI().toString());
+       
+        
+         
+      
+        try {
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("AfficherImage.fxml"));
+            Parent root=(Parent)loader.load();
+            AfficherImageController ic = loader.getController();
+            ic.function(im,idjeu);
+//            AfficherSkinController ic2 = loader.getController();
+//            ic2.function2(nom);
+            Scene scene = new Scene(root);
+            Stage stage=new Stage();
+            
+        stage.setScene(scene);
+        stage.show();
+            
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        
+     
+    }
+    public void showActualId()
+      {       Connection mc;
+    PreparedStatement ste;
+      mc=MaConnexion.getInstance().getCnx();
+    String sql ="SELECT AUTO_INCREMENT FROM information_schema.TABLES WHERE TABLE_SCHEMA = \"black_ops\" AND TABLE_NAME = \"image\";";
+      
+        try {
+            ste=mc.prepareStatement(sql);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+               int h= rs.getInt("AUTO_INCREMENT");
+              String u = Integer.toString(h, 1);
+               txtid_image.setText(u);
+            } } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    
+    }
+    
     }
 
 
-}
+

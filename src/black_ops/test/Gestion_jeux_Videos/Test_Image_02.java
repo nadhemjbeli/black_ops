@@ -23,6 +23,6 @@ public class Test_Image_02 {
    // IS1.ajouterImage(i1);
    //IS1.updateImage(i1);
    IS1.deleteImage(i1);
-    System.out.println(IS1.afficherImages());
+    System.out.println(IS1.RechercherImage("E:/Image/Astra.jpg"));
 }
 }

@@ -7,6 +7,7 @@ package black_ops.GUI.gestion_jeux.gestionjeu;
 
 import black_ops.Controller.JeuController;
 import black_ops.Entity.Jeu;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,8 +29,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -98,6 +104,31 @@ public class CRUDJeuController implements Initializable {
              Jeu j1 = new Jeu(4,nom,desc,url,h);
             JeuController jc1 = new JeuController();
             jc1.ajouterJeu(j1);
+            //notification code 
+            String path="src\\ImagesChampions\\confirm.png";
+            String Path_name = new File(path).getAbsolutePath();
+        System.out.println(Path_name);
+        ImageView i = new ImageView();
+        File f =  new File (Path_name);
+        Image im =new Image(f.toURI().toString());
+             
+      Notifications notificationBuilder;
+        notificationBuilder = Notifications.create()
+                .title("jeu ajouté avec succès")
+                .text("Le jeu " +nom+" a bien été ajouté")
+                .graphic(new ImageView(im))
+                .hideAfter(Duration.seconds(4))
+                .position(Pos.TOP_RIGHT)
+                
+                .onAction((ActionEvent event1) -> {
+                    System.out.println("Click on notification");
+                });
+          
+         notificationBuilder.darkStyle();
+       notificationBuilder.show();
+      
+            
+            //
              showgames();
     }
     @FXML
@@ -112,16 +143,65 @@ public class CRUDJeuController implements Initializable {
              Jeu j1 = new Jeu(v,nom,desc,url,h);
             JeuController jc1 = new JeuController();
             jc1.updateJeu(j1);
+            //notif 
+            String path="src\\ImagesChampions\\updateicone.png";
+            String Path_name = new File(path).getAbsolutePath();
+        System.out.println(Path_name);
+        ImageView i = new ImageView();
+        File f =  new File (Path_name);
+        Image im =new Image(f.toURI().toString());
+             
+      Notifications notificationBuilder;
+        notificationBuilder = Notifications.create()
+                .title("jeu modifié avec succès")
+                .text("Le jeu " +nom+" a bien été modifié")
+                .graphic(new ImageView(im))
+                .hideAfter(Duration.seconds(4))
+                .position(Pos.TOP_RIGHT)
+                
+                .onAction((ActionEvent event1) -> {
+                    System.out.println("Click on notification");
+                });
+          
+         notificationBuilder.darkStyle();
+       notificationBuilder.show();
+      
+            //
              showgames();
     }
 
     @FXML
     private void DeleteGame(ActionEvent event) {
+         String nom = txtnom.getText();
         String idJeu=txtid.getText();
          int v = Integer.parseInt(idJeu);
              Jeu j1 = new Jeu(v);
             JeuController jc1 = new JeuController();
             jc1.deletejeu(j1);
+              //notif 
+            String path="src\\ImagesChampions\\suppression.png";
+            String Path_name = new File(path).getAbsolutePath();
+        System.out.println(Path_name);
+        ImageView i = new ImageView();
+        File f =  new File (Path_name);
+        Image im =new Image(f.toURI().toString());
+             
+      Notifications notificationBuilder;
+        notificationBuilder = Notifications.create()
+                .title("jeu supprimé avec succès")
+                .text("Le jeu " +nom+" a bien été supprimé")
+                .graphic(new ImageView(im))
+                .hideAfter(Duration.seconds(4))
+                .position(Pos.TOP_RIGHT)
+                
+                .onAction((ActionEvent event1) -> {
+                    System.out.println("Click on notification");
+                });
+          
+         notificationBuilder.darkStyle();
+       notificationBuilder.show();
+      
+            //
              showgames();
         
     }
@@ -133,9 +213,9 @@ public class CRUDJeuController implements Initializable {
      
      colId.setCellValueFactory(new PropertyValueFactory<Jeu,Integer>("Id_Jeu"));
      colNom.setCellValueFactory(new PropertyValueFactory<Jeu,String>("Nom") );
-     colDescription.setCellValueFactory(new PropertyValueFactory<Jeu,String>("description") );
-     colUrl.setCellValueFactory(new PropertyValueFactory<Jeu,String>("Url") );
      colIdSoucat.setCellValueFactory(new PropertyValueFactory<Jeu,Integer>("id_souscat") );
+     colUrl.setCellValueFactory(new PropertyValueFactory<Jeu,String>("Url") );
+    colDescription.setCellValueFactory(new PropertyValueFactory<Jeu,String>("description") );
      TVGames.setItems(list);
     }
 
@@ -144,9 +224,9 @@ public class CRUDJeuController implements Initializable {
     Jeu j = TVGames.getSelectionModel().getSelectedItem();
        txtid.setText(""+j.getId_Jeu());
      txtnom.setText(""+j.getNom());
-    txtdescription.setText(""+j.getDescription());
+       txtIdScat.setText(""+j.getId_souscat());
      txturl.setText(""+j.getUrl());
-     txtIdScat.setText(""+j.getId_souscat());
+    txtdescription.setText(""+j.getDescription());
          
     }
 
@@ -199,6 +279,45 @@ public class CRUDJeuController implements Initializable {
     }
 
     @FXML
-    private void SearchNom(ActionEvent event) {
-    }
+    private void SearchNom(ActionEvent event) 
+    { JeuController jc1 = new JeuController();
+       String nom = txt_search.getText();
+            ObservableList<Jeu> list = jc1.RechercherJeux(nom);
+     
+     colId.setCellValueFactory(new PropertyValueFactory<Jeu,Integer>("Id_Jeu"));
+     colNom.setCellValueFactory(new PropertyValueFactory<Jeu,String>("Nom") );
+     colDescription.setCellValueFactory(new PropertyValueFactory<Jeu,String>("description") );
+     colUrl.setCellValueFactory(new PropertyValueFactory<Jeu,String>("Url") );
+     colIdSoucat.setCellValueFactory(new PropertyValueFactory<Jeu,Integer>("id_souscat") );
+     TVGames.setItems(list);
+      //notif 
+            String path="src\\ImagesChampions\\Recherche.png";
+            String Path_name = new File(path).getAbsolutePath();
+        System.out.println(Path_name);
+        ImageView i = new ImageView();
+        File f =  new File (Path_name);
+        Image im =new Image(f.toURI().toString());
+             
+      Notifications notificationBuilder;
+        notificationBuilder = Notifications.create()
+                .title("opération terminé")
+                .text("Recherche terminé avec succès")
+                .graphic(new ImageView(im))
+                .hideAfter(Duration.seconds(4))
+                .position(Pos.TOP_RIGHT)
+                
+                .onAction((ActionEvent event1) -> {
+                    System.out.println("Click on notification");
+                });
+          
+         notificationBuilder.darkStyle();
+       notificationBuilder.show();
+      
+            //
+        
+    
+}
+
+
+
 }

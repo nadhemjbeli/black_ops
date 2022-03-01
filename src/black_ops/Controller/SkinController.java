@@ -85,4 +85,23 @@ public class SkinController {
             System.out.println(ex.getMessage());
         }
 }
+       public ObservableList<Skin> RechercherSkin(String skin){
+        ObservableList<Skin> skins = FXCollections.observableArrayList();
+        String sql="select * from skin where image_skin='"+skin+"'";
+        try {
+            ste=mc.prepareStatement(sql);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+                Skin c = new Skin();
+                c.setId_skin(rs.getInt("Id_skin"));
+                c.setImage_skin(rs.getString("image_skin"));
+                c.setId_champ (rs.getInt("Id_champ"));               
+                skins.add(c);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return skins;
+    }
 }

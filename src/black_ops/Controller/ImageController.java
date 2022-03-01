@@ -91,5 +91,23 @@ public class ImageController {
         }
 
 }
+         public ObservableList<Image> RechercherImage (String url)
+        { ObservableList<Image> images = FXCollections.observableArrayList();
+        String sql="select * from image where Url_Image='"+url+"'";
+         try {
+            ste=mc.prepareStatement(sql);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+                Image i = new Image();
+                i.setId_Image(rs.getInt("Id_Image"));
+                i.setUrl_Image(rs.getString("Url_Image"));
+                i.setId_jeu(rs.getInt("Id_jeu"));
+                images.add(i);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return images;
 
-}
+}}

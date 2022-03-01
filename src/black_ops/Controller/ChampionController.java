@@ -88,7 +88,18 @@ public class ChampionController {
         
     }
        public void deleteChampion(Champion c){
+        String sql2 ="delete from skin where Id_champ = ( SELECT Id_champ from champion where Id_champ = ? )";
         String sql ="delete from champion where Id_Champ = ? ";      
+          try {
+            ste=mc.prepareStatement(sql2);                  
+           ste.setInt(1, c.getId_Champ());           
+            ste.executeUpdate();       
+            ste.close();
+        } 
+         catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
         try {
             ste=mc.prepareStatement(sql);                  
            ste.setInt(1, c.getId_Champ());           
@@ -97,5 +108,38 @@ public class ChampionController {
         } 
          catch (SQLException ex) {
             System.out.println(ex.getMessage());
+        }}
+       
+       
+       
+         public ObservableList<Champion> RechercherChampion (String nom)
+        { ObservableList<Champion> Champions = FXCollections.observableArrayList();
+        String sql="select * from champion where Nom_Champ='"+nom+"'";
+        try {
+            ste=mc.prepareStatement(sql);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+                Champion c = new Champion();
+                c.setId_Champ(rs.getInt("Id_Champ"));
+                c.setNom_Champ(rs.getString("Nom_champ"));
+                c.setDescription_Champ(rs.getString("description_Champ"));
+                c.setRole_Champ(rs.getString("Role_Champ"));
+                c.setDifficulte_Champ(rs.getString("Difficulte_Champ"));
+                c.setImage_Champ(rs.getString("Image_Champ"));
+                c.setId_jeu(rs.getInt("Id_jeu"));
+                
+                Champions.add(c);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
-}}
+        
+        return Champions;
+            
+            
+         }
+       
+       
+
+
+}

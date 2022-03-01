@@ -105,7 +105,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="DIselect" layoutX="220.0" layoutY="488.0" mnemonicParsing="false" onAction="#DIselect" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;">
+            <Button fx:id="DIselect" layoutX="216.0" layoutY="485.0" mnemonicParsing="false" onAction="#DIselect" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -116,14 +116,20 @@
                   <ColorAdjust />
                </effect>
                <graphic>
-                  <FontAwesomeIconView fill="#e0e4e7" glyphName="MINUS" size="30" />
+                  <FontAwesomeIconView fill="#e0e4e7" glyphName="MINUS" size="30" text="" />
                </graphic>
             </Button>
+            <Button fx:id="btnAffjeu" layoutX="250.0" layoutY="214.0" mnemonicParsing="false" onAction="#Importer_img_Jeu" prefHeight="31.0" prefWidth="29.0">
+               <graphic>
+                  <FontAwesomeIconView glyphName="FOLDER_OPEN" size="18" />
+               </graphic>
+            </Button>
+            <Button fx:id="btnaffi" layoutX="85.0" layoutY="382.0" mnemonicParsing="false" onAction="#AfficherImage" text="Afficher l'image" />
          </children>
       </AnchorPane>
       <HBox alignment="CENTER_RIGHT" layoutX="810.0" layoutY="10.0" prefHeight="50.0" prefWidth="343.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <TextField />
+            <TextField fx:id="searimage" />
             <Button fx:id="btn_search" mnemonicParsing="false" onAction="#Search" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 100%; -fx-background-color: #e0e4e7;">
                <font>
                   <Font name="System Bold" size="14.0" />

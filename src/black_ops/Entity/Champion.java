@@ -28,6 +28,7 @@ public class Champion {
         this.Image_Champ = Image_Champ;
         this.Id_jeu = Id_jeu;
     }
+      
     public Champion(int Id_Champ)
     { this.Id_Champ = Id_Champ;
     }

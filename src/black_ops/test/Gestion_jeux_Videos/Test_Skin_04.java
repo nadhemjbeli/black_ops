@@ -22,6 +22,6 @@ public class Test_Skin_04 {
     SkinController ss= new SkinController();
     //ss.ajouterSkin(s);
     //ss.updateSkin(s);
-    ss.deleteSkin(s);
-    System.out.println(ss.afficherSkins());
+    //ss.deleteSkin(s);
+    System.out.println(ss.RechercherSkin("erererrerer"));
 }}

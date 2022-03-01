@@ -119,11 +119,17 @@
                   <FontAwesomeIconView fx:id="btn_Diselect" fill="#e0e4e7" glyphName="MINUS" size="30" />
                </graphic>
             </Button>
+            <Button fx:id="btnImport" layoutX="251.0" layoutY="214.0" mnemonicParsing="false" onAction="#ImportSkin" prefHeight="31.0" prefWidth="26.0">
+               <graphic>
+                  <FontAwesomeIconView glyphName="FOLDER_OPEN" size="17" />
+               </graphic>
+            </Button>
+            <Button fx:id="btnAffSkin" layoutX="96.0" layoutY="367.0" mnemonicParsing="false" onAction="#AfficherSkin" text="Afficher Skin" />
          </children>
       </AnchorPane>
       <HBox alignment="CENTER_RIGHT" layoutX="810.0" layoutY="10.0" prefHeight="50.0" prefWidth="343.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <TextField />
+            <TextField fx:id="srchskin" />
             <Button fx:id="btn_search" mnemonicParsing="false" onAction="#Search" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 100%; -fx-background-color: #e0e4e7;">
                <font>
                   <Font name="System Bold" size="14.0" />

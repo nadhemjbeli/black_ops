@@ -131,6 +131,28 @@ public class JeuController {
         
 
     }
+     public ObservableList<Jeu> RechercherJeux(String nom){
+        ObservableList<Jeu> jeux = FXCollections.observableArrayList();
+       
+        String sql="select * from jeu where Nom='"+nom+"'";
+        try {
+            ste=mc.prepareStatement(sql);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+                Jeu j = new Jeu();
+                j.setId_Jeu(rs.getInt("Id_Jeu"));
+                j.setNom(rs.getString("Nom"));
+                j.setDescription(rs.getString("description"));
+                j.setUrl(rs.getString("Url"));
+                j.setId_souscat(rs.getInt("id_souscat"));
+                jeux.add(j);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return jeux;
+    }
 }
     
 

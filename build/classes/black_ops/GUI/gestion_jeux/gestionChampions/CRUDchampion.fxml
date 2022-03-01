@@ -21,16 +21,16 @@
         <columns>
           <TableColumn fx:id="colId_champ" maxWidth="300.0" prefWidth="78.0" text="id" />
           <TableColumn fx:id="colNom_champ" maxWidth="300.0" prefWidth="116.0" text="Nom" />
-            <TableColumn fx:id="colDescription_champ" maxWidth="353.0" prefWidth="179.0" text="Description" />
+            <TableColumn fx:id="colId_jeu" maxWidth="353.0" prefWidth="179.0" text="ID_jeu" />
             <TableColumn fx:id="colRole_champ" maxWidth="334.0" prefWidth="152.0" text="Rôle" />
-            <TableColumn fx:id="colDiff_champ" minWidth="0.0" prefWidth="180.0" text="Difficulté" />
-            <TableColumn fx:id="colImg_champ" prefWidth="177.0" text="Image" />
-            <TableColumn fx:id="colId_jeu" maxWidth="339.0" prefWidth="117.0" text="ID_jeu" />
+            <TableColumn fx:id="colDiff_champ" minWidth="0.0" prefWidth="132.0" text="Difficulté" />
+            <TableColumn fx:id="colImg_champ" prefWidth="148.0" text="Image" />
+            <TableColumn fx:id="colDescription_champ" maxWidth="339.0" prefWidth="194.0" text="Description" />
         </columns>
       </TableView>
       <AnchorPane prefHeight="600.0" prefWidth="300.0" style="-fx-background-color: #0f1316;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox layoutX="59.0" layoutY="93.0" prefHeight="345.0" prefWidth="176.0">
+            <VBox layoutX="59.0" layoutY="54.0" prefHeight="345.0" prefWidth="176.0">
                <children>
                   <TextField fx:id="txtid_champ" editable="false" style="-fx-text-fill: #000; -fx-background-color: #fff;">
                      <font>
@@ -134,12 +134,12 @@
                   <FontAwesomeIconView fill="#e0e4e7" glyphName="EDIT" size="40" />
                </graphic>
             </Button>
-            <Label layoutX="32.0" layoutY="102.0" text="ID" textFill="#e0e4e7">
+            <Label layoutX="32.0" layoutY="74.0" text="ID" textFill="#e0e4e7">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <Label layoutX="56.0" layoutY="28.0" text="Gestion des champions" textFill="#e0e4e7">
+            <Label layoutX="50.0" layoutY="14.0" text="Gestion des champions" textFill="#e0e4e7">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -158,6 +158,18 @@
                   <FontAwesomeIconView fill="#e0e4e7" glyphName="MINUS" size="40" />
                </graphic>
             </Button>
+            <Button fx:id="btn_import" layoutX="245.0" layoutY="390.0" mnemonicParsing="false" onAction="#Importer_Image" prefHeight="31.0" prefWidth="34.0">
+               <graphic>
+                  <FontAwesomeIconView glyphName="FOLDER_OPEN" size="17" />
+               </graphic></Button>
+            <Button fx:id="btnAffichage_img" layoutX="13.0" layoutY="512.0" mnemonicParsing="false" onAction="#AfficherImage" text="Afficher l'image">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <Button layoutX="156.0" layoutY="512.0" mnemonicParsing="false" onAction="#exportLogs" text="Générer les logs">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
          </children>
       </AnchorPane>
       <Button fx:id="btn_refresh" layoutX="315.0" layoutY="9.0" mnemonicParsing="false" onAction="#Refresh" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 100%; -fx-background-color: #e0e4e7;">
