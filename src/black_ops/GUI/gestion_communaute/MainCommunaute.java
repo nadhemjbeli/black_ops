@@ -20,7 +20,9 @@ public class MainCommunaute extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("message.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("video_uploade.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("message.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("video_play.fxml"));
         
         Scene scene = new Scene(root);
         stage.setTitle("Black Ops");

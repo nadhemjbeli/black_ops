@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -9,29 +11,53 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1200.0" style="-fx-background-color: #e0e4e7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI.gestion_communaute.Video_uploadeController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: #e0e4e7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI.gestion_communaute.Video_uploadeController">
    <children>
-      <TableView fx:id="table_personne" layoutX="360.0" layoutY="82.0" prefHeight="518.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+      <TableView fx:id="table_video" layoutX="360.0" layoutY="82.0" onMouseClicked="#handleMouseAction" prefHeight="518.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
         <columns>
-          <TableColumn fx:id="txt_id" maxWidth="300.0" prefWidth="180.0" text="id" />
-          <TableColumn fx:id="date" maxWidth="300.0" prefWidth="180.0" text="Date" />
-            <TableColumn fx:id="id_client" maxWidth="300.0" prefWidth="180.0" text="Id client" />
-            <TableColumn fx:id="id_sous" maxWidth="300.0" prefWidth="180.0" text="Id sous cat" />
-            <TableColumn fx:id="contenu_message" prefWidth="200.0" text="Contenu de message" />
+          <TableColumn fx:id="col_id" maxWidth="300.0" prefWidth="100.0" text="id" />
+            <TableColumn fx:id="col_nom_video" maxWidth="300.0" prefWidth="150.0" text="nom video" />
+          <TableColumn fx:id="col_date" maxWidth="300.0" prefWidth="150.0" text="Date" />
+            <TableColumn fx:id="col_url" maxWidth="300.0" prefWidth="150.0" text="url video" />
+            <TableColumn fx:id="col_id_client" maxWidth="300.0" prefWidth="100.0" text="Id client" />
+            <TableColumn fx:id="col_id_sous" maxWidth="300.0" prefWidth="100.0" text="Id sous cat" />
+            <TableColumn fx:id="col_description" prefWidth="250.0" text="Description Video" />
         </columns>
       </TableView>
       <AnchorPane layoutX="20.0" layoutY="24.0" prefHeight="600.0" prefWidth="300.0" style="-fx-background-color: #0f1316;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox layoutX="62.0" layoutY="77.0" prefHeight="294.0" prefWidth="176.0">
+            <VBox layoutX="62.0" layoutY="77.0" prefHeight="345.0" prefWidth="176.0">
                <children>
-                  <TextField fx:id="id_message" disable="true" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: #fff; -fx-prompt-text-fill: #eee;" />
-                  <TextArea fx:id="txt_contenu" prefHeight="60.0" prefWidth="200.0" promptText="Contenu" style="-fx-background-color: #e0e4e7; -fx-prompt-text-fill: #707070;">
+                  <TextField fx:id="txt_id" editable="false" style="-fx-text-fill: #000; -fx-background-color: #e0e4e7;">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor></TextField>
+                  <TextField fx:id="txt_nom_video" layoutX="10.0" layoutY="10.0" promptText="nom video" style="-fx-text-fill: #000; -fx-background-color: #fff;">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets top="14.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <TextArea fx:id="txt_description" prefHeight="60.0" prefWidth="200.0" promptText="Description" style="-fx-background-color: #e0e4e7; -fx-prompt-text-fill: #707070;">
                      <VBox.margin>
                         <Insets top="14.0" />
                      </VBox.margin>
@@ -39,24 +65,50 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextArea>
-                  <TextField fx:id="txt_id_cl" layoutX="10.0" layoutY="50.0" promptText="ID Client" style="-fx-background-color: #e0e4e7; -fx-prompt-text-fill: #707070;">
+                  <TextField fx:id="txt_url_video" editable="false" layoutX="10.0" layoutY="55.0" promptText="url video" style="-fx-text-fill: #000; -fx-background-color: #fff;">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
                      <VBox.margin>
                         <Insets top="14.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="txt_id_sous_cat" layoutX="10.0" layoutY="164.0" promptText="ID Sous Cat" style="-fx-background-color: #e0e4e7; -fx-prompt-text-fill: #707070;">
+                  <TextField fx:id="txt_id_cl" layoutX="10.0" layoutY="50.0" promptText="ID Client" style="-fx-background-color: #fff; -fx-prompt-text-fill: #707070;">
                      <VBox.margin>
                         <Insets top="14.0" />
                      </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
                   </TextField>
-                  <TextField fx:id="date_message" disable="true" layoutX="10.0" layoutY="10.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: #e0e4e7;">
+                  <TextField fx:id="txt_id_sous_cat" layoutX="10.0" layoutY="164.0" promptText="ID Sous Cat" style="-fx-background-color: #fff; -fx-prompt-text-fill: #707070;">
                      <VBox.margin>
                         <Insets top="14.0" />
                      </VBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
+                  </TextField>
+                  <TextField fx:id="date_video" editable="false" layoutX="10.0" layoutY="10.0" style="-fx-text-fill: #000; -fx-background-color: #e0e4e7;">
+                     <VBox.margin>
+                        <Insets top="14.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
                   </TextField>
                </children>
             </VBox>
-            <Button fx:id="btn_add" layoutX="45.0" layoutY="492.0" mnemonicParsing="false" onAction="#add_message" prefHeight="50.0" prefWidth="54.0" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;" textFill="WHITE" AnchorPane.bottomAnchor="57.6">
+            <Button fx:id="btn_add" layoutX="19.0" layoutY="490.0" mnemonicParsing="false" onAction="#add_video" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;" textFill="WHITE" AnchorPane.bottomAnchor="55.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -64,9 +116,9 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                <graphic>
-                  <FontAwesomeIconView fill="#e0e4e7" glyphName="PLUS" size="30" />
+                  <FontAwesomeIconView fill="#e0e4e7" glyphName="PLUS" size="40" />
                </graphic></Button>
-            <Button fx:id="btn_delete" layoutX="201.0" layoutY="492.0" mnemonicParsing="false" onAction="#delete_message" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;" AnchorPane.bottomAnchor="57.6">
+            <Button fx:id="btn_delete" layoutX="156.0" layoutY="490.0" mnemonicParsing="false" onAction="#delete_video" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;" AnchorPane.bottomAnchor="55.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -77,10 +129,10 @@
                   <ColorAdjust />
                </effect>
                <graphic>
-                  <FontAwesomeIconView fill="#e0e4e7" glyphName="TRASH" size="30" />
+                  <FontAwesomeIconView fill="#e0e4e7" glyphName="TRASH" size="40" />
                </graphic>
             </Button>
-            <Button fx:id="btn_edit" layoutX="123.0" layoutY="492.0" mnemonicParsing="false" onAction="#edit_message" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 100%; -fx-background-color: #0F1316;" AnchorPane.bottomAnchor="57.6">
+            <Button fx:id="btn_edit" layoutX="87.0" layoutY="490.0" mnemonicParsing="false" onAction="#edit_video" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 100%; -fx-background-color: #0F1316;" AnchorPane.bottomAnchor="55.0">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -91,7 +143,32 @@
                   <ColorAdjust />
                </effect>
                <graphic>
-                  <FontAwesomeIconView fill="#e0e4e7" glyphName="EDIT" size="30" />
+                  <FontAwesomeIconView fill="#e0e4e7" glyphName="EDIT" size="40" />
+               </graphic>
+            </Button>
+            <Button fx:id="btn_diselect" layoutX="222.0" layoutY="490.0" mnemonicParsing="false" onAction="#disselect" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;" AnchorPane.bottomAnchor="55.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <ColorAdjust />
+               </effect>
+               <graphic>
+                  <FontAwesomeIconView fill="#e0e4e7" glyphName="MINUS" size="40" />
+               </graphic>
+            </Button>
+            <Button fx:id="btn_upload" layoutX="165.0" layoutY="497.0" mnemonicParsing="false" onAction="#upload" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <FontAwesomeIconView fill="#e0e4e7" glyphName="UPLOAD" size="40" />
                </graphic>
             </Button>
             <Label layoutX="37.0" layoutY="80.0" text="ID" textFill="#e0e4e7">
@@ -104,11 +181,22 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="30.0" layoutY="290.0" text="Date" textFill="#e0e4e7">
+            <Label layoutX="22.0" layoutY="379.0" text="Date" textFill="#e0e4e7">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
+            <Button fx:id="btn_view_video" layoutX="68.0" layoutY="497.0" mnemonicParsing="false" onAction="#viewVideo" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <graphic>
+                  <FontAwesomeIconView fill="#e0e4e7" glyphName="EYE" size="40" />
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
       <Button fx:id="btn_refresh" layoutX="315.0" layoutY="9.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 100%; -fx-background-color: #e0e4e7;">
@@ -122,12 +210,13 @@
             <ColorAdjust />
          </effect>
          <graphic>
-            <FontAwesomeIconView fill="#0f1316" glyphName="REFRESH" size="30" />
+            <FontAwesomeIconView fill="#09a195" glyphName="REFRESH" size="30" />
          </graphic>
       </Button>
       <HBox alignment="CENTER_RIGHT" layoutX="810.0" layoutY="10.0" prefHeight="50.0" prefWidth="343.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <Button fx:id="btn_search" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 100%; -fx-background-color: #e0e4e7;">
+            <JFXTextField fx:id="txt_search" onAction="#search_video" prefHeight="31.0" prefWidth="241.0" promptText="Cercher par nom" />
+            <Button fx:id="btn_search" mnemonicParsing="false" onAction="#search_messages_par_contenu" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 100%; -fx-background-color: #e0e4e7;">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -141,11 +230,25 @@
                   <Insets right="30.0" />
                </HBox.margin>
                <graphic>
-                  <FontAwesomeIconView fill="#0f1316" glyphName="SEARCH" size="30" />
+                  <FontAwesomeIconView fill="#09a195" glyphName="SEARCH" size="30" />
                </graphic>
             </Button>
          </children>
       </HBox>
+      <JFXButton buttonType="RAISED" layoutX="421.0" layoutY="28.0" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 100%;" text=".">
+         <tooltip>
+            <Tooltip text="Empty Tooltip" />
+         </tooltip>
+         <graphic>
+            <FontAwesomeIconView fill="#09a195" glyphName="REFRESH" size="30" />
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <effect>
+            <Glow />
+         </effect>
+      </JFXButton>
       
    </children>
 </AnchorPane>

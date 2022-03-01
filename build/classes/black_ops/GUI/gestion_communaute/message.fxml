@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXSnackbar?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -174,7 +174,7 @@
             </Button>
          </children>
       </HBox>
-      <JFXTextField layoutX="408.0" layoutY="44.0" />
+      <JFXSnackbar layoutX="642.0" layoutY="59.0" />
       
    </children>
 </AnchorPane>

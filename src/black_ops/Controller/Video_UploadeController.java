@@ -13,6 +13,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -42,8 +44,9 @@ public class Video_UploadeController {
         }
     }
     
-    public List<VideoUploadee> afficherVideos(){
-        List<VideoUploadee> video = new ArrayList<>();
+    public ObservableList<VideoUploadee> afficherVideos(){
+        ObservableList<VideoUploadee> video;
+            video = FXCollections.observableArrayList();
         String sql="select * from video_uploade";
         try {
             ste=mc.prepareStatement(sql);
@@ -96,5 +99,7 @@ public class Video_UploadeController {
             System.out.println(ex.getMessage());
         }
     }
+    
+    
     
 }
