@@ -12,7 +12,7 @@ package black_ops.Entity;
 public class Info_Stream {
 
     private int id, id_souscat;
-    private String nom,image, description;
+    private String nom,image,nomsouscat, description;
 
     public Info_Stream(int id,String nom, String image, String description, int id_souscat) {
         this.id = id;
@@ -28,7 +28,7 @@ public class Info_Stream {
 
     @Override
     public String toString() {
-        return "Info_Stream{" + " Id = "+ id + ", nom = " + nom + ", Path_image = " + image + ", description = " + description + ", id_SousCat = " + id_souscat + '}';
+        return "Info_Stream{" + " Id = "+ id + ", nom = " + nom + ", Path_image = " + image + ", description = " + description + ", id_SousCat = " + nomsouscat + '}';
     }
 
     public int getId() {
@@ -69,6 +69,14 @@ public class Info_Stream {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getNomsouscat() {
+        return nomsouscat;
+    }
+
+    public void setNomsouscat(String nomsouscat) {
+        this.nomsouscat = nomsouscat;
     }
 
 }

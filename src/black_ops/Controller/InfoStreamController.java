@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import black_ops.Entity.Info_Stream;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -93,20 +95,32 @@ public class InfoStreamController {
           
           
     public List<Info_Stream> afficherInfoStream(){
-        List<Info_Stream> infoS = new ArrayList<>();
+        ObservableList<Info_Stream> infoS = FXCollections.observableArrayList();
         String sql="select * from stream_info";
+          
+                
+                       
         try {
             ste=cnx.prepareStatement(sql);
+          
             ResultSet rs=ste.executeQuery();
+            
             while(rs.next()){
                 Info_Stream is = new Info_Stream();
                 is.setId(rs.getInt(1));
                 is.setNom(rs.getString(2));
                 is.setImage(rs.getString(3));
                 is.setDescription(rs.getString(4));
-                is.setId_souscat(rs.getInt(5));
-                
+              int x = (rs.getInt(5));
+                String sql2 ="Select nom_SousCat from sous_categorie where id_SousCat ="+x;
+               // System.out.println(sql2);
+                 ste=cnx.prepareStatement(sql2);
+             ResultSet rs2 =ste.executeQuery();
+             while (rs2.next()){
+             is.setNomsouscat(rs2.getString(1));
+               
                 infoS.add(is);
+             }
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -114,5 +128,41 @@ public class InfoStreamController {
         
         return infoS;
     }
-       
+        public List<Info_Stream> afficherInfoStream2(String nom){
+        ObservableList<Info_Stream> infoS = FXCollections.observableArrayList();
+        String sql="select * from stream_info where nom_Stream LIKE ?";
+        
+          
+            //system.out.println(sql);
+                
+                       
+        try {
+            ste=cnx.prepareStatement(sql);
+            String nom2 = "%"+nom+"%";
+                         ste.setString(1, nom2);
+            ResultSet rs=ste.executeQuery();
+            
+            while(rs.next()){
+                Info_Stream is = new Info_Stream();
+                is.setId(rs.getInt(1));
+                is.setNom(rs.getString(2));
+                is.setImage(rs.getString(3));
+                is.setDescription(rs.getString(4));
+              int x = (rs.getInt(5));
+                String sql2 ="Select nom_SousCat from sous_categorie where id_SousCat ="+x;
+               // System.out.println(sql2);
+                 ste=cnx.prepareStatement(sql2);
+             ResultSet rs2 =ste.executeQuery();
+             while (rs2.next()){
+             is.setNomsouscat(rs2.getString(1));
+               
+                infoS.add(is);
+             }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return infoS;
+    }
 }

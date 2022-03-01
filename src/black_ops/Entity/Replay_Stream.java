@@ -5,7 +5,9 @@
  */
 package black_ops.Entity;
 
+
 import java.sql.Date;
+//import java.time.LocalDateTime;
 
 /**
  *
@@ -15,9 +17,10 @@ public class Replay_Stream {
     private int id,id_souscat;
 
   
-    private String nom,url,description;
-    private Date date;
-    
+    private String nom,url,description,Nomsouscat;
+   // private LocalDateTime date;
+        private Date date;
+
     public Replay_Stream(){
     }
     public Replay_Stream(String nom,String url,String description, int id_souscat ){
@@ -76,9 +79,23 @@ public class Replay_Stream {
         return date;
     }
 
+    /**
+     *
+     * @param date
+     */
     public void setDate(Date date) {
         this.date = date;
     }
+
+    public String getNomsouscat() {
+        return Nomsouscat;
+    }
+
+    public void setNomsouscat(String Nomsouscat) {
+        this.Nomsouscat = Nomsouscat;
+    }
+
+    
     
     
     

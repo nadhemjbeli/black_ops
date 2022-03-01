@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import black_ops.Entity.Replay_Stream;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -111,7 +113,7 @@ cnx = MaConnexion.getInstance().getCnx();
     }
     
     public List<Replay_Stream> afficherReplay (){
-        List<Replay_Stream> replays = new ArrayList<>();
+        ObservableList<Replay_Stream> replays = FXCollections.observableArrayList();
         String Sql = "Select * from replay_stream";
         
         try{
@@ -126,9 +128,61 @@ cnx = MaConnexion.getInstance().getCnx();
                 replay.setUrl(rs.getString(3));
                 replay.setDate(rs.getDate(4));
                 replay.setDescription(rs.getString(5));
-                replay.setId_souscat(rs.getInt(6));
-                
+               int x = (rs.getInt(6));
+                 String sql2 ="Select nom_SousCat from sous_categorie where id_SousCat ="+x;
+               // System.out.println(sql2);
+                 ste=cnx.prepareStatement(sql2);
+             ResultSet rs2 =ste.executeQuery();
+             while (rs2.next()){
+             replay.setNomsouscat(rs2.getString(1));
+               
                 replays.add(replay);
+             }
+               
+            }
+            
+            
+        } catch (SQLException sql){
+            System.out.println(sql.getMessage());
+            
+        }
+        
+        return replays;
+        
+        
+        
+        
+        
+    }
+    
+     public List<Replay_Stream> afficherReplay2 (String nom){
+        ObservableList<Replay_Stream> replays = FXCollections.observableArrayList();
+        String Sql = "Select * from replay_stream where nom_Replay LIKE ?";
+        
+        try{
+            ste=cnx.prepareStatement(Sql);
+            String nom2 = "%"+nom+"%";
+                         ste.setString(1, nom2);
+            ResultSet rs=ste.executeQuery();
+            
+            while(rs.next()){
+                Replay_Stream replay  = new Replay_Stream();
+                
+                replay.setId(rs.getInt(1));
+                replay.setNom(rs.getString(2));
+                replay.setUrl(rs.getString(3));
+                replay.setDate(rs.getDate(4));
+                replay.setDescription(rs.getString(5));
+                int x = (rs.getInt(6));
+                 String sql2 ="Select nom_SousCat from sous_categorie where id_SousCat ="+x;
+               // System.out.println(sql2);
+                 ste=cnx.prepareStatement(sql2);
+             ResultSet rs2 =ste.executeQuery();
+             while (rs2.next()){
+             replay.setNomsouscat(rs2.getString(1));
+               
+                replays.add(replay);
+             }
             }
             
             
