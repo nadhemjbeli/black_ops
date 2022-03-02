@@ -9,9 +9,12 @@ import black_ops.Controller.ChampionController;
 import black_ops.Entity.Champion;
 import black_ops.GUI.gestion_jeux.gestionSkins.AfficherSkinController;
 import black_ops.config.DB_Connection;
+
 import black_ops.config.MaConnexion;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URL;
@@ -21,9 +24,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -438,95 +443,65 @@ public class CRUDchampionController implements Initializable {
 
     @FXML
     private void exportLogs(ActionEvent event) {
-        try {  String m = null;
+        
             
              JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "Only CSV files", "csv");
         chooser.setFileFilter(filter);
         int returnVal = chooser.showOpenDialog(null);
+        String m = null;
         if(returnVal == JFileChooser.APPROVE_OPTION) 
             m= chooser.getSelectedFile().getPath();
        
-       Connection connection;
-            
-     try (PrintWriter pw = new PrintWriter(new File(m))) {
-         StringBuilder sb=new StringBuilder();
-           connection = null;
-           DB_Connection obj_DB_Connection=new DB_Connection();
-           connection=obj_DB_Connection.getConnection();
-           
-           ResultSet rs=null;
-           String query="set GLOBAL general_log='OFF'";
-           String query2="ALTER TABLE `general_log` CHANGE `argument` `argument` LONGTEXT NOT NULL";
-           try {
-               PreparedStatement ps=connection.prepareStatement(query);
-               ps.executeUpdate();}catch (SQLException ex) {
-                   System.out.println(ex.getMessage());
-               }
-           try {
-               PreparedStatement ps2=connection.prepareStatement(query2);
-               ps2.executeUpdate();}catch (SQLException ex) {
-                   System.out.println(ex.getMessage());
-               }
-           String query3= "SELECT * FROM `general_log` ORDER BY `general_log`.`event_time` DESC";
-           try {
-               PreparedStatement ps3=connection.prepareStatement(query3);
-               rs=ps3.executeQuery();} catch (SQLException ex) {
-                   System.out.println(ex.getMessage());}
-           try {
-               while(rs.next()){
-                   sb.append(rs.getObject("event_time"));
-                   sb.append(",");
-                   sb.append(rs.getObject("user_host"));
-                   sb.append(",");
-                   sb.append(rs.getObject("thread_id"));
-                   sb.append(",");
-                   sb.append(rs.getObject("server_id"));
-                   sb.append(",");
-                   sb.append(rs.getString("command_type"));
-                   sb.append(",");
-//      try { String sql1="select * from general_log where argument='\"argument.getText()\"';";
-//       PreparedStatement ps7=connection.prepareStatement(sql1);
-//   rs=ps.executeQuery();
-
-
-sb.append(rs.getObject("argument"));
-//    }catch (Exception e){System.out.println(e);}
-sb.append("\r\n");
-               }}catch(SQLException e){
-                   System.out.println(e);}
-           pw.write(sb.toString());
-}
-    System.out.println("finished");
-     String query4="ALTER TABLE `general_log` CHANGE `argument` `argument` MEDIUMBLOB NOT NULL" ;
-     String query6="Set Global log_output='TABLE'";
-     String query5="set GLOBAL general_log='ON'";
- 
-     
-
-    try{
-  PreparedStatement ps4=connection.prepareStatement(query4);
-   ps4.executeUpdate();}catch (SQLException ex1) {
-            System.out.println(ex1.getMessage());
+      
+         
+        String csvFilePath = m;
+          DB_Connection obj_DB_Connection=new DB_Connection();
+         Connection connection=obj_DB_Connection.getConnection();
+        try  {
+            String sql = "SELECT * FROM `general_log` ORDER BY `general_log`.`event_time` DESC";
+             
+            Statement statement = connection.createStatement();
+             
+            ResultSet result = statement.executeQuery(sql);
+             
+            BufferedWriter fileWriter = new BufferedWriter(new FileWriter(csvFilePath));
+             
+            // write header line containing column names       
+            fileWriter.write("event_time,user_host,thread_id,server_id,command_type,argument");
+             
+            while (result.next()) {
+                String event_time = result.getString("event_time");
+                String user_host = result.getString("user_host");
+                String thread_id = result.getString("thread_id");
+                String server_id = result.getString("server_id");
+                String command_type = result.getString("command_type");
+                String argument = result.getString("argument");
+                 
+                if (argument == null) {
+                    argument = "";   
+                } else {
+                    argument = "\"" + argument + "\""; 
+                }
+                 
+                String line = String.format("\"%s\",%s,%s,%s,%s,%s",
+                       event_time,user_host,thread_id,server_id,command_type,argument);
+                 
+                fileWriter.newLine();
+                fileWriter.write(line);            
+            }
+             
+            statement.close();
+            fileWriter.close();
+             
+        } catch (SQLException e) {
+            System.out.println("Datababse error:");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("File IO error:");
+            e.printStackTrace();
         }
-    
-     try{
-  PreparedStatement ps6=connection.prepareStatement(query6);
-   ps6.executeUpdate();}catch (SQLException ex1) {
-            System.out.println(ex1.getMessage());
-        }
-    
-    
-    try{
-    PreparedStatement ps5=connection.prepareStatement(query5);
-   ps5.executeUpdate();}catch (SQLException ex2) {
-            System.out.println(ex2.getMessage());
-        }
- 
-   } catch (FileNotFoundException e) {
-    // TODO: handle exception
-   } 
          //notif 
             String path="src\\ImagesChampions\\logs.png";
             String Path_name = new File(path).getAbsolutePath();
