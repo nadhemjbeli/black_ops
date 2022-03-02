@@ -141,7 +141,7 @@
       </Button>
       <HBox alignment="CENTER_RIGHT" layoutX="810.0" layoutY="10.0" prefHeight="50.0" prefWidth="343.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <TextField fx:id="recherche" prefHeight="31.0" prefWidth="337.0" promptText="Chercher par contenu" style="-fx-background-color: #e0e4e7; -fx-prompt-text-fill: #707070;" />
+            <TextField fx:id="recherche" onAction="#EnterRecherche" prefHeight="31.0" prefWidth="337.0" promptText="Chercher " style="-fx-background-color: #e0e4e7; -fx-prompt-text-fill: #707070;" />
             <Button fx:id="btn_rech" mnemonicParsing="false" onAction="#Recherche_Defi" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 100%; -fx-background-color: #e0e4e7;">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -161,6 +161,12 @@
             </Button>
          </children>
       </HBox>
+      <TableView fx:id="table1" layoutX="300.0" layoutY="100.0" onMouseClicked="#handleMouseAction" prefHeight="600.0" prefWidth="1011.0" visible="false">
+         <columns>
+            <TableColumn fx:id="cl_nom_j" maxWidth="471.0" prefWidth="470.0" text="Nom_joueur" />
+            <TableColumn fx:id="cl_nom_eq" maxWidth="553.0" prefWidth="289.0" text="Nom_Equipe" />
+         </columns>
+      </TableView>
       
    </children>
 </AnchorPane>

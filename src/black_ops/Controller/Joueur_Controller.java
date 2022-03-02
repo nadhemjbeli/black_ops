@@ -1,7 +1,9 @@
 
 package black_ops.Controller;
 
+import black_ops.Entity.Equipe;
 import black_ops.Entity.Joueur;
+import black_ops.GUI.Gestion_Competition.Gestion_Joueur.Pair;
 import black_ops.config.MaConnexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 
 
 public class Joueur_Controller {
@@ -92,6 +95,36 @@ public class Joueur_Controller {
             System.out.println(ex.getMessage());
         }
     
+    }
+    public ObservableList<Pair> RechercheAV(String nom){
+       ObservableList<Pair> Joueur = FXCollections.observableArrayList();
+
+        String sql="SELECT DISTINCT j.nom_Joueur ,e.nom_Equipe FROM defi de"
+                + " INNER JOIN details_defi dd on de.id_Defi = dd.id_defi "
+                + "INNER join equipe e on (dd.EquipeA = e.id_Equipe OR dd.EquipeB = e.id_Equipe)"
+                + " INNER JOIN joueur j on j.id_equipe = e.id_Equipe "
+                + "WHERE e.nom_Equipe LIKE '%"+nom+"%'";
+        try {
+            
+            ste=mc.prepareStatement(sql);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+                Joueur j = new Joueur();
+                Equipe e =new Equipe();
+               
+                j.setNom_Joueur(rs.getString("nom_Joueur"));
+                e.setNom_Equipe(rs.getString("nom_Equipe"));
+                
+                Pair p = new Pair(j,e);
+                
+                Joueur.add(p);
+                //System.out.println(Joueur);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return Joueur;
     }
     
 }

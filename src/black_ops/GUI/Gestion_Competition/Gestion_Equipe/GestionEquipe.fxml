@@ -123,6 +123,11 @@
                   <FontAwesomeIconView fill="#e0e4e7" glyphName="MINUS" size="40" />
                </graphic>
             </Button>
+            <Button fx:id="imp" layoutX="252.0" layoutY="195.0" mnemonicParsing="false" onAction="#importImg" prefHeight="55.0" prefWidth="40.0" style="-fx-background-color: #0f1316; -fx-background-ra: 100%;" AnchorPane.rightAnchor="6.0">
+               <graphic>
+                  <FontAwesomeIconView fill="#e0e4e7" glyphName="UPLOAD" size="30" wrappingWidth="33.85714340209961" />
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
       <Button fx:id="btn_refresh" layoutX="315.0" layoutY="9.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 100%; -fx-background-color: #e0e4e7;">

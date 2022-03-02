@@ -25,9 +25,10 @@ public class Joueur_Test {
         Joueur J1 = new Joueur(4,"Aziz","Gold","Fritchou",6) ;
         Joueur J2 = new Joueur (2,"Mokhtar","Gold","Valnloya",6) ;
         //JoueurC.ajouterJoueur(J1);//add
-        System.out.println(JoueurC.afficherJoueur());
+//        System.out.println(JoueurC.afficherJoueur());
         //JoueurC.UpdateJoueur(J1); // update
         //JoueurC.DeleteJoueur(J1);//Delete
+        System.out.println(JoueurC.RechercheAV("F"));
     }
     
 }

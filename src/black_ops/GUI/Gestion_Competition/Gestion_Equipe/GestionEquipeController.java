@@ -7,7 +7,13 @@ package black_ops.GUI.Gestion_Competition.Gestion_Equipe;
 
 import black_ops.Controller.EquipeController;
 import black_ops.Entity.Equipe;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.Date;
 import java.util.Calendar;
 import java.util.ResourceBundle;
@@ -20,7 +26,11 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * FXML Controller class
@@ -64,6 +74,8 @@ public class GestionEquipeController implements Initializable {
     private Button btn_diselect;
     @FXML
     private Button btn_refresh;
+    @FXML
+    private Button imp;
   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -118,7 +130,9 @@ public class GestionEquipeController implements Initializable {
     }
     private void Show_Equipe(){
     EquipeController Ec = new EquipeController();  
+
     ObservableList<Equipe> list = Ec.afficherEquipe() ; 
+     cl_url.setPrefWidth(80);
      cl_id.setCellValueFactory(new PropertyValueFactory<Equipe,Integer>("id_Equipe"));
      cl_nom.setCellValueFactory(new PropertyValueFactory<Equipe,String>("nom_Equipe") );
      cl_url.setCellValueFactory(new PropertyValueFactory<Equipe,String>("logo_Equipe") );
@@ -151,5 +165,47 @@ public class GestionEquipeController implements Initializable {
     @FXML
     private void refreshTable(ActionEvent event) {
     }
+
+    @FXML
+    private String importImg(ActionEvent event) {
+         String id =inp_Nom.getText();
+          Path to = null;
+         String  m = null;
+         String path = "src/Image/Logo_Equipe";
+         JFileChooser chooser = new JFileChooser();
+        
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "JPG & PNG Images", "jpg","jpeg","PNG");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(null);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+           m = chooser.getSelectedFile().getAbsolutePath();
+//            System.out.println("You chose to open this file: " +m
+//                    );
+            
+            if(chooser.getSelectedFile() != null){
+                
+               try {
+                   Path from = Paths.get(chooser.getSelectedFile().toURI());
+                    to = Paths.get(path+"\\"+id+".png");
+                   CopyOption[] options = new CopyOption[]{
+                       StandardCopyOption.REPLACE_EXISTING,
+                       StandardCopyOption.COPY_ATTRIBUTES
+                   };
+                   Files.copy(from, to, options);
+                   System.out.println("added");
+//                saveSystem(selectedFile, )
+                       System.out.println(to);
+
+               } catch (IOException ex) {
+                   System.out.println();
+               }
+            }
+             inp_url.setText(to.toString());
+        
+    }
+      return to.toString(); 
+    }
+    
     
 }

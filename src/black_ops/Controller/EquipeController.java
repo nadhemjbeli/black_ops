@@ -130,14 +130,18 @@ String sql="select * from Equipe";
         }
         
     }
-    public List<Equipe> Select_Detail(Equipe Eq_s){
-        String sql="SELECT * FROM equipe WHERE id_Equipe = ?";
-        List<Equipe> Equipe = new ArrayList<>();
+        public ObservableList<Equipe> Select_Detail(String nom){
+        ObservableList<Equipe> Equipe = FXCollections.observableArrayList();
+
+        String sql="select * from Equipe where nom_Equipe  COLLATE UTF8_GENERAL_CI like '%"+nom+"%'" ;
+               
+        
         try{
         ste=mc.prepareStatement(sql);
-        ste.setInt(1, Eq_s.getId_Equipe());
+        
         ResultSet rs=ste.executeQuery();
            while(rs.next()){
+               Equipe Eq_s = new Equipe();
               Eq_s.setId_Equipe(rs.getInt("id_Equipe"));
                Eq_s.setNom_Equipe(rs.getString("nom_Equipe"));
                 Eq_s.setLogo_Equipe(rs.getString("logo_Equipe"));

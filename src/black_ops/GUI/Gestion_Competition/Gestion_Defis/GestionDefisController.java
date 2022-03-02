@@ -19,6 +19,7 @@ import java.util.Calendar;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -27,7 +28,26 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+
+
+
+
+import java.io.File;
+import java.util.*;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.CopyOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.Scanner;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * FXML Controller class
@@ -35,6 +55,11 @@ import javafx.scene.input.MouseEvent;
  * @author medaz
  */
 public class GestionDefisController implements Initializable {
+     private static String port = "COM5"; //Modem Port.
+    private static int bitRate = 115200; //this is also optional. leave as it is.
+    private static String modemName = "Motorola L6"; //this is optional.
+    private static String modemPin = "0000"; //Pin code if any have assigned to the modem.
+    private static String SMSC = "+21555226248"; //Message Center Number ex. Mobitel
 
     @FXML
     private Button btn_update;
@@ -87,8 +112,9 @@ public class GestionDefisController implements Initializable {
     private Button btn_diselect;
     @FXML
     private Button btn_refresh;
+    @FXML
+    private Button imp;
      
-  
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -115,7 +141,8 @@ public class GestionDefisController implements Initializable {
             Defi dfi = new Defi(id,nom, desc, url, pr,date,Jeu, nbe,regle , rec);
             DefiController df = new DefiController();
             df.UpdateDefi(dfi);
-            System.out.println("hello");
+                       Recherche_Defi(event);
+
             Show_defi();
  
     }
@@ -128,11 +155,12 @@ public class GestionDefisController implements Initializable {
             DefiController df = new DefiController();
             df.DeleteDefi(dfi);
             Show_defi();
-             
+            Recherche_Defi(event);
+            DissForm();
     }
 
     @FXML
-    private void Ajouter_defi(ActionEvent event) {
+    private void Ajouter_defi(ActionEvent event) throws IOException {
         java.util.Date date = Calendar.getInstance().getTime();
         java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
             String nom = inp_Nom.getText();
@@ -149,12 +177,26 @@ public class GestionDefisController implements Initializable {
             DefiController df = new DefiController();
             df.ajouterDefi(dfi);
             Show_defi();
+            
+            Recherche_Defi(event);
+
     }
 
     @FXML
-    private void Recherche_Defi(ActionEvent event) {
-        
-        
+    private void Recherche_Defi(ActionEvent event ) {
+     String srsh = recherche.getText();
+     DefiController df = new DefiController();
+     ObservableList<Defi> list = df.Select(srsh);
+     cl_id.setCellValueFactory(new PropertyValueFactory<Defi,Integer>("Id_Defi"));
+     cl_nom.setCellValueFactory(new PropertyValueFactory<Defi,String>("Nom_Defi") );
+     cl_desc.setCellValueFactory(new PropertyValueFactory<Defi,String>("Description") );
+     cl_prix.setCellValueFactory(new PropertyValueFactory<Defi,Integer>("prix") ); 
+     cl_date.setCellValueFactory(new PropertyValueFactory<Defi,Date>("date_defi") );
+     cl_jeu.setCellValueFactory(new PropertyValueFactory<Defi,String>("jeu_Defis") );
+     cl_nbr.setCellValueFactory(new PropertyValueFactory<Defi,Integer>("nbr_equipe_Defi") );
+    
+     table.setItems(list);
+
     }
    
     public void Show_defi(){
@@ -197,9 +239,86 @@ public class GestionDefisController implements Initializable {
         inp_Rec_defis.setText("");
         inp_desc.setText("");
         inp_img_defi.setText("");
+        recherche.setText("");
     }
 
     @FXML
     private void refreshTable(ActionEvent event) {
+            DefiController df = new DefiController();   
+             ObservableList<Defi> list = df.afficherDefi(); 
+            list.clear();
+            Show_defi();
+            Recherche_Defi(event);
+
     }
+    public void DissForm(){
+        inp_Id_defi.setText("");
+        inp_Nom.setText("");
+        inp_prix.setText("");
+        inp_date.setText("");
+        inp_Jeu.setText("");
+        inp_nbr_equipe.setText("");
+        inp_regle_defis.setText("");
+        inp_Rec_defis.setText("");
+        inp_desc.setText("");
+        inp_img_defi.setText("");
+    }
+
+
+    @FXML
+    private void EnterRecherche(ActionEvent event) {
+        recherche.setOnKeyPressed(new EventHandler<KeyEvent>() {
+    @Override
+    public void handle(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ENTER)  {
+         Recherche_Defi(event);
+        }
+    }
+});
+    }
+
+    @FXML
+    private String importImg(ActionEvent event) {
+        String id =inp_Nom.getText();
+          Path to = null;
+         String  m = null;
+         String path = "src/Image/Image defi";
+         JFileChooser chooser = new JFileChooser();
+        
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "JPG & PNG Images", "jpg","jpeg","PNG");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(null);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+           m = chooser.getSelectedFile().getAbsolutePath();
+//            System.out.println("You chose to open this file: " +m
+//                    );
+            
+            if(chooser.getSelectedFile() != null){
+                
+               try {
+                   Path from = Paths.get(chooser.getSelectedFile().toURI());
+                    to = Paths.get(path+"\\"+id+".png");
+                   CopyOption[] options = new CopyOption[]{
+                       StandardCopyOption.REPLACE_EXISTING,
+                       StandardCopyOption.COPY_ATTRIBUTES
+                   };
+                   Files.copy(from, to, options);
+                   System.out.println("added");
+//                saveSystem(selectedFile, )
+                       System.out.println(to);
+
+               } catch (IOException ex) {
+                   System.out.println();
+               }
+            }
+             inp_img_defi.setText(to.toString());
+        
+    }
+      return to.toString(); 
+    }
+    
+   
+ 
+ 
 }

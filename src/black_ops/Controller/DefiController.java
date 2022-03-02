@@ -69,7 +69,7 @@ public class DefiController {
         
     }
     public ObservableList<Defi> afficherDefi(){
-        ObservableList<Defi> Defi = FXCollections.observableArrayList();;
+        ObservableList<Defi> Defi = FXCollections.observableArrayList();
         String sql="select * from Defi";
         try {
             ste=mc.prepareStatement(sql);
@@ -114,6 +114,34 @@ public class DefiController {
             System.out.println(ex.getMessage());
         }
         
+    }
+    public ObservableList<Defi> Select(String nom){
+        ObservableList<Defi> Defi = FXCollections.observableArrayList();;
+        String sql="select * from defi where Nom_Defi  COLLATE UTF8_GENERAL_CI like '%"+nom+"%'"
+                + " or Jeu_Defi COLLATE UTF8_GENERAL_CI like '%"+nom+"%'"
+                +"or Description_Defi COLLATE UTF8_GENERAL_CI like '%"+nom+"%'";
+        try {
+            ste=mc.prepareStatement(sql);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+                Defi d = new Defi();
+                d.setId_Defi(rs.getInt("Id_Defi"));
+                d.setNom_Defi(rs.getString("Nom_Defi"));
+                d.setDescription(rs.getString("Description_Defi"));
+                d.setImg_Defi(rs.getString("Img_defi"));
+                d.setPrix(rs.getInt("prix_Defi"));
+                d.setDate_defi(rs.getDate("date_Defi"));
+                d.setJeu_Defis((rs.getString("Jeu_Defi")));
+                d.setNbr_equipe_Defi(rs.getInt("nbr_equipe_Defi"));
+                d.setRégle_Defi(rs.getString("Régle_Defi"));
+                d.setRecompense_Defi(rs.getString("Recompense_Defi"));
+                Defi.add(d);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+    }
+         return Defi;
     }
     
 }

@@ -15,7 +15,10 @@ import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -24,6 +27,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image.ImageType;
 
@@ -87,6 +92,8 @@ public class GestionDetailsDefisController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Show_Match();
+        QR.setDisable(false);
+        
     }    
 
     @FXML
@@ -119,6 +126,10 @@ public class GestionDetailsDefisController implements Initializable {
          DetailsDefiController dfc = new DetailsDefiController();  
             dfc.Delete_Details_Defi(dfi);
             Show_Match();
+            
+           QRimg.setImage(null);
+        
+            
     }
 
     @FXML
@@ -129,13 +140,13 @@ public class GestionDetailsDefisController implements Initializable {
             String EquipeB = inp_B.getText();
             String score = inp_score_finale.getText() ;
             String defi = inp_defi.getText();
-            
             int A = Integer.parseInt(EquipeA);
             int B = Integer.parseInt(EquipeB);
             int df = Integer.parseInt(defi);
             DetailsDefi dfi = new DetailsDefi(3,A,url,B,score,df);
             DetailsDefiController dfc = new DetailsDefiController();
             dfc.Create_Details_Defi(dfi);
+            
             Show_Match();
         
     }
@@ -150,21 +161,20 @@ public class GestionDetailsDefisController implements Initializable {
         ByteArrayOutputStream out = QRCode.from(Match)
                     .to(ImageType.PNG).stream() ;
             String f_name = Id_stat;
-            String Path_name = "C:\\Users\\medaz\\Documents\\NetBeansProjects\\crud_competition\\src\\QrCode\\";
+            String Path_name = new File("src/QrCode/").getAbsolutePath();
             try{
-            FileOutputStream fout = new FileOutputStream(new File(Path_name+ (f_name +".PNG")) );
+            FileOutputStream fout = new FileOutputStream(new File(Path_name+"/"+ (f_name +".PNG")) );
             fout.write(out.toByteArray());
             fout.flush();
-                
+            System.out.println(Path_name);
+
             
         }catch(Exception e){
             System.out.println(e);
             
-        }
-             Image img = new Image("C:\\Users\\medaz\\Documents\\NetBeansProjects\\Black_ops\\src\\QrCode\\hello.PNG");
-             QRimg.setImage(img);
-             Show_Match();
-        
+        }    
+            
+             affichImage();
     }
 
     
@@ -172,6 +182,7 @@ public class GestionDetailsDefisController implements Initializable {
     private void Recherche_Defi(ActionEvent event) {
     }
     private void Show_Match(){
+     
      DetailsDefiController dfc = new DetailsDefiController();  
      ObservableList<DetailsDefi> list = dfc.View_Details_defi(); 
      cl_id.setCellValueFactory(new PropertyValueFactory<DetailsDefi,Integer>("id_Statistique"));
@@ -193,6 +204,28 @@ public class GestionDetailsDefisController implements Initializable {
         inp_B.setText(""+match.getEquipeB());
         inp_score_finale.setText(""+match.getScore_finale());
         inp_defi.setText(""+match.getId_defi());
+        String Path_name = new File("src/QrCode/").getAbsolutePath();
+        File  dir = new File(Path_name);
+        File[] liste = dir.listFiles();
+        String id = inp_Id_stat.getText()+".PNG";
+        for(File item : liste){
+        if(item.isFile())
+        { 
+            if (item.getName().equals(id)) {
+                System.out.println(true);
+                QR.setDisable(true);
+                affichImage();
+                
+                break;
+            }else{
+                QRimg.setImage(null);
+                QR.setDisable(false);
+            }
+
+           
+        }
+       
+         }
     }
     @FXML
     private void disselect(ActionEvent event) {
@@ -202,11 +235,27 @@ public class GestionDetailsDefisController implements Initializable {
         inp_B.setText("");
         inp_score_finale.setText("");
         inp_defi.setText("");
+        QRimg.setImage(null);
+       
     }
 
     @FXML
     private void refreshTable(ActionEvent event) {
+        DetailsDefiController D_DefiC = new DetailsDefiController();
+             ObservableList<DetailsDefi> list = D_DefiC.View_Details_defi(); 
+            list.clear();
+           Show_Match();
         
     }
-   
+    public void affichImage(){
+        String Id_stat = inp_Id_stat.getText();
+        String f_name = Id_stat;
+        String Path_name = new File("src/QrCode/").getAbsolutePath();
+        String image = Path_name+ "\\" + Id_stat + ".PNG";
+        System.out.println(image);
+        ImageView i = new ImageView();
+        File f =  new File (image);
+        Image im =new Image(f.toURI().toString());
+        QRimg.setImage(im);
+    }
 }
