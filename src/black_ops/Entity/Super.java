@@ -27,6 +27,13 @@ public class Super {
         this.NewPass = NewPass;
     }
 
+    public Super(int id_admin, String mail_admin, String password_admin, int grade) {
+        this.id_admin = id_admin;
+        this.mail_admin = mail_admin;
+        this.password_admin = password_admin;
+        this.grade = grade;
+    }
+
     public int getId_admin() {
         return id_admin;
     }

@@ -9,11 +9,11 @@ import java.util.logging.Logger;
 
 public class MaConnexion {
     public String url="jdbc:mysql://localhost:3306/black_ops";
-    public String user="root";
+    public String user="root"; 
     public String pwd="";
     public static MaConnexion cn;
     private Connection cnx;
-    private MaConnexion(){
+    public MaConnexion(){
         try {
             cnx=DriverManager.getConnection(url, user, pwd);
             System.out.println("Connexion etablie");

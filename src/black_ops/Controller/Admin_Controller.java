@@ -14,6 +14,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import black_ops.config.MaConnexion;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 public class Admin_Controller {
@@ -59,8 +61,10 @@ public class Admin_Controller {
         }
         
     }
-    public List<Super> afficherPersonne(){
-        List<Super> personnes = new ArrayList<>();
+    public ObservableList<Super> afficherPersonne(){
+        ObservableList<Super> personnes ;
+        personnes=FXCollections.observableArrayList();
+        
         String sql="select * from admin";
         try {
             ste=mc.prepareStatement(sql);
