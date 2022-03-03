@@ -24,6 +24,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,6 +35,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -60,7 +62,6 @@ public class CRUDSkinController implements Initializable {
     private TextArea txtid_skin;
     @FXML
     private TextField txt_ImgSkin;
-    @FXML
     private TextField txt_id_Champ;
     @FXML
     private TableColumn<Skin, Integer> colId_id_skin;
@@ -98,6 +99,11 @@ public class CRUDSkinController implements Initializable {
     private TextField date_message;
     @FXML
     private Button btnAffSkin;
+    @FXML
+    public ComboBox ListeR ;
+      public Connection mc;
+    public PreparedStatement ste;
+    
 
     /**
      * Initializes the controller class.
@@ -106,6 +112,7 @@ public class CRUDSkinController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
        showSkins();
        showActualId();
+       fillcomboBox();
     }    
 
     @FXML
@@ -113,16 +120,51 @@ public class CRUDSkinController implements Initializable {
         Skin s = TVskin.getSelectionModel().getSelectedItem();
        txtid_skin.setText(""+s.getId_skin());
     txt_ImgSkin.setText(""+s.getImage_skin());
-    txt_id_Champ.setText(""+s.getId_champ());
+     try {
+             
+               String sql2="select Nom_Champ from champion where Id_Champ=?";
+               
+             mc=MaConnexion.getInstance().getCnx();
+             ste=mc.prepareStatement(sql2);
+             
+              
+              ste.setInt(1,s.getId_champ());
+              ResultSet rs=ste.executeQuery();
+               while(rs.next()){
+        String     k=rs.getString("Nom_Champ");
+        ListeR.setValue(k);
+            } }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
 
     @FXML
     private void AddSkin(ActionEvent event) {
         String imgskin = txt_ImgSkin.getText();
+          int k=0;
+        String id_jeu=ListeR.getSelectionModel().getSelectedItem().toString();
+             
+         try {
+             
+               String sql2="select Id_Champ from champion where Nom_Champ=?";
+               
+             mc=MaConnexion.getInstance().getCnx();
+             ste=mc.prepareStatement(sql2);
+             
+              
+              ste.setString(1,id_jeu);
+              ResultSet rs=ste.executeQuery();
+               while(rs.next()){
+             k=rs.getInt("Id_Champ");
+            
+            
+        } }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
          
-           String text = txt_id_Champ.getText();
-           int h = Integer.parseInt(text);
-             Skin i1 = new Skin(4,imgskin,h);
+          
+             Skin i1 = new Skin(4,imgskin,k);
           SkinController ic1 = new SkinController();
             ic1.ajouterSkin(i1);
             //notification code 
@@ -156,12 +198,30 @@ public class CRUDSkinController implements Initializable {
 
     @FXML
     private void UpdateSkin(ActionEvent event) {
+         int k=0;
+        String id_jeu=ListeR.getSelectionModel().getSelectedItem().toString();
+           try {
+             
+               String sql2="select Id_Champ from champion where Nom_Champ=?";
+               
+             mc=MaConnexion.getInstance().getCnx();
+             ste=mc.prepareStatement(sql2);
+             
+              
+              ste.setString(1,id_jeu);
+              ResultSet rs=ste.executeQuery();
+               while(rs.next()){
+             k=rs.getInt("Id_Champ");
+            
+            
+        } }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
          String idskin=txtid_skin.getText();
          int v = Integer.parseInt(idskin);
          String imgskin = txt_ImgSkin.getText();
-           String text = txt_id_Champ.getText();
-           int h = Integer.parseInt(text);
-             Skin i1 = new Skin(v,imgskin,h);
+         
+             Skin i1 = new Skin(v,imgskin,k);
           SkinController ic1 = new SkinController();
             ic1.updateSkin(i1);
              //notif 
@@ -279,7 +339,7 @@ public class CRUDSkinController implements Initializable {
     private void DIselect(ActionEvent event) {
         txtid_skin.setText("");
     txt_ImgSkin.setText("");
-    txt_id_Champ.setText("");
+   ListeR.setValue("");
     showActualId();}
     
 
@@ -409,9 +469,29 @@ public class CRUDSkinController implements Initializable {
         }
     
     }
-      
-      
+
+    @FXML
+    private void fillcomboBox() {
+          mc=MaConnexion.getInstance().getCnx();
+    try  {
+            
+             ObservableList options2 =FXCollections.observableArrayList();
+             
+             
+             String sql2="select Nom_Champ from champion";
+                 ResultSet rs=mc.createStatement().executeQuery(sql2);               
+                 while(rs.next()){
+                     options2.add(rs.getString(1));    
+                 }
+            ListeR.setItems(options2);
+    }catch (Exception e)
+    {
+        System.out.println(e.getMessage());
+        
     }
+      
+      
+    }}
    
     
     

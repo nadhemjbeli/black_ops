@@ -24,6 +24,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,6 +35,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -60,7 +62,6 @@ public class CRUDImageController implements Initializable {
     private TextArea txtid_image;
     @FXML
     private TextField txt_Url_image;
-    @FXML
     private TextField txt_id_jeu;
     @FXML
     private TableView<Image>TVpics;
@@ -91,7 +92,12 @@ public class CRUDImageController implements Initializable {
     private Button btnAffjeu;
     @FXML
     private Button btnaffi;
-    
+   
+    @FXML
+    public ComboBox ListeR; 
+      public Connection mc;
+    public PreparedStatement ste;
+  
  
 
     /**
@@ -101,6 +107,7 @@ public class CRUDImageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         showpics();
         showActualId();
+        fillcomboBox() ;
     }    
 
     @FXML
@@ -108,17 +115,54 @@ public class CRUDImageController implements Initializable {
         Image i = TVpics.getSelectionModel().getSelectedItem();
        txtid_image.setText(""+i.getId_Image());
     txt_Url_image.setText(""+i.getUrl_Image());
-    txt_id_jeu.setText(""+i.getId_jeu());
+    try {
+             
+               String sql2="select Nom from Jeu where Id_Jeu=?";
+               
+             mc=MaConnexion.getInstance().getCnx();
+             ste=mc.prepareStatement(sql2);
+             
+              
+              ste.setInt(1,i.getId_jeu());
+              ResultSet rs=ste.executeQuery();
+               while(rs.next()){
+        String     k=rs.getString("Nom");
+        ListeR.setValue(k);
+            
+            
+        } }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
 
          
     }
 
     @FXML
     private void AddPic(ActionEvent event) {
+         int k=0;
+        String id_jeu=ListeR.getSelectionModel().getSelectedItem().toString();
+          
+         try {
+             
+               String sql2="select Id_Jeu from Jeu where Nom=?";
+               
+             mc=MaConnexion.getInstance().getCnx();
+             ste=mc.prepareStatement(sql2);
+             
+              
+              ste.setString(1,id_jeu);
+              ResultSet rs=ste.executeQuery();
+               while(rs.next()){
+             k=rs.getInt("Id_Jeu");
+            
+            
+        } }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+         
             String url = txt_Url_image.getText();
-           String text = txt_id_jeu.getText();
-           int h = Integer.parseInt(text);
-             Image i1 = new Image(3,url,h);
+          
+             Image i1 = new Image(3,url,k);
            ImageController ic1 = new ImageController();
             ic1.ajouterImage(i1);
             //notification code 
@@ -152,12 +196,31 @@ public class CRUDImageController implements Initializable {
 
     @FXML
     private void UpdatePic(ActionEvent event) {
+         int k=0;
+        String id_jeu=ListeR.getSelectionModel().getSelectedItem().toString();
+           try {
+             
+               String sql2="select Id_Jeu from Jeu where Nom=?";
+               
+             mc=MaConnexion.getInstance().getCnx();
+             ste=mc.prepareStatement(sql2);
+             
+              
+              ste.setString(1,id_jeu);
+              ResultSet rs=ste.executeQuery();
+               while(rs.next()){
+             k=rs.getInt("Id_Jeu");
+            
+            
+        } }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+           
         String idimg=txtid_image.getText();
          int v = Integer.parseInt(idimg);
         String url_img = txt_Url_image.getText();
-           String text = txt_id_jeu.getText();
-           int h = Integer.parseInt(text);
-            Image i1 = new Image(v,url_img,h);
+          
+            Image i1 = new Image(v,url_img,k);
             ImageController jc1 = new ImageController();
             jc1.updateImage(i1);
               //notif 
@@ -315,7 +378,7 @@ public class CRUDImageController implements Initializable {
     private void DIselect(ActionEvent event) {
          txtid_image.setText("");
      txt_Url_image.setText("");
-    txt_id_jeu.setText("");    
+    ListeR.setValue("");
     showActualId();
     }
 
@@ -414,8 +477,26 @@ public class CRUDImageController implements Initializable {
         }
     
     }
+
+    @FXML
+    private void fillcomboBox() {
+          try  {
+        mc=MaConnexion.getInstance().getCnx();
+        ObservableList options2 =FXCollections.observableArrayList();
+             String sql2="select Nom from Jeu";
+                 ResultSet rs=mc.createStatement().executeQuery(sql2);               
+                 while(rs.next()){
+                     options2.add(rs.getString(1)); 
+  
+                 }
+            ListeR.setItems(options2);
+    }catch (Exception e)
+    {
+        System.out.println(e.getMessage());
     
     }
-
+    
+    }
+}
 
 

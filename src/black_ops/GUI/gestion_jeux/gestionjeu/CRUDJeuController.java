@@ -7,12 +7,18 @@ package black_ops.GUI.gestion_jeux.gestionjeu;
 
 import black_ops.Controller.JeuController;
 import black_ops.Entity.Jeu;
+import black_ops.config.MaConnexion;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +29,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -69,7 +76,6 @@ public class CRUDJeuController implements Initializable {
     private TextField txtdescription;
     @FXML
     private TextField txturl;
-    @FXML
     private TextField txtIdScat;
      private Stage stage;
  private Scene scene;
@@ -82,6 +88,10 @@ public class CRUDJeuController implements Initializable {
     private TextField txt_search;
     @FXML
     private Button btn_search;
+    @FXML
+    public ComboBox ListeR;
+     public Connection mc;
+    public PreparedStatement ste;
  
 
     /**
@@ -90,18 +100,38 @@ public class CRUDJeuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        showgames();
+       fillcomboBox();
     } 
      
     
     @FXML
     private void AddGame(ActionEvent event) {
+         int k=0;
+        String id_jeu=ListeR.getSelectionModel().getSelectedItem().toString();
+          try {
+             
+               String sql2="select id_SousCat from sous_categorie where nom_SousCat=?";
+               
+             mc=MaConnexion.getInstance().getCnx();
+             ste=mc.prepareStatement(sql2);
+             
+              
+              ste.setString(1,id_jeu);
+              ResultSet rs=ste.executeQuery();
+               while(rs.next()){
+             k=rs.getInt("id_SousCat");
+            
+            
+        } }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+         
             
             String nom = txtnom.getText();
             String desc = txtdescription.getText();
             String url = txturl.getText();
-           String text = txtIdScat.getText();
-           int h = Integer.parseInt(text);
-             Jeu j1 = new Jeu(4,nom,desc,url,h);
+         
+             Jeu j1 = new Jeu(4,nom,desc,url,k);
             JeuController jc1 = new JeuController();
             jc1.ajouterJeu(j1);
             //notification code 
@@ -133,14 +163,32 @@ public class CRUDJeuController implements Initializable {
     }
     @FXML
     private void UpdateGame(ActionEvent event) {
+            int k=0;
+        String id_jeu=ListeR.getSelectionModel().getSelectedItem().toString();
+          try {
+             
+               String sql2="select id_SousCat from sous_categorie where nom_SousCat=?";
+               
+             mc=MaConnexion.getInstance().getCnx();
+             ste=mc.prepareStatement(sql2);
+             
+              
+              ste.setString(1,id_jeu);
+              ResultSet rs=ste.executeQuery();
+               while(rs.next()){
+             k=rs.getInt("id_SousCat");
+            
+            
+        } }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
         String idJeu=txtid.getText();
          int v = Integer.parseInt(idJeu);
         String nom = txtnom.getText();
             String desc = txtdescription.getText();
             String url = txturl.getText();
-           String text = txtIdScat.getText();
-           int h = Integer.parseInt(text);
-             Jeu j1 = new Jeu(v,nom,desc,url,h);
+          
+             Jeu j1 = new Jeu(v,nom,desc,url,k);
             JeuController jc1 = new JeuController();
             jc1.updateJeu(j1);
             //notif 
@@ -224,7 +272,24 @@ public class CRUDJeuController implements Initializable {
     Jeu j = TVGames.getSelectionModel().getSelectedItem();
        txtid.setText(""+j.getId_Jeu());
      txtnom.setText(""+j.getNom());
-       txtIdScat.setText(""+j.getId_souscat());
+       try {
+             
+               String sql2="select nom_SousCat from sous_categorie where id_SousCat=?";
+               
+             mc=MaConnexion.getInstance().getCnx();
+             ste=mc.prepareStatement(sql2);
+             
+              
+              ste.setInt(1,j.getId_souscat());
+              ResultSet rs=ste.executeQuery();
+               while(rs.next()){
+        String     k=rs.getString("nom_SousCat");
+        ListeR.setValue(k);
+            
+            
+        } }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
      txturl.setText(""+j.getUrl());
     txtdescription.setText(""+j.getDescription());
          
@@ -275,7 +340,7 @@ public class CRUDJeuController implements Initializable {
      txtnom.setText("");
     txtdescription.setText("");
      txturl.setText("");
-     txtIdScat.setText("");
+     ListeR.setValue("");
     }
 
     @FXML
@@ -318,6 +383,30 @@ public class CRUDJeuController implements Initializable {
     
 }
 
+    @FXML
+    private void fillcomboBox() {
+         mc=MaConnexion.getInstance().getCnx();
+    try  {
+            
+             ObservableList options2 =FXCollections.observableArrayList();
+             
+             
+             String sql2="select nom_SousCat from sous_categorie";
+                 ResultSet rs=mc.createStatement().executeQuery(sql2);               
+                 while(rs.next()){
+                     options2.add(rs.getString(1));    
+                 }
+            ListeR.setItems(options2);
+    }catch (Exception e)
+    {
+        System.out.println(e.getMessage());
+    
+    
+    
+    }
+    }
+    }
 
 
-}
+
+

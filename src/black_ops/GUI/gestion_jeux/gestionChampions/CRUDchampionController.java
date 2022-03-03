@@ -7,6 +7,7 @@ package black_ops.GUI.gestion_jeux.gestionChampions;
 
 import black_ops.Controller.ChampionController;
 import black_ops.Entity.Champion;
+import black_ops.Entity.Jeu;
 import black_ops.GUI.gestion_jeux.gestionSkins.AfficherSkinController;
 import black_ops.config.DB_Connection;
 
@@ -43,7 +44,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -65,8 +68,7 @@ import org.controlsfx.control.Notifications;
  */
 public class CRUDchampionController implements Initializable {
 
-    @FXML
-    private TextField txtId_jeu;
+    
     @FXML
     private TextField txtdescription_champ;
     @FXML
@@ -115,6 +117,12 @@ public class CRUDchampionController implements Initializable {
     private Button btn_refresh;
     @FXML
     private Button btn_search;
+    @FXML
+    public ComboBox ListeR;
+    public Connection mc;
+    public PreparedStatement ste;
+    
+   
 
     /**
      * Initializes the controller class.
@@ -122,14 +130,34 @@ public class CRUDchampionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        showchamps();
+       fillcomboBox();
+       
     }    
 
     @FXML
     private void handleMouseAction(MouseEvent event) {
         Champion c = TVChamps.getSelectionModel().getSelectedItem();
        txtid_champ.setText(""+c.getId_Champ());
-       txtNom_champ.setText(""+c.getNom_Champ());
-    txtId_jeu.setText(""+c.getId_jeu());
+       txtNom_champ.setText(""+c.getNom_Champ());        
+  try {
+             
+               String sql2="select Nom from Jeu where Id_Jeu=?";
+               
+             mc=MaConnexion.getInstance().getCnx();
+             ste=mc.prepareStatement(sql2);
+             
+              
+              ste.setInt(1,c.getId_jeu());
+              ResultSet rs=ste.executeQuery();
+               while(rs.next()){
+        String     k=rs.getString("Nom");
+        ListeR.setValue(k);
+            
+            
+        } }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
     txtRole_champ.setText(""+c.getRole_Champ());
      txtDiff_champ.setText(""+c.getDifficulte_Champ());
      txtimg_champ.setText(""+c.getImage_Champ());
@@ -157,14 +185,40 @@ public class CRUDchampionController implements Initializable {
 
     @FXML
     private void AddChamp(ActionEvent event) {
+        int k=0;
+        String id_jeu=ListeR.getSelectionModel().getSelectedItem().toString();
+       // System.out.println(id_jeu);
         String nomChamp = txtNom_champ.getText();
             String descChamp = txtdescription_champ.getText();
             String Role = txtRole_champ.getText();
             String Diff = txtDiff_champ.getText();
-           String id_jeu = txtId_jeu.getText();
-           int h = Integer.parseInt(id_jeu);
+         
+           
+         try {
+             
+               String sql2="select Id_Jeu from Jeu where Nom=?";
+               
+             mc=MaConnexion.getInstance().getCnx();
+             ste=mc.prepareStatement(sql2);
+             
+              
+              ste.setString(1,id_jeu);
+              ResultSet rs=ste.executeQuery();
+               while(rs.next()){
+             k=rs.getInt("Id_Jeu");
+            
+            
+        } }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+         
+           
+            
+             
+
+           
            String txtimgchamp=txtimg_champ.getText();
-            Champion j1 = new Champion(4,nomChamp,descChamp,Role,Diff,txtimgchamp,h);
+            Champion j1 = new Champion(4,nomChamp,descChamp,Role,Diff,txtimgchamp,k);
             
             ChampionController jc1 = new ChampionController();
             jc1.ajouterChampion(j1);
@@ -198,6 +252,26 @@ public class CRUDchampionController implements Initializable {
 
     @FXML
     private void UpdateChamp(ActionEvent event) {
+        int k=0;
+        String id_jeu=ListeR.getSelectionModel().getSelectedItem().toString();
+           try {
+             
+               String sql2="select Id_Jeu from Jeu where Nom=?";
+               
+             mc=MaConnexion.getInstance().getCnx();
+             ste=mc.prepareStatement(sql2);
+             
+              
+              ste.setString(1,id_jeu);
+              ResultSet rs=ste.executeQuery();
+               while(rs.next()){
+             k=rs.getInt("Id_Champ");
+            
+            
+        } }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
          String idChamp=txtid_champ.getText();
          int v = Integer.parseInt(idChamp);
         String nomChamp = txtNom_champ.getText();
@@ -205,9 +279,8 @@ public class CRUDchampionController implements Initializable {
             String Role = txtRole_champ.getText();
             String Diff = txtDiff_champ.getText();
             String Image_Url = txtimg_champ.getText();
-           String id_jeu = txtId_jeu.getText();
-           int h = Integer.parseInt(id_jeu);
-             Champion j1 = new Champion(v,nomChamp,descChamp,Role,Diff,Image_Url,h);
+          
+             Champion j1 = new Champion(v,nomChamp,descChamp,Role,Diff,Image_Url,k);
             ChampionController jc1 = new ChampionController();
             jc1.updateChampion(j1);
             
@@ -319,7 +392,7 @@ public class CRUDchampionController implements Initializable {
     txtRole_champ.setText("");
      txtDiff_champ.setText("");
      txtimg_champ.setText("");
-     txtId_jeu.setText("");
+     ListeR.setValue("");
         
     }
 
@@ -528,5 +601,28 @@ public class CRUDchampionController implements Initializable {
             //
     
     }
-    }
 
+    @FXML
+    private void fillcomboBox() {
+        mc=MaConnexion.getInstance().getCnx();
+    try  {
+            
+             ObservableList options2 =FXCollections.observableArrayList();
+             
+             
+             String sql2="select Nom from Jeu";
+                 ResultSet rs=mc.createStatement().executeQuery(sql2);               
+                 while(rs.next()){
+                     options2.add(rs.getString(1));    
+                 }
+            ListeR.setItems(options2);
+    }catch (Exception e)
+    {
+        System.out.println(e.getMessage());
+    
+    
+    
+    }
+    }}
+
+    
