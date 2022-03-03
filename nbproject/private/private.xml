@@ -4,10 +4,15 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/medaz/Documents/NetBeansProjects/crud_competition/src/black_ops/GUI/Gestion_Competition/Gestion_Details_Defis/GestionDetailsDefisController.java</file>
-            <file>file:/C:/Users/medaz/Documents/NetBeansProjects/crud_competition/src/black_ops/GUI/Gestion_Competition/Gestion_Defis/Example.java</file>
+            <file>file:/C:/Users/medaz/Documents/NetBeansProjects/crud_competition/src/black_ops/GUI/Gestion_Competition/Gestion_Equipe/GestionEquipeController.java</file>
+            <file>file:/C:/Users/medaz/Documents/NetBeansProjects/crud_competition/src/black_ops/GUI/Gestion_Competition/Gestion_Joueur/GestionJoueurController.java</file>
+            <file>file:/C:/Users/medaz/Documents/NetBeansProjects/crud_competition/src/black_ops/Controller/Joueur_Controller.java</file>
+            <file>file:/C:/Users/medaz/Documents/NetBeansProjects/crud_competition/src/black_ops/GUI/gestion_jeux/CRUDJeuController.java</file>
             <file>file:/C:/Users/medaz/Documents/NetBeansProjects/crud_competition/src/black_ops/GUI/Gestion_Competition/Gestion_Defis/GestionDefis.java</file>
+            <file>file:/C:/Users/medaz/Documents/NetBeansProjects/crud_competition/src/black_ops/GUI/gestion_jeux/Main.java</file>
             <file>file:/C:/Users/medaz/Documents/NetBeansProjects/crud_competition/src/black_ops/GUI/Gestion_Competition/Gestion_Defis/GestionDefisController.java</file>
-            <file>file:/C:/Users/medaz/Documents/NetBeansProjects/crud_competition/src/black_ops/test/Gestion_Competition/Defi_Test.java</file>
+            <file>file:/C:/Users/medaz/Documents/NetBeansProjects/crud_competition/src/black_ops/GUI/Gestion_Competition/Gestion_Joueur/GestionJoueur.java</file>
+            <file>file:/C:/Users/medaz/Documents/NetBeansProjects/crud_competition/src/black_ops/GUI/Gestion_Competition/Gestion_Equipe/GestionEquipe.java</file>
         </group>
     </open-files>
 </project-private>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
@@ -9,6 +10,8 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -123,6 +126,11 @@
                   <FontAwesomeIconView fill="#e0e4e7" glyphName="MINUS" size="40" />
                </graphic>
             </Button>
+            <Button fx:id="show" mnemonicParsing="false" onAction="#show_nav_bar" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;">
+               <graphic>
+                  <FontAwesomeIconView fill="#e0e4e7" glyphName="NAVICON" size="20" />
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
       <Button fx:id="btn_refresh" layoutX="315.0" layoutY="9.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 100%; -fx-background-color: #e0e4e7;">
@@ -167,6 +175,62 @@
             <TableColumn fx:id="cl_nom_eq" maxWidth="553.0" prefWidth="289.0" text="Nom_Equipe" />
          </columns>
       </TableView>
+      <AnchorPane fx:id="nav" prefHeight="706.0" prefWidth="297.0" style="-fx-background-color: #e0e4e7;">
+         <cursor>
+            <Cursor fx:constant="MOVE" />
+         </cursor>
+         <children>
+            <VBox prefHeight="558.0" prefWidth="200.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="100.0">
+               <children>
+                  <JFXComboBox fx:id="gc" onAction="#showGC" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Communaute" visibleRowCount="2">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="20.0" top="35.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="gcp" onAction="#showComp" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Competition" visibleRowCount="2">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="20.0" top="35.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <Button fx:id="gu" mnemonicParsing="false" onAction="#showU" prefHeight="25.0" prefWidth="151.0" text="Gestion Utlisateur">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="20.0" top="35.0" />
+                     </VBox.margin>
+                  </Button>
+                  <JFXComboBox fx:id="gCom" onAction="#showCommande" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Commande" visibleRowCount="2">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="20.0" top="35.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="gcat" onAction="#showCat" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Categorie" visibleRowCount="2">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="20.0" top="35.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="gS" onAction="#showS" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Stream" visibleRowCount="2">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="20.0" top="35.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="gJ" layoutX="10.0" layoutY="255.0" onAction="#showJ" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Jeu" visibleRowCount="2">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="20.0" top="35.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+               </children>
+            </VBox>
+            <Button fx:id="hide" layoutY="2.0" mnemonicParsing="false" onAction="#hide_nav_bar" style="-fx-background-radius: 100%; -fx-background-color: #e0e4e7;" visible="false">
+               <graphic>
+                  <FontAwesomeIconView fill="#0f1316" glyphName="NAVICON" rotate="90.0" size="20" />
+               </graphic>
+            </Button>
+            <ImageView fitHeight="82.0" fitWidth="215.0" layoutX="61.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Image/Logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
       
    </children>
 </AnchorPane>

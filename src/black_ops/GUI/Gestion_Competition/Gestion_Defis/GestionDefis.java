@@ -6,6 +6,7 @@
 package black_ops.GUI.Gestion_Competition.Gestion_Defis;
 
 
+import java.io.File;
 import javafx.application.Application;
 
 import javafx.fxml.FXMLLoader;
@@ -22,9 +23,9 @@ public class GestionDefis extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+      
         Parent root = FXMLLoader.load(getClass().getResource("GestionDefi.fxml"));
-        
-         Scene scene = new Scene(root);
+        Scene scene = new Scene(root);
         stage.setTitle("Black Ops");
         stage.setScene(scene);
         stage.show();
