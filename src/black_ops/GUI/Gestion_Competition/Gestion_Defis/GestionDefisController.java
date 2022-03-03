@@ -117,8 +117,6 @@ public class GestionDefisController implements Initializable {
     @FXML
     private Button btn_diselect;
     @FXML
-    private Button btn_refresh;
-    @FXML
     private Button imp;
     @FXML
     private AnchorPane nav;
@@ -274,7 +272,6 @@ public class GestionDefisController implements Initializable {
         recherche.setText("");
     }
 
-    @FXML
     private void refreshTable(ActionEvent event) {
             DefiController df = new DefiController();   
              ObservableList<Defi> list = df.afficherDefi(); 

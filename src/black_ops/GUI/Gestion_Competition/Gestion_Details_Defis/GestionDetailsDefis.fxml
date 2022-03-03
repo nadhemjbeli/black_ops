@@ -134,27 +134,8 @@
             </Button>
             <ImageView fx:id="QRimg" fitHeight="150.0" fitWidth="200.0" layoutX="75.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true" />
             <Button fx:id="QR" alignment="CENTER" contentDisplay="CENTER" layoutX="117.0" layoutY="581.0" mnemonicParsing="false" onAction="#CodeQr" text="Code _qr" />
-            <Button fx:id="show" mnemonicParsing="false" onAction="#show_nav_bar" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;">
-               <graphic>
-                  <FontAwesomeIconView fill="#e0e4e7" glyphName="NAVICON" size="20" />
-               </graphic>
-            </Button>
          </children>
       </AnchorPane>
-      <Button fx:id="btn_refresh" layoutX="315.0" layoutY="9.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 100%; -fx-background-color: #e0e4e7;">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-         <effect>
-            <ColorAdjust />
-         </effect>
-         <graphic>
-            <FontAwesomeIconView fill="#09a195" glyphName="REFRESH" size="30" />
-         </graphic>
-      </Button>
       <HBox alignment="CENTER_RIGHT" layoutX="810.0" layoutY="10.0" prefHeight="50.0" prefWidth="343.0" AnchorPane.rightAnchor="0.0">
          <children>
             <TextField fx:id="recherche" prefHeight="31.0" prefWidth="337.0" promptText="Chercher par contenu" style="-fx-background-color: #e0e4e7; -fx-prompt-text-fill: #707070;" />
@@ -177,19 +158,19 @@
             </Button>
          </children>
       </HBox>
-      <AnchorPane fx:id="nav" layoutX="-63.0" layoutY="4.0" prefHeight="706.0" prefWidth="297.0" style="-fx-background-color: #e0e4e7;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-0.0" AnchorPane.rightAnchor="1003.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="nav" layoutX="-63.0" layoutY="4.0" prefHeight="700.0" prefWidth="300.0" style="-fx-background-color: #0f1316;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="0.0">
          <cursor>
             <Cursor fx:constant="MOVE" />
          </cursor>
          <children>
             <VBox prefHeight="558.0" prefWidth="200.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="100.0">
                <children>
-                  <JFXComboBox fx:id="gc" onAction="#showGC" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Communaute" visibleRowCount="2">
+                  <JFXComboBox fx:id="gc" onAction="#showGC" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Communaute" style="-fx-prompt-text-fill: #ffffff;" visibleRowCount="2">
                      <VBox.margin>
                         <Insets bottom="15.0" left="20.0" top="35.0" />
                      </VBox.margin>
                   </JFXComboBox>
-                  <JFXComboBox fx:id="gcp" onAction="#showComp" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Competition" visibleRowCount="2">
+                  <JFXComboBox fx:id="gcp" onAction="#showComp" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Competition" style="-fx-prompt-text-fill: #ffffff;" visibleRowCount="2">
                      <VBox.margin>
                         <Insets bottom="15.0" left="20.0" top="35.0" />
                      </VBox.margin>
@@ -199,33 +180,28 @@
                         <Insets bottom="15.0" left="20.0" top="35.0" />
                      </VBox.margin>
                   </Button>
-                  <JFXComboBox fx:id="gCom" onAction="#showCommande" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Commande" visibleRowCount="2">
+                  <JFXComboBox fx:id="gCom" onAction="#showCommande" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Commande" style="-fx-prompt-text-fill: #ffffff;" visibleRowCount="2">
                      <VBox.margin>
                         <Insets bottom="15.0" left="20.0" top="35.0" />
                      </VBox.margin>
                   </JFXComboBox>
-                  <JFXComboBox fx:id="gcat" onAction="#showCat" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Categorie" visibleRowCount="2">
+                  <JFXComboBox fx:id="gcat" onAction="#showCat" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Categorie" style="-fx-prompt-text-fill: #ffffff;" visibleRowCount="2">
                      <VBox.margin>
                         <Insets bottom="15.0" left="20.0" top="35.0" />
                      </VBox.margin>
                   </JFXComboBox>
-                  <JFXComboBox fx:id="gS" onAction="#showS" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Stream" visibleRowCount="2">
+                  <JFXComboBox fx:id="gS" onAction="#showS" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Stream" style="-fx-prompt-text-fill: #ffffff;" visibleRowCount="2">
                      <VBox.margin>
                         <Insets bottom="15.0" left="20.0" top="35.0" />
                      </VBox.margin>
                   </JFXComboBox>
-                  <JFXComboBox fx:id="gJ" layoutX="10.0" layoutY="255.0" onAction="#showJ" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Jeu" visibleRowCount="2">
+                  <JFXComboBox fx:id="gJ" layoutX="10.0" layoutY="255.0" onAction="#showJ" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Jeu" style="-fx-prompt-text-fill: #ffffff;" visibleRowCount="2">
                      <VBox.margin>
                         <Insets bottom="15.0" left="20.0" top="35.0" />
                      </VBox.margin>
                   </JFXComboBox>
                </children>
             </VBox>
-            <Button fx:id="hide" layoutY="2.0" mnemonicParsing="false" onAction="#hide_nav_bar" style="-fx-background-radius: 100%; -fx-background-color: #e0e4e7;" visible="false">
-               <graphic>
-                  <FontAwesomeIconView fill="#0f1316" glyphName="NAVICON" rotate="90.0" size="20" />
-               </graphic>
-            </Button>
             <ImageView fitHeight="82.0" fitWidth="215.0" layoutX="61.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../Image/Logo.png" />
@@ -233,6 +209,16 @@
             </ImageView>
          </children>
       </AnchorPane>
+      <Button fx:id="hide" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#hide_nav_bar" style="-fx-background-radius: 100%; -fx-background-color: #e0e4e7;" visible="false" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="30.0">
+         <graphic>
+            <FontAwesomeIconView fill="#09a195" glyphName="NAVICON" rotate="90.0" size="20" />
+         </graphic>
+      </Button>
+      <Button fx:id="show" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#show_nav_bar" style="-fx-background-radius: 100%; -fx-background-color: #e0e4e7;" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="30.0">
+         <graphic>
+            <FontAwesomeIconView fill="#09a195" glyphName="NAVICON" size="20" />
+         </graphic>
+      </Button>
       
    </children>
 </AnchorPane>

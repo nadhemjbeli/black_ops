@@ -87,8 +87,6 @@ public class GestionDetailsDefisController implements Initializable {
     @FXML
     private Button btn_diselect;
     @FXML
-    private Button btn_refresh;
-    @FXML
     private Button show;
     @FXML
     private AnchorPane nav;
@@ -261,7 +259,6 @@ public class GestionDetailsDefisController implements Initializable {
        
     }
 
-    @FXML
     private void refreshTable(ActionEvent event) {
         DetailsDefiController D_DefiC = new DetailsDefiController();
              ObservableList<DetailsDefi> list = D_DefiC.View_Details_defi(); 
