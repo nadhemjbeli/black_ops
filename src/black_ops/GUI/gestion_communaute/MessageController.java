@@ -74,6 +74,7 @@ public class MessageController implements Initializable {
     private TextField txt_search;
     @FXML
     private Button btn_diselect;
+    public static String admin_email = "";
 
     /**
      * Initializes the controller class.

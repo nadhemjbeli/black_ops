@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import java.net.URL?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1300.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI.gestion_communaute.ChatController">
+    <stylesheets>
+        <URL value="@chat.css" />
+    </stylesheets>
+   <children>
+      <JFXTextArea layoutX="454.0" layoutY="609.0" prefHeight="35.0" prefWidth="528.0" />
+      <JFXButton fx:id="send_btn" layoutX="991.0" layoutY="609.0" onAction="#send_msg" prefHeight="46.0" prefWidth="94.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <JFXComboBox editable="true" layoutX="61.0" layoutY="103.0">
+      </JFXComboBox>
+    <AnchorPane fx:id="anchorid" layoutX="454.0" layoutY="65.0" minHeight="0.0" minWidth="0.0" prefHeight="537.0" prefWidth="630.0" AnchorPane.topAnchor="65.0" />
+   </children>
+</AnchorPane>

@@ -377,7 +377,6 @@ public class Video_uploadeController implements Initializable {
             Video_playController.id = Integer.parseInt(txt_id.getText());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("video_play.fxml"));
             Parent root = loader.load();
-            Video_playController vp = new Video_playController();
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
