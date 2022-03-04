@@ -166,7 +166,7 @@
             </Button>
          </children>
       </HBox>
-      <AnchorPane fx:id="nav" prefHeight="706.0" prefWidth="297.0" style="-fx-background-color: #0f1316;">
+      <AnchorPane fx:id="nav" prefHeight="706.0" prefWidth="297.0" style="-fx-background-color: #0f1316;" visible="false">
          <cursor>
             <Cursor fx:constant="MOVE" />
          </cursor>
