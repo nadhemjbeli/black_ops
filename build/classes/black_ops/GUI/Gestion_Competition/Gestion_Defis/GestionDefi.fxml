@@ -186,7 +186,7 @@
             </Button>
          </children>
       </HBox>
-      <AnchorPane fx:id="nav" prefHeight="706.0" prefWidth="297.0" style="-fx-background-color: #0f1316;">
+      <AnchorPane fx:id="nav" prefHeight="706.0" prefWidth="297.0" style="-fx-background-color: #0f1316;" visible="false">
          <cursor>
             <Cursor fx:constant="MOVE" />
          </cursor>
@@ -244,7 +244,7 @@
       </Button>
       <Button fx:id="show" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#show_nav_bar" style="-fx-background-radius: 100%; -fx-background-color: #e0e4e7;" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="30.0">
          <graphic>
-            <FontAwesomeIconView fill="#09a195" glyphName="NAVICON" size="20" />
+            <FontAwesomeIconView fill="#09a195" glyphName="NAVICON" size="20" text="" />
          </graphic>
       </Button>
       

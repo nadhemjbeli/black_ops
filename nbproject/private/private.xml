@@ -2,6 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/medaz/Documents/NetBeansProjects/crud_competition/src/black_ops/GUI/Gestion_Competition/Gestion_Details_Defis/GestionDetailsDefisController.java</file>
+            <file>file:/C:/Users/medaz/Documents/NetBeansProjects/crud_competition/src/black_ops/GUI/Gestion_Competition/Gestion_Equipe/GestionEquipeController.java</file>
+            <file>file:/C:/Users/medaz/Documents/NetBeansProjects/crud_competition/src/black_ops/GUI/Gestion_Competition/Gestion_Joueur/GestionJoueurController.java</file>
+            <file>file:/C:/Users/medaz/Documents/NetBeansProjects/crud_competition/src/black_ops/GUI/Gestion_Competition/Gestion_Defis/GestionDefisController.java</file>
+            <file>file:/C:/Users/medaz/Documents/NetBeansProjects/crud_competition/src/black_ops/Controller/DefiController.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -5,6 +5,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -57,11 +58,11 @@
                         <Insets bottom="15.0" top="15.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="inp_Eq" layoutX="10.0" layoutY="193.0" promptText="id_equipe" style="-fx-background-color: #fff; -fx-prompt-text-fill: #707070;">
+                  <ComboBox fx:id="ListeR" onAction="#fillcomboBox" prefHeight="25.0" prefWidth="177.0" promptText="Equipe" style="-fx-background-color: #ffffff;">
                      <VBox.margin>
                         <Insets bottom="15.0" top="15.0" />
                      </VBox.margin>
-                  </TextField>
+                  </ComboBox>
                </children>
             </VBox>
             <Button fx:id="btn_insert" layoutX="19.0" layoutY="490.0" mnemonicParsing="false" onAction="#Ajouter_Joueur" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;" textFill="WHITE" AnchorPane.bottomAnchor="40.0">
@@ -167,7 +168,7 @@
             <TableColumn fx:id="cl_nom_eq" maxWidth="553.0" prefWidth="289.0" text="Nom_Equipe" />
          </columns>
       </TableView>
-      <AnchorPane fx:id="nav" prefHeight="706.0" prefWidth="297.0" style="-fx-background-color: #0f1316;">
+      <AnchorPane fx:id="nav" prefHeight="706.0" prefWidth="297.0" style="-fx-background-color: #0f1316;" visible="false">
          <cursor>
             <Cursor fx:constant="MOVE" />
          </cursor>

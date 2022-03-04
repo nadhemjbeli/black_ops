@@ -5,6 +5,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -43,31 +44,31 @@
                      <VBox.margin>
                         <Insets bottom="15.0" top="15.0" />
                      </VBox.margin></TextField>
-                  <TextField fx:id="inp_A" layoutX="10.0" layoutY="50.0" promptText="Id de l'equipe A" style="-fx-background-color: #fff; -fx-prompt-text-fill: #707070;">
+                  <ComboBox fx:id="ListEquipeA" prefHeight="25.0" prefWidth="175.0" promptText="Equipe A" style="-fx-background-color: #ffffff;">
                      <VBox.margin>
                         <Insets bottom="15.0" top="15.0" />
                      </VBox.margin>
-                  </TextField>
+                  </ComboBox>
                   <TextField fx:id="inp_url" layoutX="10.0" layoutY="164.0" promptText="Image de score" style="-fx-background-color: #fff; -fx-prompt-text-fill: #707070;">
                      <VBox.margin>
                         <Insets bottom="15.0" top="15.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="inp_B" layoutX="10.0" layoutY="168.0" promptText="Id de l'equipe B" style="-fx-background-color: #fff; -fx-prompt-text-fill: #707070;">
+                  <ComboBox fx:id="ListEquipeB" layoutX="10.0" layoutY="71.0" prefHeight="25.0" prefWidth="178.0" promptText="Equipe B" style="-fx-background-color: #ffffff;">
                      <VBox.margin>
                         <Insets bottom="15.0" top="15.0" />
                      </VBox.margin>
-                  </TextField>
+                  </ComboBox>
                   <TextField fx:id="inp_score_finale" layoutX="10.0" layoutY="193.0" promptText="Score Finale" style="-fx-background-color: #fff; -fx-prompt-text-fill: #707070;">
                      <VBox.margin>
                         <Insets bottom="15.0" top="15.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="inp_defi" layoutX="10.0" layoutY="218.0" promptText="Id de defi" style="-fx-background-color: #fff; -fx-prompt-text-fill: #707070;">
+                  <ComboBox fx:id="ListDefi" layoutX="10.0" layoutY="316.0" prefHeight="25.0" prefWidth="179.0" promptText="Defi" style="-fx-background-color: #ffffff;">
                      <VBox.margin>
                         <Insets bottom="15.0" top="15.0" />
                      </VBox.margin>
-                  </TextField>
+                  </ComboBox>
                </children>
             </VBox>
             <Button fx:id="btn_insert" layoutX="19.0" layoutY="490.0" mnemonicParsing="false" onAction="#Ajouter_Match" prefHeight="55.0" prefWidth="55.0" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;" textFill="WHITE" AnchorPane.bottomAnchor="40.0">
@@ -134,6 +135,11 @@
             </Button>
             <ImageView fx:id="QRimg" fitHeight="150.0" fitWidth="200.0" layoutX="75.0" layoutY="412.0" pickOnBounds="true" preserveRatio="true" />
             <Button fx:id="QR" alignment="CENTER" contentDisplay="CENTER" layoutX="117.0" layoutY="581.0" mnemonicParsing="false" onAction="#CodeQr" text="Code _qr" />
+            <Button fx:id="imp" layoutX="238.0" layoutY="195.0" mnemonicParsing="false" onAction="#importImg" prefHeight="55.0" prefWidth="40.0" style="-fx-background-color: #0f1316; -fx-background-ra: 100%;">
+               <graphic>
+                  <FontAwesomeIconView fill="#e0e4e7" glyphName="UPLOAD" size="30" wrappingWidth="33.85714340209961" />
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
       <HBox alignment="CENTER_RIGHT" layoutX="810.0" layoutY="10.0" prefHeight="50.0" prefWidth="343.0" AnchorPane.rightAnchor="0.0">
@@ -158,7 +164,7 @@
             </Button>
          </children>
       </HBox>
-      <AnchorPane fx:id="nav" layoutX="-63.0" layoutY="4.0" prefHeight="700.0" prefWidth="300.0" style="-fx-background-color: #0f1316;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="nav" layoutX="-63.0" layoutY="4.0" prefHeight="700.0" prefWidth="300.0" style="-fx-background-color: #0f1316;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1000.0" AnchorPane.topAnchor="0.0">
          <cursor>
             <Cursor fx:constant="MOVE" />
          </cursor>
