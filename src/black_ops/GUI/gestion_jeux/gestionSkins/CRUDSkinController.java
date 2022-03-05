@@ -156,6 +156,7 @@ public class CRUDSkinController implements Initializable {
                while(rs.next()){
         String     k=rs.getString("Nom_Champ");
         ListeR.setValue(k);
+        
             } }catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -191,7 +192,7 @@ public class CRUDSkinController implements Initializable {
           SkinController ic1 = new SkinController();
             ic1.ajouterSkin(i1);
             //notification code 
-            String path="src\\ImagesChampions\\confirm.png";
+            String path="src\\Images\\ImagesChampions\\confirm.png";
             String Path_name = new File(path).getAbsolutePath();
         System.out.println(Path_name);
         ImageView i = new ImageView();
@@ -248,7 +249,7 @@ public class CRUDSkinController implements Initializable {
           SkinController ic1 = new SkinController();
             ic1.updateSkin(i1);
              //notif 
-            String path="src\\ImagesChampions\\updateicone.png";
+            String path="src\\Images\\ImagesChampions\\updateicone.png";
             String Path_name = new File(path).getAbsolutePath();
         System.out.println(Path_name);
         ImageView i = new ImageView();
@@ -283,7 +284,7 @@ public class CRUDSkinController implements Initializable {
            SkinController jc1 = new SkinController();
             jc1.deleteSkin(i1);
              //notif 
-            String path="src\\ImagesChampions\\suppression.png";
+            String path="src\\Images\\ImagesChampions\\suppression.png";
             String Path_name = new File(path).getAbsolutePath();
         System.out.println(Path_name);
         ImageView i = new ImageView();
@@ -378,7 +379,7 @@ public class CRUDSkinController implements Initializable {
      col_Id_champ.setCellValueFactory(new PropertyValueFactory<Skin,Integer>("Id_champ") );
      TVskin.setItems(list);
       //notif 
-            String path="src\\ImagesChampions\\Recherche.png";
+            String path="src\\Images\\ImagesChampions\\Recherche.png";
             String Path_name = new File(path).getAbsolutePath();
         System.out.println(Path_name);
         ImageView i = new ImageView();
@@ -409,7 +410,7 @@ public class CRUDSkinController implements Initializable {
         Path to1=null;
         Path to2 = null;
          String  m = null;
-         String path = "\\SkinImages";
+         String path = "\\Images\\SkinImages";
          JFileChooser chooser = new JFileChooser();
         
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
@@ -425,7 +426,7 @@ public class CRUDSkinController implements Initializable {
                 
                try {
                    Path from = Paths.get(chooser.getSelectedFile().toURI());
-                    to1 = Paths.get(path+"\\"+idskin+".png");
+                    to1 = Paths.get(idskin+".png");
                     to2=Paths.get("src\\"+path+"\\"+idskin+".png");
                    CopyOption[] options = new CopyOption[]{
                        StandardCopyOption.REPLACE_EXISTING,
@@ -447,8 +448,8 @@ public class CRUDSkinController implements Initializable {
     @FXML
     private void AfficherSkin(ActionEvent event) {
        String path1= txt_ImgSkin.getText();
-       String nom=txt_id_Champ.getText();
-        String path2="src"+'\\'+path1;
+       String nom=ListeR.getSelectionModel().getSelectedItem().toString();
+        String path2="src"+"\\Images\\SkinImages\\"+path1;
         System.out.println(path2);
         String Path_name = new File(path2).getAbsolutePath();
         System.out.println(Path_name);

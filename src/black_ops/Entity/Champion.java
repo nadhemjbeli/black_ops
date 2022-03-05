@@ -91,8 +91,10 @@ public class Champion {
 
     @Override
     public String toString() {
-        return "Champion{" + "Id_Champ=" + Id_Champ + ", Nom_Champ=" + Nom_Champ + ", description_Champ=" + description_Champ + ", Role_Champ=" + Role_Champ + ", Difficulte_Champ=" + Difficulte_Champ + ", Image_Champ=" + Image_Champ + ", Id_jeu=" + Id_jeu + '}'+'\n';
+        return "Champion{" + "Id_Champ=" + Id_Champ + ", Nom_Champ=" + Nom_Champ + ", description_Champ=" + description_Champ + ", Role_Champ=" + Role_Champ + ", Difficulte_Champ=" + Difficulte_Champ + ", Image_Champ=" + Image_Champ + ", Id_jeu=" + Id_jeu + '}';
     }
+
+   
     
     
     

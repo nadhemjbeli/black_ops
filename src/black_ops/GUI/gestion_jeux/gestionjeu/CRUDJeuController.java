@@ -158,7 +158,7 @@ public class CRUDJeuController implements Initializable {
             JeuController jc1 = new JeuController();
             jc1.ajouterJeu(j1);
             //notification code 
-            String path="src\\ImagesChampions\\confirm.png";
+            String path="src\\Images\\ImagesChampions\\confirm.png";
             String Path_name = new File(path).getAbsolutePath();
         System.out.println(Path_name);
         ImageView i = new ImageView();
@@ -215,7 +215,7 @@ public class CRUDJeuController implements Initializable {
             JeuController jc1 = new JeuController();
             jc1.updateJeu(j1);
             //notif 
-            String path="src\\ImagesChampions\\updateicone.png";
+            String path="src\\Images\\ImagesChampions\\updateicone.png";
             String Path_name = new File(path).getAbsolutePath();
         System.out.println(Path_name);
         ImageView i = new ImageView();
@@ -250,7 +250,7 @@ public class CRUDJeuController implements Initializable {
             JeuController jc1 = new JeuController();
             jc1.deletejeu(j1);
               //notif 
-            String path="src\\ImagesChampions\\suppression.png";
+            String path="src\\Images\\ImagesChampions\\suppression.png";
             String Path_name = new File(path).getAbsolutePath();
         System.out.println(Path_name);
         ImageView i = new ImageView();
@@ -379,7 +379,7 @@ public class CRUDJeuController implements Initializable {
      colIdSoucat.setCellValueFactory(new PropertyValueFactory<Jeu,Integer>("id_souscat") );
      TVGames.setItems(list);
       //notif 
-            String path="src\\ImagesChampions\\Recherche.png";
+            String path="src\\Images\\ImagesChampions\\Recherche.png";
             String Path_name = new File(path).getAbsolutePath();
         System.out.println(Path_name);
         ImageView i = new ImageView();

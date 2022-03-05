@@ -46,7 +46,7 @@
                         <Insets bottom="15.0" top="15.0" />
                      </VBox.margin>
                   </TextField>
-                  <ComboBox fx:id="ListeR" onAction="#fillcomboBox" prefHeight="31.0" prefWidth="172.0" />
+                  <ComboBox fx:id="ListeR" onAction="#fillcomboBox" prefHeight="31.0" prefWidth="178.0" promptText="Jeu" style="-fx-background-color: #ffffff;" />
                   <TextField fx:id="date_message" disable="true" layoutX="10.0" layoutY="10.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: #e0e4e7;">
                      <VBox.margin>
                         <Insets top="14.0" />
@@ -105,7 +105,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="DIselect" layoutX="216.0" layoutY="485.0" mnemonicParsing="false" onAction="#DIselect" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;">
+            <Button fx:id="DIselect" layoutX="223.0" layoutY="597.0" mnemonicParsing="false" onAction="#DIselect" prefHeight="20.0" prefWidth="24.0" style="-fx-background-radius: 100%; -fx-background-color: #0f1316;">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -115,14 +115,16 @@
                <effect>
                   <ColorAdjust />
                </effect>
+               <graphic>
+                  <FontAwesomeIconView fill="#e0e4e7" glyphName="MINUS" size="30" text="" />
+               </graphic>
             </Button>
-            <Button fx:id="btnAffjeu" layoutX="250.0" layoutY="214.0" mnemonicParsing="false" onAction="#Importer_img_Jeu" prefHeight="31.0" prefWidth="29.0">
+            <Button fx:id="btnAffjeu" layoutX="247.0" layoutY="230.0" mnemonicParsing="false" onAction="#Importer_img_Jeu" prefHeight="31.0" prefWidth="29.0">
                <graphic>
                   <FontAwesomeIconView glyphName="FOLDER_OPEN" size="18" />
                </graphic>
             </Button>
-            <Button fx:id="btnaffi" layoutX="85.0" layoutY="382.0" mnemonicParsing="false" onAction="#AfficherImage" text="Afficher l'image" />
-            <FontAwesomeIconView fill="#e0e4e7" glyphName="MINUS" layoutX="223.0" layoutY="622.0" size="30" text="" />
+            <Button fx:id="btnaffi" layoutX="85.0" layoutY="356.0" mnemonicParsing="false" onAction="#AfficherImage" style="-fx-background-color: #ffffff;" text="Afficher l'image" />
          </children>
       </AnchorPane>
       <HBox alignment="CENTER_RIGHT" layoutX="810.0" layoutY="10.0" prefHeight="50.0" prefWidth="343.0" AnchorPane.rightAnchor="0.0">
@@ -158,7 +160,7 @@
             <ColorAdjust />
          </effect>
       </Button>
-      <AnchorPane fx:id="nav" prefHeight="706.0" prefWidth="297.0" style="-fx-background-color: #0f1316;" visible="false">
+      <AnchorPane fx:id="nav" prefHeight="706.0" prefWidth="297.0" style="-fx-background-color: #0f1316;">
          <cursor>
             <Cursor fx:constant="MOVE" />
          </cursor>
@@ -204,7 +206,7 @@
             </VBox>
             <ImageView fitHeight="82.0" fitWidth="215.0" layoutX="61.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../crud%20comp/crud_competition/src/Image/Logo.png" />
+                  <Image url="@../../../../Images/ImagesChampions/Logo.png" />
                </image>
             </ImageView>
          </children>

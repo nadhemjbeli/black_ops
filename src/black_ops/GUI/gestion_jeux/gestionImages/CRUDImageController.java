@@ -193,7 +193,7 @@ public class CRUDImageController implements Initializable {
            ImageController ic1 = new ImageController();
             ic1.ajouterImage(i1);
             //notification code 
-            String path="src\\ImagesChampions\\confirm.png";
+            String path="src\\Images\\ImagesChampions\\confirm.png";
             String Path_name = new File(path).getAbsolutePath();
         System.out.println(Path_name);
         ImageView i = new ImageView();
@@ -251,7 +251,7 @@ public class CRUDImageController implements Initializable {
             ImageController jc1 = new ImageController();
             jc1.updateImage(i1);
               //notif 
-            String path="src\\ImagesChampions\\updateicone.png";
+            String path="src\\Images\\ImagesChampions\\updateicone.png";
             String Path_name = new File(path).getAbsolutePath();
         System.out.println(Path_name);
         ImageView i = new ImageView();
@@ -286,7 +286,7 @@ public class CRUDImageController implements Initializable {
             ImageController jc1 = new ImageController();
             jc1.deleteImage(i1);
                 //notif 
-            String path="src\\ImagesChampions\\suppression.png";
+            String path="src\\Images\\ImagesChampions\\suppression.png";
             String Path_name = new File(path).getAbsolutePath();
         System.out.println(Path_name);
         ImageView i = new ImageView();
@@ -375,7 +375,7 @@ public class CRUDImageController implements Initializable {
      col_Id_jeu.setCellValueFactory(new PropertyValueFactory<Image,Integer>("Id_jeu") );
      TVpics.setItems(list);
       //notif 
-            String path="src\\ImagesChampions\\Recherche.png";
+            String path="src\\Images\\ImagesChampions\\Recherche.png";
             String Path_name = new File(path).getAbsolutePath();
         System.out.println(Path_name);
         ImageView i = new ImageView();
@@ -415,7 +415,7 @@ public class CRUDImageController implements Initializable {
         Path to = null;
         Path to2=null;
          String  m = null;
-         String path = "\\ImagesJeux";
+         String path = "\\Images\\ImagesJeux";
          JFileChooser chooser = new JFileChooser();
         
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
@@ -431,7 +431,7 @@ public class CRUDImageController implements Initializable {
                 
                try {
                    Path from = Paths.get(chooser.getSelectedFile().toURI());
-                    to = Paths.get(path+"\\"+idimg+".png");
+                    to = Paths.get(idimg+".png");
                       to2 = Paths.get("src\\"+path+"\\"+idimg+".png"); 
                    CopyOption[] options = new CopyOption[]{
                        StandardCopyOption.REPLACE_EXISTING,
@@ -454,9 +454,10 @@ public class CRUDImageController implements Initializable {
     @FXML
     private void AfficherImage(ActionEvent event) {
          String path1= txt_Url_image.getText();
-         String path_2="src\\"+path1;
+         String path_2="src"+"\\Images\\ImagesJeux\\"+path1;
          
-       String idjeu=txt_id_jeu.getText();
+       String idjeu=ListeR.getSelectionModel().getSelectedItem().toString();
+        System.out.println(idjeu);
         String Path_name = new File(path_2).getAbsolutePath();
         System.out.println(Path_name);
         ImageView i = new ImageView();

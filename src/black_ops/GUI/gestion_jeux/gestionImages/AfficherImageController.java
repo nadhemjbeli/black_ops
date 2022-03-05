@@ -32,8 +32,8 @@ public class AfficherImageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    public void function (Image img, String text)
+    public void function (Image img,String txt)
         { imgviewjeu.setImage(img);
-        txtIdJeu.setText(text);
+        txtIdJeu.setText(txt);
         }
 }

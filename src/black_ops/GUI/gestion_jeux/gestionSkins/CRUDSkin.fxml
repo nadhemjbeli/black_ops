@@ -46,7 +46,7 @@
                         <Insets bottom="15.0" top="15.0" />
                      </VBox.margin>
                   </TextField>
-                  <ComboBox fx:id="ListeR" onAction="#fillcomboBox" prefHeight="35.0" prefWidth="176.0" />
+                  <ComboBox fx:id="ListeR" onAction="#fillcomboBox" prefHeight="35.0" prefWidth="176.0" promptText="Champion" style="-fx-background-color: #ffffff;" />
                   <TextField fx:id="date_message" disable="true" layoutX="10.0" layoutY="10.0" style="-fx-background-color: rgba(0,0,0,0); -fx-text-fill: #e0e4e7;">
                      <VBox.margin>
                         <Insets top="14.0" />
@@ -124,7 +124,7 @@
                   <FontAwesomeIconView glyphName="FOLDER_OPEN" size="17" />
                </graphic>
             </Button>
-            <Button fx:id="btnAffSkin" layoutX="96.0" layoutY="367.0" mnemonicParsing="false" onAction="#AfficherSkin" text="Afficher Skin" />
+            <Button fx:id="btnAffSkin" layoutX="96.0" layoutY="364.0" mnemonicParsing="false" onAction="#AfficherSkin" style="-fx-background-color: #ffffff;" text="Afficher Skin" />
          </children>
       </AnchorPane>
       <HBox alignment="CENTER_RIGHT" layoutX="810.0" layoutY="10.0" prefHeight="50.0" prefWidth="343.0" AnchorPane.rightAnchor="0.0">
@@ -163,7 +163,7 @@
             <FontAwesomeIconView glyphName="REFRESH" size="30" />
          </graphic>
       </Button>
-      <AnchorPane fx:id="nav" prefHeight="706.0" prefWidth="297.0" style="-fx-background-color: #0f1316;" visible="false">
+      <AnchorPane fx:id="nav" prefHeight="706.0" prefWidth="297.0" style="-fx-background-color: #0f1316;">
          <cursor>
             <Cursor fx:constant="MOVE" />
          </cursor>
@@ -209,7 +209,7 @@
             </VBox>
             <ImageView fitHeight="82.0" fitWidth="215.0" layoutX="61.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../crud%20comp/crud_competition/src/Image/Logo.png" />
+                  <Image url="@../../../../Images/ImagesChampions/Logo.png" />
                </image>
             </ImageView>
          </children>

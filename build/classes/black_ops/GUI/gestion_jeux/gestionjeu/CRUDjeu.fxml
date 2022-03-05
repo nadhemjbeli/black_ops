@@ -62,7 +62,7 @@
                         <Insets bottom="15.0" top="15.0" />
                      </VBox.margin>
                   </TextField>
-                  <ComboBox fx:id="ListeR" onAction="#fillcomboBox" prefHeight="31.0" prefWidth="176.0" />
+                  <ComboBox fx:id="ListeR" onAction="#fillcomboBox" prefHeight="31.0" prefWidth="176.0" promptText="Sous catégorie" style="-fx-background-color: #ffffff;" />
                </children>
                <padding>
                   <Insets bottom="15.0" top="15.0" />
@@ -165,7 +165,7 @@
             </Button>
          </children>
       </HBox>
-      <AnchorPane fx:id="nav" prefHeight="706.0" prefWidth="297.0" style="-fx-background-color: #0f1316;" visible="false">
+      <AnchorPane fx:id="nav" prefHeight="706.0" prefWidth="297.0" style="-fx-background-color: #0f1316;">
          <cursor>
             <Cursor fx:constant="MOVE" />
          </cursor>
@@ -211,7 +211,7 @@
             </VBox>
             <ImageView fitHeight="82.0" fitWidth="215.0" layoutX="61.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../crud%20comp/crud_competition/src/Image/Logo.png" />
+                  <Image url="@../../../../Images/ImagesChampions/Logo.png" />
                </image>
             </ImageView>
          </children>

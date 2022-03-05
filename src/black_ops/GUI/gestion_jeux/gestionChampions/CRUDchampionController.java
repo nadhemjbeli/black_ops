@@ -246,7 +246,7 @@ public class CRUDchampionController implements Initializable {
             ChampionController jc1 = new ChampionController();
             jc1.ajouterChampion(j1);
             //notification code 
-            String path="src\\ImagesChampions\\confirm.png";
+            String path="src\\Images\\ImagesChampions\\confirm.png";
             String Path_name = new File(path).getAbsolutePath();
         System.out.println(Path_name);
         ImageView i = new ImageView();
@@ -288,7 +288,7 @@ public class CRUDchampionController implements Initializable {
               ste.setString(1,id_jeu);
               ResultSet rs=ste.executeQuery();
                while(rs.next()){
-             k=rs.getInt("Id_Champ");
+             k=rs.getInt("Id_Jeu");
             
             
         } }catch (SQLException ex) {
@@ -308,7 +308,7 @@ public class CRUDchampionController implements Initializable {
             jc1.updateChampion(j1);
             
             //notif 
-            String path="src\\ImagesChampions\\updateicone.png";
+            String path="src\\Images\\ImagesChampions\\updateicone.png";
             String Path_name = new File(path).getAbsolutePath();
         System.out.println(Path_name);
         ImageView i = new ImageView();
@@ -346,7 +346,7 @@ public class CRUDchampionController implements Initializable {
              ChampionController jc1 = new  ChampionController();
             jc1.deleteChampion(c1);
             //notif 
-            String path="src\\ImagesChampions\\suppression.png";
+            String path="src\\Images\\ImagesChampions\\suppression.png";
             String Path_name = new File(path).getAbsolutePath();
         System.out.println(Path_name);
         ImageView i = new ImageView();
@@ -458,13 +458,13 @@ public class CRUDchampionController implements Initializable {
          
     }
 
-    @FXML
+   @FXML
     private String Importer_Image(ActionEvent event){
         String nomchampion=txtNom_champ.getText();
         Path to2 = null;
         Path to1=null;
          String  m = null;
-         String path = "\\ImagesChampions";
+         String path = "\\Images\\ImagesChampions";
          JFileChooser chooser = new JFileChooser();
         
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
@@ -480,7 +480,7 @@ public class CRUDchampionController implements Initializable {
                 
                try {
                    Path from = Paths.get(chooser.getSelectedFile().toURI());
-                    to1=Paths.get(path+"\\"+nomchampion+".png");
+                    to1=Paths.get(nomchampion+".png");
                     to2 = Paths.get("src\\"+path+"\\"+nomchampion+".png");
                        
                    CopyOption[] options = new CopyOption[]{
@@ -503,7 +503,7 @@ public class CRUDchampionController implements Initializable {
     @FXML
     private void AfficherImage(ActionEvent event) {
        String path1= txtimg_champ.getText();
-       String path2="src"+'\\'+path1;
+       String path2="src"+"\\"+"Images\\ImagesChampions\\"+path1;
         System.out.println(path2);
        String nom=txtNom_champ.getText();
         String Path_name = new File(path2).getAbsolutePath();
@@ -598,7 +598,7 @@ public class CRUDchampionController implements Initializable {
             e.printStackTrace();
         }
          //notif 
-            String path="src\\ImagesChampions\\logs.png";
+            String path="src\\Images\\ImagesChampions\\logs.png";
             String Path_name = new File(path).getAbsolutePath();
         System.out.println(Path_name);
         ImageView i = new ImageView();

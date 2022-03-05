@@ -155,15 +155,15 @@
                <graphic>
                   <FontAwesomeIconView glyphName="FOLDER_OPEN" size="17" />
                </graphic></Button>
-            <Button fx:id="btnAffichage_img" layoutX="13.0" layoutY="512.0" mnemonicParsing="false" onAction="#AfficherImage" text="Afficher l'image">
+            <Button fx:id="btnAffichage_img" layoutX="13.0" layoutY="512.0" mnemonicParsing="false" onAction="#AfficherImage" style="-fx-background-color: #ffffff;" text="Afficher l'image">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Button>
-            <Button layoutX="156.0" layoutY="512.0" mnemonicParsing="false" onAction="#exportLogs" text="Générer les logs">
+            <Button layoutX="156.0" layoutY="512.0" mnemonicParsing="false" onAction="#exportLogs" style="-fx-background-color: #ffffff;" text="Générer les logs">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Button>
-            <ComboBox fx:id="ListeR" layoutX="59.0" layoutY="443.0" onAction="#fillcomboBox" prefHeight="31.0" prefWidth="176.0" />
+            <ComboBox fx:id="ListeR" layoutX="59.0" layoutY="443.0" onAction="#fillcomboBox" prefHeight="31.0" prefWidth="176.0" promptText="Jeu" style="-fx-background-color: #ffffff;" />
          </children>
       </AnchorPane>
       <HBox alignment="CENTER_RIGHT" layoutX="810.0" layoutY="10.0" prefHeight="50.0" prefWidth="343.0" AnchorPane.rightAnchor="0.0">
@@ -234,7 +234,7 @@
             </VBox>
             <ImageView fitHeight="82.0" fitWidth="215.0" layoutX="61.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../../crud%20comp/crud_competition/src/Image/Logo.png" />
+                  <Image url="@../../../../ImagesChampions/Logo.png" />
                </image>
             </ImageView>
          </children>
