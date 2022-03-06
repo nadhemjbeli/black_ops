@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" onMouseClicked="#click" prefHeight="215.0" prefWidth="225.0" stylesheets="@../../../../values/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI2.gestion_jeux.gestionchamps.ItemController">
+<AnchorPane id="AnchorPane" onMouseClicked="#click" onMousePressed="#click" prefHeight="215.0" prefWidth="225.0" stylesheets="@../../../../values/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI2.gestion_jeux.gestionchamps.ItemController">
    <children>
       <VBox alignment="TOP_CENTER" layoutY="-20.0" prefHeight="166.0" prefWidth="145.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>

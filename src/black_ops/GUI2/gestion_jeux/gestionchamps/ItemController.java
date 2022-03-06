@@ -6,7 +6,6 @@
 package black_ops.GUI2.gestion_jeux.gestionchamps;
 
 import black_ops.Entity.Champion;
-import black_ops.Entity.Fruit;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -34,7 +33,7 @@ public class ItemController  {
     @FXML
     private Label LabelDiff2;
     private Champion champion;
-    private Fruit fruit;
+    
      private MyListener mylistener;
        @FXML
     private void click(MouseEvent mouseEvent) {

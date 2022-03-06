@@ -8,7 +8,7 @@ package black_ops.GUI2.gestion_jeux.gestionchamps;
 
 import black_ops.Controller.ChampionController;
 import black_ops.Entity.Champion;
-import black_ops.Entity.Fruit;
+
 import black_ops.GUI.gestion_jeux.gestionChampions.ImageChampionController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
