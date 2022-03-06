@@ -1,7 +1,10 @@
 
 package black_ops.Controller;
 
+import black_ops.Entity.Defi;
 import black_ops.Entity.DetailsDefi;
+import black_ops.Entity.Equipe;
+import black_ops.GUI_User.Competition.Match.Recherche;
 import black_ops.config.MaConnexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -120,4 +123,49 @@ public class DetailsDefiController {
         }
         
     }
+    public ObservableList<Recherche> recherche(String nom) {
+
+        ObservableList<Recherche> dd = FXCollections.observableArrayList();
+
+        try {
+            String sql3 = "SELECT DISTINCT * FROM defi de "
+                    + "INNER JOIN details_defi dd on de.id_Defi = dd.id_defi "
+                    + "INNER join equipe ea on (dd.EquipeA = ea.id_Equipe)"
+                    + "INNER join equipe eb on (dd.EquipeB = eb.id_Equipe)"
+                    + "WHERE ea.nom_Equipe LIKE '%"+nom+"%'";
+            ste = mc.prepareStatement(sql3);
+            
+            ResultSet rs = ste.executeQuery();
+           
+            while (rs.next()) {
+                System.out.println("samir");
+                Equipe A = new Equipe();
+                Equipe B = new Equipe();
+                Defi D = new Defi();
+                DetailsDefi detaildefi = new DetailsDefi();
+                A.setNom_Equipe(rs.getString("nom_Equipe"));
+                A.setLogo_Equipe(rs.getString("logo_Equipe"));
+                B.setLogo_Equipe(rs.getString("logo_Equipe"));
+                B.setNom_Equipe(rs.getString("nom_Equipe"));
+                D.setNom_Defi(rs.getString("nom_Defi"));
+                detaildefi.setImgScore(rs.getString("imgScore"));
+                detaildefi.setScore_finale(rs.getString("Score_finale"));
+
+                Recherche r = new Recherche();
+                r.setEquipeA(A);
+                r.setEquipeB(B);
+                r.setDefi(D);
+                r.setDdefi(detaildefi);
+
+                dd.add(r);
+                System.out.println(dd);
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return dd;
+    }
+
+
 }

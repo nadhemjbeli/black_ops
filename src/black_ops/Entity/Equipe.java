@@ -13,6 +13,12 @@ public class Equipe {
     public Equipe() {
     }
 
+    public Equipe(String nom_Equipe, String logo_Equipe) {
+        this.nom_Equipe = nom_Equipe;
+        this.logo_Equipe = logo_Equipe;
+    }
+    
+
     public int getId_Equipe() {
         return id_Equipe;
     }

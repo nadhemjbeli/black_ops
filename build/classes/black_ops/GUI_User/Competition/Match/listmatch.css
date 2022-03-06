@@ -3,22 +3,36 @@
  */
 .label{
     -fx-padding: 5px;
-    -fx-background-color:#eee;
-    -fx-text-fill:black;
+    -fx-background-color:#0f1316;
+    -fx-text-fill:#e0e4e7;
     -fx-pref-height:50px;
-    -fx-pref-width:50px;
+    -fx-pref-width:100px;
 
   }
   .button{
       
-   -fx-background-color:black;
- -fx-text-fill:#fff;
- -fx-font-weight: bold
+   -fx-background-color:#e0e4e7;
+ -fx-text-fill:#0f1316;
+ -fx-font-weight: bold;
+     
 
   }
-  .ImageView{
-   -fx-border-radius: 100%;
+  #sc{
+     -fx-padding: 5px;
+    -fx-background-color:#e0e4e7;
+    -fx-text-fill:#0f1316;
+    -fx-pref-height:20px;
+    -fx-pref-width:50px;
   }
+  #vb3{
+      -fx-padding: 40 0 0 0;
+      -fx-background-color:#0f1316;
+  }
+  #titre{
+      -fx-pref-height:50px;
+    -fx-pref-width:200px;
+  }
+
 .mainFxmlClass {
 
 }

@@ -26,6 +26,11 @@ public class Defi {
         return id_Defi;
     }
 
+    public Defi(String nom_Defi) {
+        this.nom_Defi = nom_Defi;
+    }
+    
+
     public void setId_Defi(int id_Defi) {
         this.id_Defi = id_Defi;
     }

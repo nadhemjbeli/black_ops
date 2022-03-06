@@ -13,6 +13,12 @@ public class DetailsDefi {
     public DetailsDefi() {
     }
 
+    public DetailsDefi(String imgScore, String Score_finale) {
+        this.imgScore = imgScore;
+        this.Score_finale = Score_finale;
+    }
+    
+
     public int getId_Statistique() {
         return id_Statistique;
     }
