@@ -15,6 +15,7 @@ import java.util.List;
 import black_ops.config.MaConnexion;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
 /**
  *
@@ -39,7 +40,10 @@ public class JeuController {
             ste.executeUpdate();
             System.out.println("Jeu Ajouté");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+             Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
         
     }
@@ -78,7 +82,10 @@ public class JeuController {
             ste.executeUpdate();
             System.out.println("Jeu modifié");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
         
     }

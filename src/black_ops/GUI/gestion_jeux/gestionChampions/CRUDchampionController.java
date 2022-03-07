@@ -31,6 +31,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,7 +45,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SingleSelectionModel;
@@ -236,15 +239,51 @@ public class CRUDchampionController implements Initializable {
             System.out.println(ex.getMessage());
         }
          
-           
-            
-             
-
-           
            String txtimgchamp=txtimg_champ.getText();
             Champion j1 = new Champion(4,nomChamp,descChamp,Role,Diff,txtimgchamp,k);
             
             ChampionController jc1 = new ChampionController();
+            //
+             if (txtNom_champ.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez entrer le nom du champion");
+            alert.showAndWait();
+            return;}
+             if (txtdescription_champ.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez entrer un description pour le champion");
+            alert.showAndWait();
+            return;}
+               if (txtRole_champ.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez entrer le rôle du champion");
+            alert.showAndWait();
+            return;}
+                 if (txtDiff_champ.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez entrer le niveau du difficulté champion");
+            alert.showAndWait();
+            return;}
+               
+              
+             if ( txtimg_champ.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez importer une image pour le champion");
+            alert.showAndWait();
+            return;}
+             
+             
+            //
             jc1.ajouterChampion(j1);
             //notification code 
             String path="src\\Images\\ImagesChampions\\confirm.png";
@@ -303,9 +342,53 @@ public class CRUDchampionController implements Initializable {
             String Role = txtRole_champ.getText();
             String Diff = txtDiff_champ.getText();
             String Image_Url = txtimg_champ.getText();
+            
+            Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
+            alert2.setHeaderText("Warning");
+            alert2.setContentText("Confirmation..!");
           
              Champion j1 = new Champion(v,nomChamp,descChamp,Role,Diff,Image_Url,k);
             ChampionController jc1 = new ChampionController();
+              if (txtNom_champ.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez entrer le nom du champion");
+            alert.showAndWait();
+            return;}
+             if (txtdescription_champ.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez entrer un description pour le champion");
+            alert.showAndWait();
+            return;}
+               if (txtRole_champ.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez entrer le rôle du champion");
+            alert.showAndWait();
+            return;}
+                 if (txtDiff_champ.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez entrer le niveau du difficulté champion");
+            alert.showAndWait();
+            return;}
+               
+              
+             if ( txtimg_champ.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez importer une image pour le champion");
+            alert.showAndWait();
+            return;}
+              Optional<ButtonType>result =  alert2.showAndWait();
+              if(result.get() == ButtonType.OK){
+            
             jc1.updateChampion(j1);
             
             //notif 
@@ -332,7 +415,11 @@ public class CRUDchampionController implements Initializable {
        notificationBuilder.show();
       
             //
-             showchamps();
+             showchamps();}
+              else{
+              txtNom_champ.setText(null);
+
+        }
              
              
              
@@ -345,6 +432,14 @@ public class CRUDchampionController implements Initializable {
          int v = Integer.parseInt(idChamp);
              Champion c1 = new Champion(v);
              ChampionController jc1 = new  ChampionController();
+              Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Warning");
+            alert.setContentText("Confirmation..!");
+
+
+
+        Optional<ButtonType>result =  alert.showAndWait();
+        if(result.get() == ButtonType.OK){
             jc1.deleteChampion(c1);
             //notif 
             String path="src\\Images\\ImagesChampions\\suppression.png";
@@ -370,7 +465,11 @@ public class CRUDchampionController implements Initializable {
        notificationBuilder.show();
       
             //
-              showchamps();
+              showchamps();}
+             else{
+              txtNom_champ.setText(null);
+
+        }
     }
 
 //    private void JeuScene(ActionEvent event) throws IOException {

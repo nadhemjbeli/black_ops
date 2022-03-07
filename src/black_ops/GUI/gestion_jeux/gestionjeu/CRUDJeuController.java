@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,7 +30,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -130,9 +133,10 @@ public class CRUDJeuController implements Initializable {
     @FXML
     private void AddGame(ActionEvent event) {
          int k=0;
+       
         String id_jeu=ListeR.getSelectionModel().getSelectedItem().toString();
           try {
-             
+     
                String sql2="select id_SousCat from sous_categorie where nom_SousCat=?";
                
              mc=MaConnexion.getInstance().getCnx();
@@ -156,6 +160,39 @@ public class CRUDJeuController implements Initializable {
          
              Jeu j1 = new Jeu(4,nom,desc,url,k);
             JeuController jc1 = new JeuController();
+            
+            //
+            
+              if (txtnom.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez Entrer le nom du jeu ");
+            alert.showAndWait();
+            return;}
+              
+             if (txtdescription.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez Entrer le description du jeu ");
+            alert.showAndWait();
+            return;}  
+             
+              if (txturl.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez Entrer l'URL du jeu ");
+            alert.showAndWait();
+            return;} 
+              
+              
+             
+              
+              
+            
+            
             jc1.ajouterJeu(j1);
             //notification code 
             String path="src\\Images\\ImagesChampions\\confirm.png";
@@ -205,6 +242,15 @@ public class CRUDJeuController implements Initializable {
         } }catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+            Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
+            alert2.setHeaderText("Warning");
+            alert2.setContentText("Confirmation..!");
+
+
+
+        
+          
+          
         String idJeu=txtid.getText();
          int v = Integer.parseInt(idJeu);
         String nom = txtnom.getText();
@@ -213,6 +259,38 @@ public class CRUDJeuController implements Initializable {
           
              Jeu j1 = new Jeu(v,nom,desc,url,k);
             JeuController jc1 = new JeuController();
+          
+           
+      
+             if (txtnom.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez Entrer le nom du jeu ");
+            alert.showAndWait();
+            return;}
+              
+             if (txtdescription.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez Entrer le description du jeu ");
+            alert.showAndWait();
+            return;}  
+             
+              if (txturl.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez Entrer l'URL du jeu ");
+            alert.showAndWait();
+            return;} 
+               Optional<ButtonType>result =  alert2.showAndWait();
+              if(result.get() == ButtonType.OK){
+            
+            
+            
+            
             jc1.updateJeu(j1);
             //notif 
             String path="src\\Images\\ImagesChampions\\updateicone.png";
@@ -238,7 +316,11 @@ public class CRUDJeuController implements Initializable {
        notificationBuilder.show();
       
             //
-             showgames();
+             showgames();}
+         else{
+              txtnom.setText(null);
+
+        }
     }
 
     @FXML
@@ -248,6 +330,16 @@ public class CRUDJeuController implements Initializable {
          int v = Integer.parseInt(idJeu);
              Jeu j1 = new Jeu(v);
             JeuController jc1 = new JeuController();
+            //
+             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Warning");
+            alert.setContentText("Confirmation..!");
+
+
+
+        Optional<ButtonType>result =  alert.showAndWait();
+        if(result.get() == ButtonType.OK){
+            //
             jc1.deletejeu(j1);
               //notif 
             String path="src\\Images\\ImagesChampions\\suppression.png";
@@ -273,7 +365,11 @@ public class CRUDJeuController implements Initializable {
        notificationBuilder.show();
       
             //
-             showgames();
+             showgames();}
+              else{
+              txtnom.setText(null);
+
+        }
         
     }
     public void showgames()

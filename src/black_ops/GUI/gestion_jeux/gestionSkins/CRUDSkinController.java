@@ -24,6 +24,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,7 +36,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -125,6 +128,8 @@ public class CRUDSkinController implements Initializable {
     private Button hide;
     @FXML
     private Button show;
+    @FXML
+    private Button mailsend;
     
 
     /**
@@ -190,6 +195,13 @@ public class CRUDSkinController implements Initializable {
           
              Skin i1 = new Skin(4,imgskin,k);
           SkinController ic1 = new SkinController();
+           if (txt_ImgSkin.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez importer le skin du champion");
+            alert.showAndWait();
+            return;}
             ic1.ajouterSkin(i1);
             //notification code 
             String path="src\\Images\\ImagesChampions\\confirm.png";
@@ -247,6 +259,19 @@ public class CRUDSkinController implements Initializable {
          
              Skin i1 = new Skin(v,imgskin,k);
           SkinController ic1 = new SkinController();
+          Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
+            alert2.setHeaderText("Warning");
+            alert2.setContentText("Confirmation..!");
+          if (txt_ImgSkin.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez importer le skin du champion");
+            alert.showAndWait();
+            return;}
+           Optional<ButtonType>result =  alert2.showAndWait();
+              if(result.get() == ButtonType.OK){
+            
             ic1.updateSkin(i1);
              //notif 
             String path="src\\Images\\ImagesChampions\\updateicone.png";
@@ -273,7 +298,11 @@ public class CRUDSkinController implements Initializable {
       
             //
              showSkins();
-             showActualId();
+             showActualId();}
+              else{
+              txt_ImgSkin.setText(null);
+
+        }
     }
 
     @FXML
@@ -282,6 +311,14 @@ public class CRUDSkinController implements Initializable {
          int v = Integer.parseInt(idskin);
             Skin i1 = new Skin(v);
            SkinController jc1 = new SkinController();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Warning");
+            alert.setContentText("Confirmation..!");
+
+
+
+        Optional<ButtonType>result =  alert.showAndWait();
+        if(result.get() == ButtonType.OK){
             jc1.deleteSkin(i1);
              //notif 
             String path="src\\Images\\ImagesChampions\\suppression.png";
@@ -308,7 +345,11 @@ public class CRUDSkinController implements Initializable {
       
             //
             showSkins();
-            showActualId();
+            showActualId();}
+         else{
+              txt_ImgSkin.setText(null);
+
+        }
     }
     public void showSkins(){
      SkinController ic1 = new SkinController();
@@ -669,7 +710,15 @@ public class CRUDSkinController implements Initializable {
         ObservableList<String> GestionJeu = FXCollections.observableArrayList("Gestion Jeu" ,"Gestion Image", "Gestion Skin" ,"Gestion Champion"  );
        gJ.setItems(GestionJeu);
     }
-}
+
+    @FXML
+    private void SendMail(ActionEvent event) {
+         String[] users = new String[]{"mohamedmokhtar.jaafar@esprit.tn","fedibenammar734@gmail.com"}; 
+            for (String l:users){
+        SendEmail send = new SendEmail(l, "New content is available", "Hey Gamer , New content is available on our application , check it out "); 
    
+    }
+}
+}  
     
     

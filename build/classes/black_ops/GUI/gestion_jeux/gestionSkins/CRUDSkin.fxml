@@ -124,7 +124,8 @@
                   <FontAwesomeIconView glyphName="FOLDER_OPEN" size="17" />
                </graphic>
             </Button>
-            <Button fx:id="btnAffSkin" layoutX="96.0" layoutY="364.0" mnemonicParsing="false" onAction="#AfficherSkin" style="-fx-background-color: #ffffff;" text="Afficher Skin" />
+            <Button fx:id="btnAffSkin" layoutX="46.0" layoutY="364.0" mnemonicParsing="false" onAction="#AfficherSkin" style="-fx-background-color: #ffffff;" text="Afficher Skin" />
+            <Button fx:id="mailsend" layoutX="165.0" layoutY="364.0" mnemonicParsing="false" onAction="#SendMail" style="-fx-background-color: #ffffff;" text="Envoyer mails" />
          </children>
       </AnchorPane>
       <HBox alignment="CENTER_RIGHT" layoutX="810.0" layoutY="10.0" prefHeight="50.0" prefWidth="343.0" AnchorPane.rightAnchor="0.0">
@@ -163,7 +164,7 @@
             <FontAwesomeIconView glyphName="REFRESH" size="30" />
          </graphic>
       </Button>
-      <AnchorPane fx:id="nav" prefHeight="706.0" prefWidth="297.0" style="-fx-background-color: #0f1316;">
+      <AnchorPane fx:id="nav" prefHeight="706.0" prefWidth="297.0" style="-fx-background-color: #0f1316;" visible="false">
          <cursor>
             <Cursor fx:constant="MOVE" />
          </cursor>

@@ -22,6 +22,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +36,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -191,6 +194,13 @@ public class CRUDImageController implements Initializable {
           
              Image i1 = new Image(3,url,k);
            ImageController ic1 = new ImageController();
+           if (txt_Url_image.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez importer une image pour le jeu");
+            alert.showAndWait();
+            return;}
             ic1.ajouterImage(i1);
             //notification code 
             String path="src\\Images\\ImagesChampions\\confirm.png";
@@ -242,13 +252,24 @@ public class CRUDImageController implements Initializable {
         } }catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-           
+           Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION);
+            alert2.setHeaderText("Warning");
+            alert2.setContentText("Confirmation..!");
         String idimg=txtid_image.getText();
          int v = Integer.parseInt(idimg);
         String url_img = txt_Url_image.getText();
           
             Image i1 = new Image(v,url_img,k);
             ImageController jc1 = new ImageController();
+             if (txt_Url_image.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez importer une image pour le jeu");
+            alert.showAndWait();
+            return;}
+             Optional<ButtonType>result =  alert2.showAndWait();
+              if(result.get() == ButtonType.OK){
             jc1.updateImage(i1);
               //notif 
             String path="src\\Images\\ImagesChampions\\updateicone.png";
@@ -275,7 +296,11 @@ public class CRUDImageController implements Initializable {
       
             //
              showpics();
-             showActualId();
+             showActualId();}
+              else{
+              txt_Url_image.setText(null);
+
+        }
     }
 
     @FXML
@@ -284,6 +309,14 @@ public class CRUDImageController implements Initializable {
          int v = Integer.parseInt(idJeu);
              Image i1 = new Image(v);
             ImageController jc1 = new ImageController();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Warning");
+            alert.setContentText("Confirmation..!");
+
+
+
+        Optional<ButtonType>result =  alert.showAndWait();
+        if(result.get() == ButtonType.OK){
             jc1.deleteImage(i1);
                 //notif 
             String path="src\\Images\\ImagesChampions\\suppression.png";
@@ -310,7 +343,11 @@ public class CRUDImageController implements Initializable {
       
             //
              showpics();
-             showActualId();
+             showActualId();}
+         else{
+              txt_Url_image.setText(null);
+
+        }
     }
     public void showpics()
     {
