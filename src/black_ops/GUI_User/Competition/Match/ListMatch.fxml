@@ -29,12 +29,17 @@
             </FontAwesomeIconView>
          </children>
       </HBox>
-      <VBox fx:id="mat" layoutX="378.0" layoutY="194.0" prefHeight="440.0" prefWidth="442.0">
+      <VBox fx:id="mat" layoutX="378.0" layoutY="194.0" prefHeight="440.0" prefWidth="442.0" AnchorPane.leftAnchor="378.0" AnchorPane.topAnchor="194.0">
          <padding>
             <Insets bottom="15.0" top="15.0" />
          </padding></VBox>
+      <VBox fx:id="mat1" prefHeight="440.0" prefWidth="442.0" AnchorPane.leftAnchor="378.0" AnchorPane.topAnchor="194.0">
+         <padding>
+            <Insets bottom="15.0" top="15.0" />
+         </padding>
+      </VBox>
       <AnchorPane prefHeight="700.0" prefWidth="102.0" style="-fx-background-color: #e0e4e7;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1198.0" AnchorPane.topAnchor="0.0" />
-      <HBox layoutX="432.0" layoutY="-4.0" prefHeight="100.0" prefWidth="345.0" AnchorPane.rightAnchor="523.0" AnchorPane.topAnchor="-4.0">
+      <HBox layoutX="432.0" layoutY="-4.0" prefHeight="100.0" prefWidth="345.0" AnchorPane.rightAnchor="523.0" AnchorPane.topAnchor="0.0">
          <children>
             <FontAwesomeIconView fill="#e0e4e7" glyphName="SEARCH" size="30">
                <HBox.margin>

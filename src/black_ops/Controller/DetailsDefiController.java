@@ -55,8 +55,6 @@ public class DetailsDefiController {
               df.setEquipeB(rs.getInt("EquipeB"));
               df.setScore_finale(rs.getString("Score_finale"));
               df.setId_defi(rs.getInt("id_defi"));
-                
-
               match.add(df);
             }
         } catch (SQLException ex) {
@@ -128,29 +126,27 @@ public class DetailsDefiController {
         ObservableList<Recherche> dd = FXCollections.observableArrayList();
 
         try {
-            String sql3 = "SELECT DISTINCT * FROM defi de "
-                    + "INNER JOIN details_defi dd on de.id_Defi = dd.id_defi "
-                    + "INNER join equipe ea on (dd.EquipeA = ea.id_Equipe)"
-                    + "INNER join equipe eb on (dd.EquipeB = eb.id_Equipe)"
-                    + "WHERE ea.nom_Equipe LIKE '%"+nom+"%'";
+            String sql3 = "SELECT DISTINCT * FROM defi de INNER JOIN details_defi dd on de.id_Defi = dd.id_defi "
+                    + "INNER join equipe ea on (dd.EquipeA = ea.id_Equipe) "
+                    + "INNER join equipe eb on (dd.EquipeB = eb.id_Equipe) "
+                    + "WHERE (ea.nom_Equipe LIKE '%%'AND eb.nom_equipe LIKE '%"+nom+"%') "
+                    + "or (ea.nom_Equipe LIKE '%"+nom+"%'AND eb.nom_equipe LIKE '%%')";
             ste = mc.prepareStatement(sql3);
             
             ResultSet rs = ste.executeQuery();
            
-            while (rs.next()) {
-                System.out.println("samir");
+            while (rs.next()) {  
                 Equipe A = new Equipe();
                 Equipe B = new Equipe();
                 Defi D = new Defi();
                 DetailsDefi detaildefi = new DetailsDefi();
-                A.setNom_Equipe(rs.getString("nom_Equipe"));
-                A.setLogo_Equipe(rs.getString("logo_Equipe"));
-                B.setLogo_Equipe(rs.getString("logo_Equipe"));
-                B.setNom_Equipe(rs.getString("nom_Equipe"));
-                D.setNom_Defi(rs.getString("nom_Defi"));
-                detaildefi.setImgScore(rs.getString("imgScore"));
-                detaildefi.setScore_finale(rs.getString("Score_finale"));
-
+                A.setNom_Equipe(rs.getString("ea.nom_Equipe"));
+                A.setLogo_Equipe(rs.getString("ea.logo_Equipe"));
+                B.setLogo_Equipe(rs.getString("eb.logo_Equipe"));
+                B.setNom_Equipe(rs.getString("eb.nom_Equipe"));
+                D.setNom_Defi(rs.getString("de.nom_Defi"));
+                detaildefi.setImgScore(rs.getString("dd.imgScore"));
+                detaildefi.setScore_finale(rs.getString("dd.Score_finale"));
                 Recherche r = new Recherche();
                 r.setEquipeA(A);
                 r.setEquipeB(B);
@@ -158,7 +154,6 @@ public class DetailsDefiController {
                 r.setDdefi(detaildefi);
 
                 dd.add(r);
-                System.out.println(dd);
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 public class DefiController {
     Connection mc;
     PreparedStatement ste;
@@ -38,7 +39,10 @@ public class DefiController {
             ste.executeUpdate();
             System.out.println("Defi Ajoutée");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+ Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
         
     }

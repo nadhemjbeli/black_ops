@@ -141,9 +141,9 @@ String sql="select * from Equipe";
         
         ResultSet rs=ste.executeQuery();
            while(rs.next()){
-               Equipe Eq_s = new Equipe();
-              Eq_s.setId_Equipe(rs.getInt("id_Equipe"));
-               Eq_s.setNom_Equipe(rs.getString("nom_Equipe"));
+                 Equipe Eq_s = new Equipe();
+                 Eq_s.setId_Equipe(rs.getInt("id_Equipe"));
+                Eq_s.setNom_Equipe(rs.getString("nom_Equipe"));
                 Eq_s.setLogo_Equipe(rs.getString("logo_Equipe"));
                 Eq_s.setDate(rs.getDate("date"));
                 Eq_s.setNbr_joueur_Equipe(rs.getInt("nbr_joueur_Equipe"));
@@ -153,6 +153,28 @@ String sql="select * from Equipe";
             System.out.println(ex.getMessage());
         }
         return Equipe ;
+} 
+        public Equipe Select(){
+        Equipe Eq_s = new Equipe();
+
+        String sql="SELECT * FROM `equipe` WHERE id_Equipe = ( SELECT MAX(id_Equipe) FROM `equipe`)" ;
+
+        try{
+        ste=mc.prepareStatement(sql);
+        
+        ResultSet rs=ste.executeQuery();
+           while(rs.next()){
+                
+                
+                Eq_s.setNom_Equipe(rs.getString("nom_Equipe"));
+                Eq_s.setLogo_Equipe(rs.getString("logo_Equipe"));
+                Eq_s.setNbr_joueur_Equipe(rs.getInt("nbr_joueur_Equipe"));
+                
+           }
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return Eq_s ;
 } 
     }
    

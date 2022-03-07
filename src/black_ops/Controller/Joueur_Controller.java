@@ -126,5 +126,26 @@ public class Joueur_Controller {
         
         return Joueur;
     }
+    public Joueur Select(){
+        Joueur j = new Joueur();
+
+        String sql="SELECT * FROM `joueur` WHERE id_Joueur = ( SELECT MAX(id_Joueur) FROM `joueur`)" ;
+
+        try{
+        ste=mc.prepareStatement(sql);
+        
+        ResultSet rs=ste.executeQuery();
+           while(rs.next()){
+                
+                j.setNom_Joueur(rs.getString("nom_Joueur"));
+                j.setRang_Joueur(rs.getString("rang_Joueur"));
+                j.setPseaudo_Joueur(rs.getString("Pseaudo_Joueur"));
+               
+           }
+        }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return j ;
+} 
     
 }

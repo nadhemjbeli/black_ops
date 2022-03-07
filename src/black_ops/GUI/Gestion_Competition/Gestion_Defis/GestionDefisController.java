@@ -54,6 +54,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javax.swing.JFileChooser;
@@ -190,7 +191,8 @@ public class GestionDefisController implements Initializable {
     }
 
     @FXML
-    private void Ajouter_defi(ActionEvent event) throws IOException {
+    private void Ajouter_defi(ActionEvent event)  {
+      
         java.util.Date date = Calendar.getInstance().getTime();
         java.sql.Date sqlDate = new java.sql.Date(date.getTime()); 
             String nom = inp_Nom.getText();
@@ -205,11 +207,73 @@ public class GestionDefisController implements Initializable {
             int pr = Integer.parseInt(prix);
             Defi dfi = new Defi(999,nom, desc, url, pr, sqlDate , Jeu, nbe,regle , rec);
             DefiController df = new DefiController();
-            df.ajouterDefi(dfi);
-            Show_defi();
+            
+            
             
             Recherche_Defi(event);
+            if (inp_Nom.getText().isEmpty()) {
 
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un login");
+            alert.showAndWait();
+            return;
+        }
+        if (inp_desc.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un password");
+            alert.showAndWait();
+            return;
+        }
+       
+        if (inp_img_defi.getText().isEmpty() )       
+                {
+                    
+                     Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Erreur");
+                alert.setContentText("Vous devez saisir un mail valid");
+                alert.showAndWait();
+                return;
+                }
+        
+         if (inp_prix.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un nom");
+            alert.showAndWait();
+            return;
+        }
+        if (inp_nbr_equipe.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un prenom");
+            alert.showAndWait();
+            return;
+        }
+        
+        if (inp_Jeu.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un pays");
+            alert.showAndWait();
+            return;
+        }   
+        
+     if (inp_regle_defis.getText().isEmpty()) {
+          Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un numéro de telephone");
+            alert.showAndWait();
+            return;
+
+     }
+     df.ajouterDefi(dfi);
+       Show_defi();
     }
 
     @FXML

@@ -56,11 +56,12 @@ public class ListMatchController implements Initializable {
     PreparedStatement ste;
     PreparedStatement ste1;
     PreparedStatement ste2;
+    PreparedStatement ste3;
     private DoubleProperty zoom;
     private ScrollPane scrollPane;
     private ImageView imageView;
     private Stage stage;
-
+    String nom = "";
     @FXML
     private AnchorPane Main;
     DetailsDefiController dfc = new DetailsDefiController();
@@ -70,6 +71,8 @@ public class ListMatchController implements Initializable {
     private TextField search;
     @FXML
     private Label titre;
+    @FXML
+    private VBox mat1;
 
     /**
      * Initializes the controller class.
@@ -77,7 +80,8 @@ public class ListMatchController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        ShowMatch();
-        System.out.println(recherche("Fnat"));
+       
+        
     }
 
     public ListMatchController() {
@@ -86,17 +90,30 @@ public class ListMatchController implements Initializable {
     
 
     public void ShowMatch() {
-        final VBox vb = new VBox();
-        final ScrollPane sp = new ScrollPane();
-        mat.getChildren().add(sp);
-
-        vb.setAlignment(Pos.CENTER);
-        mat.setAlignment(Pos.CENTER);
+        nom = search.getText();
+       
         ObservableList<DetailsDefi> list = dfc.View_Details_defi();
+       // ObservableList<Recherche> match = dfc.recherche(nom);
+
+       
         try {
             String sql2 = "select nom_Equipe,logo_Equipe from equipe where id_equipe= ?";
             String sql3 = "select nom_Equipe,logo_Equipe from equipe where id_equipe=?";
             String sql4 = "select nom_Defi from defi where id_Defi=?";
+//           String sql5 = "SELECT DISTINCT * FROM defi de "
+//                    + "INNER JOIN details_defi dd on de.id_Defi = dd.id_defi "
+//                    + "INNER join equipe ea on (dd.EquipeA = ea.id_Equipe)"
+//                    + "INNER join equipe eb on (dd.EquipeB = eb.id_Equipe)"
+//                    + "WHERE ea.nom_equipe LIKE '%"+nom+"%' or eb.nom_equipe LIKE '%"+nom+"%' ";
+            
+        
+        final VBox vb = new VBox();
+        final ScrollPane sp = new ScrollPane();
+        
+        vb.setAlignment(Pos.CENTER);
+        mat.getChildren().add(sp);
+        mat.setAlignment(Pos.CENTER);
+        
             for (DetailsDefi l : list) {
                 VBox vb3 = new VBox();
                 VBox.setVgrow(sp, Priority.ALWAYS);
@@ -110,8 +127,9 @@ public class ListMatchController implements Initializable {
                 ste2.setInt(1, l.getId_defi());
                 ResultSet rs = ste.executeQuery();
                 ResultSet rs1 = ste1.executeQuery();
-                ResultSet rs2 = ste2.executeQuery();
-                while (rs.next() && rs1.next() && rs2.next()) {
+                ResultSet rs2 = ste2.executeQuery(); 
+                while (rs.next() && rs1.next() && rs2.next()  ) {
+
                     String k = rs.getString("nom_Equipe");
                     Label A = new Label(k);
                     String k1 = rs1.getString("nom_Equipe");
@@ -196,77 +214,166 @@ public class ListMatchController implements Initializable {
                     });
 
                 }
+                
             }
+        sp.setPrefSize(600, 600);
+        sp.setContent(vb);
+           
+           
+            
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+        
+
+    }
+
+   
+    public void ShowMatch1() {
+        nom = search.getText();
+       
+        
+        ObservableList<Recherche> match = dfc.recherche(nom);
+
+       
+        try {
+
+        final VBox vb = new VBox();
+        final ScrollPane sp = new ScrollPane();
+        
+        vb.setAlignment(Pos.CENTER);
+        mat1.getChildren().add(sp);
+        mat1.setAlignment(Pos.CENTER);
+      
+            for (Recherche m : match) {
+                
+                VBox vb3 = new VBox();
+                VBox.setVgrow(sp, Priority.ALWAYS);
+                HBox.setHgrow(sp, Priority.ALWAYS);
+                
+                
+                    
+                   
+                    Label A = new Label(m.getEquipeA().getNom_Equipe());
+                    
+                    Label B = new Label(m.getEquipeB().getNom_Equipe());
+                   
+                    Label df = new Label(m.getDefi().getNom_Defi());
+                    
+                    sp.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+                    sp.setVbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS);
+
+                    final HBox hb = new HBox();
+                    hb.setAlignment(Pos.TOP_CENTER);
+                    final Button btn = new Button("Afficher Plus");
+                    final ImageView im = new ImageView();
+                    final ImageView im2 = new ImageView();
+
+                    Label score = new Label(m.getDdefi().getScore_finale());
+                    A.setId("equipeA");
+                    B.setId("equipeB");
+                    df.setId("defi");
+                    im.setId("imA");
+                    im2.setId("ImB");
+                   String logoA = m.getEquipeA().getLogo_Equipe();
+                    String logoB = m.getEquipeB().getLogo_Equipe();
+
+                    // String Path_name = new File("src/Image/Logo_Equipe").getAbsolutePath();
+                    String image = logoA;
+                    String image2 = logoB;
+                    File f = new File(image);
+                    File f2 = new File(image2);
+                    Image img = new Image(f.toURI().toString());
+                    Image img1 = new Image(f2.toURI().toString());
+                    im.setImage(img);
+                    im2.setImage(img1);
+                    im.setFitHeight(50);
+                    im.setFitWidth(50);
+                    im2.setFitHeight(50);
+                    im2.setFitWidth(50);
+                    final VBox vb1 = new VBox();
+                    hb.setPrefSize(500, 500);
+
+                    hb.getChildren().add(im);
+                    hb.getChildren().add(A);
+                    vb1.getChildren().add(score);
+                    vb1.getChildren().add(df);
+                    vb1.getChildren().add(btn);
+                    hb.getChildren().add(vb1);
+                    hb.getChildren().add(B);
+                    hb.getChildren().add(im2);
+                    vb.setPrefSize(200, 200);
+                    vb3.getChildren().add(hb);
+                    vb.setPrefSize(430, 500);
+                    vb.getChildren().add(vb3);
+                    vb3.setId("vb3");
+                    hb.setId("hb");
+                    String det = m.getDdefi().getImgScore();
+                    String dd = det;
+                    File f1 = new File(dd);
+
+                    Image ddd = new Image(f1.toURI().toString());
+                    btn.setOnAction(new EventHandler<ActionEvent>() {
+                        @Override
+                        public void handle(ActionEvent e) {
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("Detail.fxml"));
+                                Parent root = (Parent) loader.load();
+                                DetailController ic = loader.getController();
+                                ic.fun(ddd);
+//            AfficherSkinController ic2 = loader.getController();
+//            ic2.function2(nom);
+                                Scene scene = new Scene(root);
+                                Stage stage = new Stage();
+
+                                stage.setScene(scene);
+                                stage.show();
+
+                            } catch (IOException ex) {
+                                System.out.println(ex.getMessage());
+                            }
+                        }
+                    });
+
+                }
+                
+            
         sp.setPrefSize(600, 600);
         sp.setContent(vb);
+           
+           
+            
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        
 
     }
 
     @FXML
     private void EnterRecherche(ActionEvent event) {
         String h = search.getText();
-        System.out.println(recherche(h));
-//        search.setOnKeyPressed(new EventHandler<KeyEvent>() {
-//            @Override
-//            public void handle(KeyEvent keyEvent) {
-//                if (keyEvent.getCode() == KeyCode.ENTER) {
-//                    recherche();
-//                    if (search.getText().equals(h)) {
-//                        System.out.println(recherche());
-//                    } else {
-//                        System.out.println("default");
-//                    }
-//                }
-//            }
-//        });
-
-    }
-
-    public ObservableList<Recherche> recherche(String nom) {
-
-        ObservableList<Recherche> dd = FXCollections.observableArrayList();
-
-        try {
-            String sql3 = "SELECT DISTINCT * FROM defi de "
-                    + "INNER JOIN details_defi dd on de.id_Defi = dd.id_defi "
-                    + "INNER join equipe ea on (dd.EquipeA = ea.id_Equipe)"
-                    + "INNER join equipe eb on (dd.EquipeB = eb.id_Equipe)"
-                    + "WHERE ea.nom_Equipe LIKE '%"+nom+"%'";
-            ste = mc.prepareStatement(sql3);
-            
-            ResultSet rs = ste.executeQuery();
-           
-            while (rs.next()) {
-                System.out.println("samir");
-                Equipe A = new Equipe();
-                Equipe B = new Equipe();
-                Defi D = new Defi();
-                DetailsDefi detaildefi = new DetailsDefi();
-                A.setNom_Equipe(rs.getString("nom_Equipe"));
-                A.setLogo_Equipe(rs.getString("logo_Equipe"));
-                B.setLogo_Equipe(rs.getString("logo_Equipe"));
-                B.setNom_Equipe(rs.getString("nom_Equipe"));
-                D.setNom_Defi(rs.getString("nom_Defi"));
-                detaildefi.setImgScore(rs.getString("imgScore"));
-                detaildefi.setScore_finale(rs.getString("Score_finale"));
-
-                Recherche r = new Recherche();
-                r.setEquipeA(A);
-                r.setEquipeB(B);
-                r.setDefi(D);
-                r.setDdefi(detaildefi);
-
-                dd.add(r);
-                System.out.println(dd);
+        
+        
+        search.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                if (keyEvent.getCode() == KeyCode.ENTER) {
+                   if(!h.isEmpty()){
+                       mat1.getChildren().clear();
+                       ShowMatch1();
+                        mat.setVisible(false);
+                   }else{
+                       mat.getChildren().clear();
+                       mat1.setVisible(false);
+                       mat.setVisible(true);
+                        ShowMatch();
+                    }
+                }
             }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+        });
 
-        return dd;
     }
+
 
 }
