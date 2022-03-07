@@ -8,7 +8,6 @@ package black_ops.GUI2.gestion_jeux.gestionchamps;
 
 import black_ops.Controller.ChampionController;
 import black_ops.Entity.Champion;
-
 import black_ops.GUI.gestion_jeux.gestionChampions.ImageChampionController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,8 +22,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
-import black_ops.GUI2.gestion_jeux.gestionchamps.Main;
+
 import black_ops.config.MaConnexion;
+import com.jfoenix.controls.JFXTextField;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -32,14 +32,18 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
 import javafx.stage.Stage;
 /**
  * FXML Controller class
@@ -59,21 +63,79 @@ public class ChampsController implements Initializable {
     private GridPane grid;
     @FXML
     private Label RoleLabel;
-   private ObservableList<Champion> champions = FXCollections.observableArrayList();
+    public  ObservableList<Champion> champions =FXCollections.observableArrayList();;
     private MyListener mylistener;
      private Image image;
-    @FXML
-    private Label LabelNom1;
+         private Stage stage;
+ private Scene scene;
+ private Parent root;
     
-public ObservableList<Champion> getData()
-{ 
-            ChampionController c1 = new ChampionController();
-       
-            ObservableList<Champion> champions = c1.afficherChampions();
+     Connection mc;
+    PreparedStatement ste;
+    @FXML
+    private Label LabelJeu;
+    public static String nomjeu;
+     public void SetNom(String txt)
+    { LabelJeu.setText(txt);
+    }
+
+    public ObservableList<Champion> getData()
+   {   
+//       System.out.println(LabelJeu.getText());
+           ObservableList<Champion> champions = FXCollections.observableArrayList();
+//        System.out.println(nomjeu);       
+//       nomjeu = LabelJeu.getText();
+//        System.out.println(nomjeu);
+        int idjeu = 0 ;
+//        String txt=LabelJeu.getText();      
+        try {
+            mc=MaConnexion.getInstance().getCnx();
+               String sql2="select Id_Jeu from jeu where Nom=?";                          
+             ste=mc.prepareStatement(sql2);
+             
+              ste.setString(1,nomjeu);
+              
+              System.out.println("hello"+LabelJeu.getText());
+              ResultSet rs=ste.executeQuery();
+               
+               while(rs.next()){
+            idjeu=rs.getInt("Id_Jeu");
+       System.out.println(idjeu);
             
-      return champions;
-     
-}
+            
+        } }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+         
+       
+        try {
+             String sql3="select * from champion where Id_jeu=?";
+            mc=MaConnexion.getInstance().getCnx();
+            ste=mc.prepareStatement(sql3);
+            ste.setInt(1,idjeu);
+             System.out.println(idjeu);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+                Champion c = new Champion();
+                
+                c.setId_Champ(rs.getInt("Id_Champ"));
+                c.setNom_Champ(rs.getString("Nom_champ"));
+                c.setDescription_Champ(rs.getString("description_Champ"));
+                c.setRole_Champ(rs.getString("Role_Champ"));
+                c.setDifficulte_Champ(rs.getString("Difficulte_Champ"));
+                c.setImage_Champ(rs.getString("Image_Champ"));
+                c.setId_jeu(rs.getInt("Id_jeu"));
+                
+                champions.add(c);
+            }
+            System.out.println(champions);
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+//        System.out.println(champions);
+        return champions;
+
+    }
  private void setChosenChamp(Champion champion) {
         ChampNom.setText(champion.getNom_Champ());
         RoleLabel.setText(champion.getRole_Champ());
@@ -92,8 +154,14 @@ public ObservableList<Champion> getData()
        
     }
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) {     
+        
+       show();
+       
+    }
+    public void show(){
          champions.addAll(getData());
+         System.out.println(LabelJeu.getText());
           if (champions.size() > 0) {
             setChosenChamp(champions.get(0));
            mylistener = new MyListener() {
@@ -169,6 +237,34 @@ public ObservableList<Champion> getData()
             
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
-}}}
+}
+    
+    }
+
+    @FXML
+    private void back(ActionEvent event) throws IOException {
+              root = FXMLLoader.load(getClass().getResource("../gestionjeuxVidéos/jeux.fxml"));
+          
+  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+  scene = new Scene(root);
+  stage.setScene(scene);
+  stage.show();
+    }
+
+    @FXML
+    private void move(ActionEvent event) {
+        Information(event);
+        
+    }
+
+    @FXML
+    private void get(ActionEvent event) {
+        getData();
+        
+    }
+
+
+
+}
 
 

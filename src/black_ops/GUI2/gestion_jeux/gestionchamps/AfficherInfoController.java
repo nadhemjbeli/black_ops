@@ -112,7 +112,7 @@ Connection mc;
 }
 @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
-    }
+       afficherInforma();
+       }
 
 }

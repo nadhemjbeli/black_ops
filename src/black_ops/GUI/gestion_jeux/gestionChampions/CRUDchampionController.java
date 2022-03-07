@@ -227,6 +227,7 @@ public class CRUDchampionController implements Initializable {
               
               ste.setString(1,id_jeu);
               ResultSet rs=ste.executeQuery();
+              System.out.println(rs);
                while(rs.next()){
              k=rs.getInt("Id_Jeu");
             

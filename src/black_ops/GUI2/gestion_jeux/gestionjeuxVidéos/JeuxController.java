@@ -10,10 +10,13 @@ import black_ops.Controller.ImageController;
 import black_ops.Controller.JeuController;
 
 import black_ops.Entity.Jeu;
+import black_ops.GUI2.gestion_jeux.gestionchamps.AfficherInfoController;
+import black_ops.GUI2.gestion_jeux.gestionchamps.ChampsController;
 import black_ops.GUI2.gestion_jeux.gestionchamps.ItemController;
 
 import black_ops.GUI2.gestion_jeux.gestionjeuxVidéos.MyListener2;
 import black_ops.config.MaConnexion;
+import com.jfoenix.controls.JFXTextField;
 import java.io.File;
 import java.io.IOException;
 
@@ -26,17 +29,25 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javax.swing.JFrame;
 
 /**
  * FXML Controller class
@@ -61,6 +72,10 @@ public class JeuxController implements Initializable {
     PreparedStatement ste;
     private MyListener2 mylistener2;
  private ObservableList<Jeu> jeux = FXCollections.observableArrayList();
+    @FXML
+    private JFXTextField txtsearch;
+    @FXML
+    private ScrollPane sp;
     /**
      * Initializes the controller class.
      */
@@ -149,7 +164,117 @@ public class JeuxController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    
+    show();
+    }
+        public void show(){
          jeux.addAll(getData());
+         if (jeux.size() > 0) {
+            setChosenjeu(jeux.get(0));
+           mylistener2=new MyListener2() {
+                @Override
+                public void onClickListener(Jeu jeu) {
+                   setChosenjeu(jeu);
+                }
+                
+            };}
+           int column = 0;
+           int row = 1;
+         try{
+          for (int i = 0; i < jeux.size(); i++) {
+              FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("../gestionjeuxVidéos/itemjeu.fxml"));
+                AnchorPane anchorPane = fxmlLoader.load();
+                
+            ItemjeuController it = fxmlLoader.getController();
+                 it.setData(jeux.get(i),mylistener2);
+          
+                if (column == 3) {
+                    column = 0;
+                    row++;
+                }
+                       
+                grid.add(anchorPane, column++, row); //(child,column,row)
+               
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
+
+                //set grid height
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(anchorPane, new Insets(10));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+         
+    }
+    @FXML
+    private void Information(ActionEvent event) {
+        try {
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("AfficherInfoJeu.fxml"));
+            Parent root=(Parent)loader.load();
+            AfficherInfoJeuController ic = loader.getController();
+            ic.SetNom(jeuNom.getText());
+            Scene scene = new Scene(root);
+            Stage stage=new Stage();
+            
+        stage.setScene(scene);
+        stage.show();
+            
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void Checkchampions(ActionEvent event) {
+          ChampsController.nomjeu=jeuNom.getText();
+         try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../gestionchamps/Champs.fxml"));
+        Parent root = (Parent) loader.load();
+        ChampsController ih = loader.getController();
+      
+             System.out.println(jeuNom.getText());
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+
+        stage.setScene(scene);
+        
+      stage.show();
+      ih.SetNom(jeuNom.getText());
+     
+    }
+    catch (IOException ex)
+
+         {
+            System.out.println(ex.getMessage());
+    }
+
+    }
+
+    @FXML
+    private void Avancer(ActionEvent event) {
+        Information(event);
+    }
+    
+
+    @FXML
+    private void Rechercher(ActionEvent event) {
+        grid.toBack();
+        HBox h = new HBox();
+        h.getChildren().clear();
+                
+        String nom =txtsearch.getText();
+         JeuController c1 = new JeuController();
+//       ImageController i1 = new ImageController();
+            ObservableList<Jeu> j = c1.RechercherJeux(nom);
+            
+            
+            jeux.addAll(j);
          if (jeux.size() > 0) {
             setChosenjeu(jeux.get(0));
            mylistener2=new MyListener2() {
@@ -190,15 +315,12 @@ public class JeuxController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-    @FXML
-    private void Information(ActionEvent event) {
+            
     }
 
-    @FXML
-    private void Checkchampions(ActionEvent event) {
-    }
-    }    
+    
+    
+}
 
     
     
