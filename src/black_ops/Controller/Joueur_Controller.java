@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
 
 
@@ -35,7 +36,10 @@ public class Joueur_Controller {
             ste.executeUpdate();
             System.out.println("Joueur  Ajoutée");
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+             Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
     
     }
@@ -57,7 +61,10 @@ public class Joueur_Controller {
                 Joueur.add(j);
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
         
         return Joueur;
@@ -72,7 +79,10 @@ public class Joueur_Controller {
         ste.executeUpdate();
         System.out.println("Joueur supprimer");
         }catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+             Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
     }
     public void UpdateJoueur(Joueur j){
@@ -92,7 +102,10 @@ public class Joueur_Controller {
             ste.close();
       
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+             Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
     
     }
@@ -121,7 +134,10 @@ public class Joueur_Controller {
                 //System.out.println(Joueur);
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
         
         return Joueur;
@@ -143,7 +159,10 @@ public class Joueur_Controller {
                
            }
         }catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
         return j ;
 } 

@@ -17,6 +17,7 @@ import black_ops.GUI_User.Competition.Match.Recherche;
 import black_ops.config.MaConnexion;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +33,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -55,8 +57,6 @@ import javafx.stage.Stage;
 public class InscriptionJoueurController implements Initializable {
 
     @FXML
-    private TextField search;
-    @FXML
     private VBox add;
     @FXML
     private TextField inp_Nom;
@@ -78,18 +78,28 @@ public class InscriptionJoueurController implements Initializable {
     public static final String AUTH_TOKEN = "";
 
     Joueur_Controller Jc = new Joueur_Controller();
+    @FXML
+    private ComboBox ComboJeux;
+    @FXML
+    private ComboBox ComboStream;
+    @FXML
+    private ComboBox ComboCompétition;
+    @FXML
+    private ComboBox ComboCommunaute;
+    @FXML
+    private FontAwesomeIconView ComboUser;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         fillcomboBox();
-        
+         ComboBoxListInti();
     }    
 
-    @FXML
-    private void EnterRecherche(ActionEvent event) {
-    }
 
     @FXML
     private void fillcomboBox() {
@@ -246,4 +256,109 @@ public class InscriptionJoueurController implements Initializable {
             System.out.println(ex.getMessage());
         }
       }
+    @FXML
+    private void showComp(ActionEvent event) throws Exception {
+
+        String s = ComboCompétition.getSelectionModel().getSelectedItem().toString();
+//       C:\Users\medaz\Documents\NetBeansProjects\crud_competition\src\black_ops\GUI_User\Competition\Defi\Defi.fxml
+        switch (s) {
+            case "Defi":
+                SwitchScene(stage, "Competition/Defi/Defi", event);
+                break;
+            case "Match":
+                SwitchScene(stage, "Competition/Match/ListMatch", event);
+                break;
+            case "Joueur":
+                SwitchScene(stage, "Competition/Joueur/InscriptionJoueur", event);
+                break;
+            case "Equipe":
+                SwitchScene(stage, "Competition/Equipe/InscriptionEquipe", event);
+                break;
+        }
+
+    }
+
+    private void showU(ActionEvent event) throws IOException, Exception {
+        SwitchScene(stage, "Gestion_Competition/Gestion_Defis/GestionDefi", event);
+    }
+
+    
+
+   
+
+    private void showS(ActionEvent event) throws Exception {
+        String s = ComboStream.getSelectionModel().getSelectedItem().toString();
+        switch (s) {
+            case "Gestion Defi":
+                SwitchScene(stage, "Gestion_Competition/Gestion_Defis/GestionDefi", event);
+                break;
+            case "Gestion Matches":
+                SwitchScene(stage, "Gestion_Competition/Gestion_Details_Defis/GestionDetailsDefis", event);
+                break;
+            case "Gestion Joueurs":
+                SwitchScene(stage, "Gestion_Competition/Gestion_Joueur/GestionJoueur", event);
+                break;
+            case "Gestion Equipe":
+                SwitchScene(stage, "Gestion_Competition/Gestion_Equipe/GestionEquipe", event);
+                break;
+        }
+    }
+
+    private void showJ(ActionEvent event) throws Exception {
+        String s = ComboJeux.getSelectionModel().getSelectedItem().toString();
+        switch (s) {
+            case "Gestion Defi":
+                SwitchScene(stage, "Gestion_Competition/Gestion_Defis/GestionDefi", event);
+                break;
+            case "Gestion Matches":
+                SwitchScene(stage, "Gestion_Competition/Gestion_Details_Defis/GestionDetailsDefis", event);
+                break;
+            case "Gestion Joueurs":
+                SwitchScene(stage, "Gestion_Competition/Gestion_Joueur/GestionJoueur", event);
+                break;
+            case "Gestion Equipe":
+                SwitchScene(stage, "Gestion_Competition/Gestion_Equipe/GestionEquipe", event);
+                break;
+        }
+    }
+    private void showComu(ActionEvent event) throws Exception {
+        String s = ComboCommunaute.getSelectionModel().getSelectedItem().toString();
+        switch (s) {
+            case "Gestion Defi":
+                SwitchScene(stage, "Gestion_Competition/Gestion_Defis/GestionDefi", event);
+                break;
+            case "Gestion Matches":
+                SwitchScene(stage, "Gestion_Competition/Gestion_Details_Defis/GestionDetailsDefis", event);
+                break;
+            case "Gestion Joueurs":
+                SwitchScene(stage, "Gestion_Competition/Gestion_Joueur/GestionJoueur", event);
+                break;
+            case "Gestion Equipe":
+                SwitchScene(stage, "Gestion_Competition/Gestion_Equipe/GestionEquipe", event);
+                break;
+        }
+    }
+
+    public void SwitchScene(Stage stage, String nom, ActionEvent event) throws Exception {
+
+        String path = "/black_ops/GUI_User/";
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(path + nom + ".fxml"));
+        Parent root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void ComboBoxListInti() {
+        ObservableList<String> GestionCommunaute = FXCollections.observableArrayList("Message", "Video");
+        ComboCommunaute.setItems(GestionCommunaute);
+        ObservableList<String> GestionCompetition = FXCollections.observableArrayList("Defi", "Match", "Joueur", "Equipe");
+        ComboCompétition.setItems(GestionCompetition);  
+        ObservableList<String> GestionStream = FXCollections.observableArrayList("Stream Replay ", "Stream Info ");
+        ComboStream.setItems(GestionStream);
+        ObservableList<String> GestionJeu = FXCollections.observableArrayList("Jeu", "Image", "Skin", "Champion");
+        ComboJeux.setItems(GestionJeu);
+    }
 }

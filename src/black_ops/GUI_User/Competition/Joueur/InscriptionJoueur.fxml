@@ -40,7 +40,7 @@
                   <Insets right="50.0" top="35.0" />
                </HBox.margin>
             </ComboBox>
-            <ComboBox fx:id="ComboCompétition" prefHeight="27.0" prefWidth="160.0" promptText="Compétition" style="-fx-border-color: #09a195;">
+            <ComboBox fx:id="ComboCompétition" onAction="#showComp" prefHeight="27.0" prefWidth="160.0" promptText="Compétition" style="-fx-border-color: #09a195;">
                <HBox.margin>
                   <Insets right="50.0" top="35.0" />
                </HBox.margin>

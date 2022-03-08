@@ -179,7 +179,7 @@ public ObservableList<Defi> getData()
     private void showComp(ActionEvent event) throws Exception {
 
         String s = ComboCompétition.getSelectionModel().getSelectedItem().toString();
-//       
+//       C:\Users\medaz\Documents\NetBeansProjects\crud_competition\src\black_ops\GUI_User\Competition\Defi\Defi.fxml
         switch (s) {
             case "Defi":
                 SwitchScene(stage, "Competition/Defi/Defi", event);

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
 
 public class DetailsDefiController {
@@ -58,7 +59,10 @@ public class DetailsDefiController {
               match.add(df);
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
         
         return match;
@@ -84,7 +88,10 @@ public class DetailsDefiController {
               match.add(De_Se);
         }
         }catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
         return match ;
     }
@@ -98,7 +105,10 @@ public class DetailsDefiController {
         ste.executeUpdate();
         System.out.println("Details_Defi supprimer");
         }catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
     }
     public void Update_Details_Defi(DetailsDefi d_f){
@@ -117,7 +127,10 @@ public class DetailsDefiController {
             ste.close();
       
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
         
     }
@@ -156,7 +169,10 @@ public class DetailsDefiController {
                 dd.add(r);
             }
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
 
         return dd;

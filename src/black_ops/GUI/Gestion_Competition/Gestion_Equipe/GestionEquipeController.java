@@ -41,6 +41,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -167,8 +168,16 @@ public class GestionEquipeController implements Initializable {
             alert.showAndWait();
             return;
         }
+          int options = JOptionPane.YES_NO_OPTION;
+        int result = JOptionPane.showConfirmDialog(null, "Vous etes sure de Modifier   cette  Equipe " ,"SERIOUS QUESTION", options, 3);
+        if (result == JOptionPane.YES_OPTION) {
         Ec.UpdateEquipe(eq);
         Show_Equipe();
+        } else if (result == JOptionPane.NO_OPTION) {
+            
+          Show_Equipe();
+        } 
+       
     }
 
     @FXML
@@ -185,9 +194,14 @@ public class GestionEquipeController implements Initializable {
             alert.showAndWait();
             return;
         } 
-        
-        Ec.DeleteEquipe(eq);
+          int options = JOptionPane.YES_NO_OPTION;
+        int result = JOptionPane.showConfirmDialog(null, "Vous etes sure de Supptimer   cette  Equipe " ,"SERIOUS QUESTION", options, 3);
+        if (result == JOptionPane.YES_OPTION) {
+            Ec.DeleteEquipe(eq);
         Show_Equipe();
+        } else if (result == JOptionPane.NO_OPTION) {
+          Show_Equipe();
+        } 
     }
 
     @FXML

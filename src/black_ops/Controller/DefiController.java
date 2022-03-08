@@ -39,7 +39,7 @@ public class DefiController {
             ste.executeUpdate();
             System.out.println("Defi Ajoutée");
         } catch (SQLException ex) {
- Alert alert = new Alert(Alert.AlertType.WARNING);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Erreur");
             alert.setContentText(ex.getMessage());
             alert.showAndWait();
@@ -68,7 +68,10 @@ public class DefiController {
             ste.close();
       
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+             Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
         
     }
@@ -93,7 +96,10 @@ public class DefiController {
                 Defi.add(d);
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+             Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
         
         return Defi;
@@ -142,7 +148,10 @@ public class DefiController {
                 Defi.add(d);
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+             Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
 
     }
          return Defi;

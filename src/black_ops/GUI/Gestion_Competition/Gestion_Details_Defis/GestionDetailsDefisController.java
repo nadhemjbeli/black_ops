@@ -45,6 +45,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image.ImageType;
@@ -243,9 +244,17 @@ public class GestionDetailsDefisController implements Initializable {
        
        
         DetailsDefi dfi = new DetailsDefi(id, k, url, k1, score, k2);
+        
         DetailsDefiController dfc = new DetailsDefiController();
-        dfc.Update_Details_Defi(dfi);
+           int options = JOptionPane.YES_NO_OPTION;
+        int result = JOptionPane.showConfirmDialog(null, "Vous etes sure de Modifier   ce Match" ,"SERIOUS QUESTION", options, 3);
+        if (result == JOptionPane.YES_OPTION) {
+             dfc.Update_Details_Defi(dfi);
         Show_Match();
+        } else if (result == JOptionPane.NO_OPTION) {
+           Show_Match();
+        }
+       
 
     }
 
@@ -266,9 +275,16 @@ public class GestionDetailsDefisController implements Initializable {
             return;
         }
         
-dfc.Delete_Details_Defi(dfi);
+           int options = JOptionPane.YES_NO_OPTION;
+        int result = JOptionPane.showConfirmDialog(null, "Vous etes sure de supprimer   ce Match" ,"SERIOUS QUESTION", options, 3);
+        if (result == JOptionPane.YES_OPTION) {
+            dfc.Delete_Details_Defi(dfi);
         Show_Match();
         QRimg.setImage(null);
+        } else if (result == JOptionPane.NO_OPTION) {
+          Show_Match();
+        }
+
     }
 
     @FXML
@@ -363,6 +379,7 @@ dfc.Delete_Details_Defi(dfi);
         }  
         DetailsDefi dfi = new DetailsDefi(33, k, url, k1, score, k2);
         DetailsDefiController dfc = new DetailsDefiController();
+        
         dfc.Create_Details_Defi(dfi);
         Show_Match();
 

@@ -175,8 +175,16 @@ public class GestionJoueurController implements Initializable {
         }
        // JOptionPane.showConfirmDialog(parentComponent, stage)
         Joueur J1 = new Joueur(4, Nom, rang, ps, k);
-        Jc.UpdateJoueur(J1);
+        int options = JOptionPane.YES_NO_OPTION;
+        int result = JOptionPane.showConfirmDialog(null, "Vous etes sure de Modifier   ce  Joueur " ,"SERIOUS QUESTION", options, 3);
+        if (result == JOptionPane.YES_OPTION) {
+          Jc.UpdateJoueur(J1);
         Show_Joueur();
+        } else if (result == JOptionPane.NO_OPTION) {
+            
+           Show_Joueur();
+        } 
+      
 
     }
 
@@ -193,9 +201,18 @@ public class GestionJoueurController implements Initializable {
             alert.setContentText("Vous devez selectionnez un id valid");
             alert.showAndWait();
             return;
-        }   
-        Jc.DeleteJoueur(j);
+        }  
+        
+        int options = JOptionPane.YES_NO_OPTION;
+        int result = JOptionPane.showConfirmDialog(null, "Vous etes sure de Supprimer   ce  Joueur " ,"SERIOUS QUESTION", options, 3);
+        if (result == JOptionPane.YES_OPTION) {
+          Jc.DeleteJoueur(j);
         Show_Joueur();
+        } else if (result == JOptionPane.NO_OPTION) {
+            
+           Show_Joueur();
+        } 
+       
          
     }
 

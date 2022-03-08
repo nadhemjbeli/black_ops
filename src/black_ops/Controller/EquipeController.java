@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
 
 public class EquipeController {
@@ -53,7 +54,10 @@ String sql="select * from Equipe";
                 Equipe.add(eq);
             }
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+             Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
         
         return Equipe;
@@ -70,7 +74,10 @@ String sql="select * from Equipe";
 
         } 
          catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
          String sql3 ="delete from details_defi where EquipeA = ( SELECT id_equipe from equipe where id_equipe = ? )" ;
         try {
@@ -82,7 +89,10 @@ String sql="select * from Equipe";
 
         }
         catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
         String sql4 ="delete from details_defi where EquipeB = ( SELECT id_equipe from equipe where id_equipe = ? )" ;
         try {
@@ -94,7 +104,10 @@ String sql="select * from Equipe";
 
         }
         catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
          String sql2 ="delete from equipe where id_equipe = ?" ;
         try {
@@ -106,7 +119,10 @@ String sql="select * from Equipe";
 
         }
         catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
        
         }
@@ -126,7 +142,10 @@ String sql="select * from Equipe";
             ste.close();
       
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
         
     }
@@ -150,7 +169,10 @@ String sql="select * from Equipe";
                 Equipe.add(Eq_s);
            }
         }catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+           Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
         return Equipe ;
 } 
@@ -172,7 +194,10 @@ String sql="select * from Equipe";
                 
            }
         }catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+             Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText(ex.getMessage());
+            alert.showAndWait();
         }
         return Eq_s ;
 } 
