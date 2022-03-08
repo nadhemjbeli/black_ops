@@ -208,9 +208,9 @@
                   </JFXComboBox>
                </children>
             </VBox>
-            <ImageView fitHeight="82.0" fitWidth="215.0" layoutX="61.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="109.0" fitWidth="130.0" layoutX="61.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../Images/Logo.png" />
+                  <Image url="@../../../../Images/Logo_Blanc.png" />
                </image>
             </ImageView>
          </children>
