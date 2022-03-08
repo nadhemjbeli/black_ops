@@ -188,7 +188,7 @@
             </Button>
          </children>
       </HBox>
-      <AnchorPane fx:id="nav" prefHeight="706.0" prefWidth="297.0" style="-fx-background-color: #0f1316;" visible="false">
+      <AnchorPane fx:id="nav" prefHeight="706.0" prefWidth="297.0" style="-fx-background-color: #0f1316;">
          <cursor>
             <Cursor fx:constant="MOVE" />
          </cursor>
@@ -234,7 +234,7 @@
             </VBox>
             <ImageView fitHeight="82.0" fitWidth="215.0" layoutX="61.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../ImagesChampions/Logo.png" />
+                  <Image url="@../../../../Images/Logo.png" />
                </image>
             </ImageView>
          </children>

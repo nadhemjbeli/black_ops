@@ -5,7 +5,10 @@
  */
 package black_ops.GUI.gestion_jeux.gestionSkins;
 
+import black_ops.Controller.Admin_Controller;
+import black_ops.Controller.Client_Controller;
 import black_ops.Controller.SkinController;
+import black_ops.Entity.Client;
 import black_ops.Entity.Skin;
 import black_ops.Entity.Super;
 import black_ops.GUI.gestion_jeux.gestionChampions.ImageChampionController;
@@ -24,6 +27,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -713,9 +717,10 @@ public class CRUDSkinController implements Initializable {
 
     @FXML
     private void SendMail(ActionEvent event) {
-         String[] users = new String[]{"mohamedmokhtar.jaafar@esprit.tn","fedibenammar734@gmail.com"}; 
-            for (String l:users){
-        SendEmail send = new SendEmail(l, "New content is available", "Hey Gamer , New content is available on our application , check it out "); 
+         Client_Controller ac = new Client_Controller();
+        List<Client> personnes = ac.afficherclient();
+        for (Client l:personnes){
+        SendEmail send = new SendEmail(l.getMail_Cl(), "New content is available", "Hey Gamer , New content is available on our application , check it out "); 
    
     }
 }
