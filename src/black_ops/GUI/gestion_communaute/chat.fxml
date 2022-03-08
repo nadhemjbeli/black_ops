@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI.gestion_communaute.ChatController">
+    <stylesheets>
+        <URL value="@chat.css" />
+    </stylesheets>
+   <children>
+       
+ <HBox prefHeight="98.0" prefWidth="1700.0" style="-fx-background-color: #e0e4e7;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <ImageView fitHeight="147.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Images/Logo.png" />
+               </image>
+                <HBox.margin>
+                  <Insets bottom="10.0" left="39.0" right="50.0" top="10.0" />
+               </HBox.margin>
+            </ImageView>
+            <ComboBox fx:id="ComboJeux" prefWidth="150.0" promptText="Jeux Video" style="-fx-border-color: #09a195;">
+               <HBox.margin>
+                  <Insets right="50.0" top="35.0" />
+               </HBox.margin>
+            </ComboBox>
+ <ComboBox fx:id="ComboStream" prefWidth="150.0" promptText="Stream" style="-fx-border-color: #09a195;">
+               <HBox.margin>
+                  <Insets right="50.0" top="35.0" />
+               </HBox.margin>
+            </ComboBox>
+            <ComboBox fx:id="ComboCompétition" prefWidth="150.0" promptText="Compétition" style="-fx-border-color: #09a195;">
+               <HBox.margin>
+                  <Insets right="50.0" top="35.0" />
+               </HBox.margin>
+</ComboBox>
+            <ComboBox fx:id="ComboCommunaute" onAction="#scene_comm" prefWidth="150.0" promptText="Commuanté" style="-fx-border-color: #09a195;">
+               <HBox.margin>
+                  <Insets right="50.0" top="35.0" />
+               </HBox.margin>
+            </ComboBox>
+<FontAwesomeIconView fx:id="ComboUser" glyphName="USER" size="30">
+               <HBox.margin>
+                  <Insets left="425.0" top="35.0" />
+               </HBox.margin>
+            </FontAwesomeIconView>
+</children>
+      </HBox>
+      <VBox alignment="BOTTOM_CENTER" layoutX="585.0" layoutY="114.0" prefHeight="755.0" prefWidth="630.0" AnchorPane.bottomAnchor="31.0" AnchorPane.rightAnchor="585.0">
+         <children>
+            <Label fx:id="lbl_title" alignment="CENTER" prefWidth="144.0" style="-fx-pref-width: 300px;" text="Chat">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Label>
+          <AnchorPane fx:id="anchorid" minHeight="0.0" minWidth="0.0" prefHeight="630.0" prefWidth="630.0" style="-fx-background-color: #e0e4e7;">
+               <padding>
+                  <Insets bottom="20.0" left="15.0" />
+               </padding>
+            </AnchorPane>
+            <HBox alignment="CENTER" prefHeight="80.0" prefWidth="630.0">
+               <children>
+                  <JFXTextArea fx:id="txt_message" prefHeight="72.0" prefWidth="564.0" style="-fx-background-color: #eee;">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXTextArea>
+                  <Button fx:id="send_btn" mnemonicParsing="false" onAction="#send_msg">
+                     <graphic>
+                        <FontAwesomeIconView fill="#e8e8e8" glyphName="SEND" size="60" wrappingWidth="71.0" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

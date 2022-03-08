@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="900.0" prefWidth="1800.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI.gestion_communaute.user.video_list_user.Video_list_userController">
+    <stylesheets>
+        <URL value="@video_list_user.css" />
+    </stylesheets>
+   <children>
+       <HBox prefHeight="98.0" prefWidth="1700.0" style="-fx-background-color: #e0e4e7;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <ImageView fitHeight="123.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../Images/Logo.png" />
+               </image>
+                <HBox.margin>
+                  <Insets bottom="10.0" left="39.0" right="50.0" top="10.0" />
+               </HBox.margin>
+            </ImageView>
+            <ComboBox fx:id="ComboJeux" prefWidth="150.0" promptText="Jeux Video" style="-fx-border-color: #09a195;">
+               <HBox.margin>
+                  <Insets right="50.0" top="35.0" />
+               </HBox.margin>
+            </ComboBox>
+            <ComboBox fx:id="ComboStream" prefWidth="150.0" promptText="Stream" style="-fx-border-color: #09a195;">
+               <HBox.margin>
+                  <Insets right="50.0" top="35.0" />
+               </HBox.margin>
+            </ComboBox>
+            <ComboBox fx:id="ComboCompétition" prefWidth="150.0" promptText="Compétition" style="-fx-border-color: #09a195;">
+               <HBox.margin>
+                  <Insets right="50.0" top="35.0" />
+               </HBox.margin>
+            </ComboBox>
+            <ComboBox fx:id="ComboCommunaute" onAction="#scene_comm" prefWidth="150.0" promptText="Commuanté" style="-fx-border-color: #09a195;">
+               <HBox.margin>
+                  <Insets right="50.0" top="35.0" />
+               </HBox.margin>
+            </ComboBox>
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#scene_add_video" prefHeight="41.0" prefWidth="65.0" style="-fx-background-color: #e0e4e7;">
+               <graphic>
+                  <FontAwesomeIconView glyphName="PLUS" size="40" stroke="TRANSPARENT" />
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <tooltip>
+                  <Tooltip text="Ajouter un Video" />
+               </tooltip>
+               <HBox.margin>
+                  <Insets left="300.0" top="25.0" />
+               </HBox.margin>
+            </JFXButton>
+            <JFXButton contentDisplay="CENTER" prefHeight="41.0" prefWidth="47.0" style="-fx-background-color: #e0e4e7;">
+               <graphic>
+                  <FontAwesomeIconView fx:id="ComboUser" glyphName="USER" size="30" />
+               </graphic>
+               <HBox.margin>
+                  <Insets left="50.0" top="30.0" />
+               </HBox.margin>
+               <tooltip>
+                  <Tooltip text="logout" />
+               </tooltip>
+            </JFXButton>
+</children>
+      </HBox>
+      <AnchorPane fx:id="anchorid" layoutX="442.0" layoutY="144.0" prefHeight="700.0" prefWidth="700.0" style="-fx-background-color: #e0e4e7;" AnchorPane.bottomAnchor="56.0" AnchorPane.rightAnchor="658.0" />
+   </children>
+</AnchorPane>
