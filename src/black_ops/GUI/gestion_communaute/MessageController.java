@@ -8,9 +8,16 @@ package black_ops.GUI.gestion_communaute;
 import black_ops.Controller.JeuController;
 import black_ops.Controller.Message_Controller;
 import black_ops.Entity.Messagee;
+import black_ops.config.MaConnexion;
+import com.jfoenix.controls.JFXComboBox;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,9 +44,7 @@ public class MessageController implements Initializable {
     private TextField id_message;
     @FXML
     private TextArea txt_contenu;
-    @FXML
     private TextField txt_id_cl;
-    @FXML
     private TextField txt_id_sous_cat;
     @FXML
     private TextField date_message;
@@ -75,27 +80,42 @@ public class MessageController implements Initializable {
     @FXML
     private Button btn_diselect;
     public static String admin_email = "";
-
+    
+    
+    Connection mc;
+    PreparedStatement ste;
+    @FXML
+    private JFXComboBox liste_cl;
+    @FXML
+    private JFXComboBox liste_sc;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        fill_client_combo();
+        fill_s_c_combo();
         showMessages();
     }    
 
     @FXML
     private void add_message(ActionEvent event) {
         try{
-           String contenu = txt_contenu.getText();
-            String id_cl = txt_id_cl.getText();
-            String sous_cat = txt_id_sous_cat.getText();
+            String id_cl = liste_cl.getSelectionModel().getSelectedItem().toString();
+            String id_s_c = liste_sc.getSelectionModel().getSelectedItem().toString();
+
+
+            String sql2 = "select id_cl from client where Pseaudo_Cl =?";
+            int idc = select_id_cl(sql2, id_cl);
+
+
+            String sql3 = "select id_SousCat from sous_categorie where nom_SousCat =?";
+            int id_sc = select_id_sc(sql3, id_s_c);
+            String contenu = txt_contenu.getText();
             
-           int s_c = Integer.parseInt(sous_cat);
-           int c_l = Integer.parseInt(id_cl);
-//           Timestamp ts = Timestamp.valueOf(text);
-           Messagee msg = new Messagee(1, contenu, s_c, c_l);
+            
+           Messagee msg = new Messagee(1, contenu, idc, id_sc);
            Message_Controller msgc = new Message_Controller();
            msgc.ajouterMessage(msg);
            showMessages(); 
@@ -120,22 +140,56 @@ public class MessageController implements Initializable {
     @FXML
     private void edit_message(ActionEvent event) {
         try{
+            
+            String id_cl = liste_cl.getSelectionModel().getSelectedItem().toString();
+            String id_s_c = liste_sc.getSelectionModel().getSelectedItem().toString();
+
+            
+            String sql2 = "select id_cl from client where Pseaudo_Cl =?";
+            int idc = select_id_cl(sql2, id_cl);
+            
+            
+            String sql3 = "select id_SousCat from sous_categorie where nom_SousCat =?";
+            int id_sc = select_id_sc(sql3, id_s_c);
+            
+            
             String idmsg=id_message.getText();
             int id_msg = Integer.parseInt(idmsg);
             String contenu = txt_contenu.getText();
-            String id_cl = txt_id_cl.getText();
-            String sous_cat = txt_id_sous_cat.getText();
             
-           int s_c = Integer.parseInt(sous_cat);
-           int c_l = Integer.parseInt(id_cl);
-//           Timestamp ts = Timestamp.valueOf(text);
-           Messagee msg = new Messagee(id_msg, contenu, s_c, c_l);
+            
+           Messagee msg = new Messagee(id_msg, contenu, idc, id_sc);
            Message_Controller msgc = new Message_Controller();
            msgc.UpdateMessage(msg);
            showMessages();
         }catch(Exception e){
             System.out.println(e.getMessage());
         }
+    }
+    private int select_id_cl(String sql, String id_cl) throws SQLException{
+        int idc = 0;
+        mc = MaConnexion.getInstance().getCnx();
+            ste = mc.prepareStatement(sql);
+
+            ste.setString(1, id_cl);
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                idc = rs.getInt("id_cl");
+            }
+            return idc;
+    }
+    
+    private int select_id_sc(String sql, String id_s_c) throws SQLException{
+        int idsc = 0;
+        mc = MaConnexion.getInstance().getCnx();
+        ste = mc.prepareStatement(sql);
+
+        ste.setString(1, id_s_c);
+        ResultSet rs1 = ste.executeQuery();
+        while (rs1.next()) {
+            idsc = rs1.getInt("id_SousCat");
+        }
+        return idsc;
     }
 
     @FXML
@@ -167,11 +221,45 @@ public class MessageController implements Initializable {
     @FXML
     private void handleMouseAction(MouseEvent event) {
         Messagee msg = table_messages.getSelectionModel().getSelectedItem();
+        String user = "";
+        String sous_c = "";
         id_message.setText(""+msg.getId_message());
         txt_contenu.setText(""+msg.getContenu_message());
-        txt_id_cl.setText(""+msg.getId_cl());
+        mc = MaConnexion.getInstance().getCnx();
+        try {
+
+            ObservableList options2 = FXCollections.observableArrayList();
+            
+            String sql22 = "select Pseaudo_Cl from client where id_cl = ?";
+            ste=mc.prepareStatement(sql22);
+            ste.setInt(1,msg.getId_cl());
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                user = rs.getString("Pseaudo_Cl");
+            }
+            liste_cl.setValue(user);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+        }
+        
+        try {
+
+            ObservableList options2 = FXCollections.observableArrayList();
+
+            String sql3 = "select nom_SousCat from sous_categorie where id_SousCat =?";
+            ste=mc.prepareStatement(sql3);
+             ste.setInt(1,msg.getId_sous_cat());
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                sous_c = rs.getString("nom_SousCat");
+            }
+            liste_sc.setValue(sous_c);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+        }
         date_message.setText(""+msg.getDate_message());
-        txt_id_sous_cat.setText(""+msg.getId_sous_cat());
     }
 
     @FXML
@@ -199,6 +287,44 @@ public class MessageController implements Initializable {
 
     @FXML
     private void search_messages_par_contenu(ActionEvent event) {
+    }
+
+    @FXML
+    private void fill_client_combo() {
+        mc = MaConnexion.getInstance().getCnx();
+        try {
+
+            ObservableList options2 = FXCollections.observableArrayList();
+
+            String sql2 = "select Pseaudo_Cl from client order by id_cl";
+            ResultSet rs = mc.createStatement().executeQuery(sql2);
+            while (rs.next()) {
+                options2.add(rs.getString(1));
+            }
+            liste_cl.setItems(options2);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+        }
+    }
+
+    @FXML
+    private void fill_s_c_combo() {
+        mc = MaConnexion.getInstance().getCnx();
+        try {
+
+            ObservableList options3 = FXCollections.observableArrayList();
+
+            String sql2 = "select nom_sousCat from sous_categorie order by id_sousCat";
+            ResultSet rs = mc.createStatement().executeQuery(sql2);
+            while (rs.next()) {
+                options3.add(rs.getString(1));
+            }
+            liste_sc.setItems(options3);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+        }
     }
     
     

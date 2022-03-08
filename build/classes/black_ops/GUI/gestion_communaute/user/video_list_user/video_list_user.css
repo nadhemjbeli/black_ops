@@ -1,0 +1,74 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+
+}
+.label{
+    
+    -fx-text-fill: black;
+    -fx-font-size: 18px;
+    -fx-pref-height:50px;
+    -fx-padding: 20px;
+}
+
+.button{
+    -fx-background-color:#09a195;
+    -fx-text-fill: #ffffff;
+}
+
+.hbox{
+    -fx-background-color:#e0e4e7;
+    -fx-text-fill: black;
+    -fx-pref-width:650px;
+    -fx-pref-height:80px;
+    
+}
+
+#hb{
+    -fx-background-color:#e0e4e7;
+    -fx-pref-width:650px;
+}
+
+#vb2{
+    -fx-pref-width:200px;
+}
+
+#vb{
+    
+    -fx-text-fill: black;
+
+}
+#vb1{
+    /*-fx-background-color:gray;*/
+    -fx-pref-width:450px;
+    -fx-padding:20px
+}
+
+#empty{
+    -fx-pref-width:50px;
+}
+
+#vb_all{
+    -fx-padding: 20px;
+    -fx-border: 1, solid, black;
+}
+
+#labeluploaded{
+    -fx-pref-width:200px;
+}
+
+#video_name{
+    -fx-text-fill: black;
+    -fx-font-size: 22px ;
+}
+
+#labelDate{
+      
+    /*-fx-text-fill:gainsboro;*/
+    -fx-text-fill:black;
+    -fx-pref-width:120px;
+    -fx-font-size: 15px ;
+        
+  }

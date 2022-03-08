@@ -41,22 +41,9 @@
             </Button>
          </children>
       </HBox>
-      <AnchorPane fx:id="pane_login" layoutY="144.0" prefHeight="311.0" prefWidth="685.0" visible="false" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane fx:id="pane_login" layoutY="144.0" prefHeight="311.0" prefWidth="685.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <TextField fx:id="txt_email" layoutX="292.0" layoutY="84.0" prefHeight="40.0" prefWidth="330.0" promptText="Enter your E-Mail">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </TextField>
-            <Button fx:id="id_btn_login" layoutX="213.0" layoutY="247.0" mnemonicParsing="false" onAction="#btn_login" prefHeight="50.0" prefWidth="260.0" style="-fx-background-color: #0fea88;" text="Login" textFill="WHITE">
-               <font>
-                  <Font name="Times New Roman Bold" size="25.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Label layoutX="94.0" layoutY="85.0" text="E-Mail" textFill="WHITE">
+            <Label layoutX="94.0" layoutY="85.0" text="username" textFill="WHITE">
                <font>
                   <Font name="Times New Roman Bold" size="33.0" />
                </font>
@@ -66,14 +53,27 @@
                   <Font name="Times New Roman Bold" size="33.0" />
                </font>
             </Label>
+            <TextField fx:id="txt_name" layoutX="292.0" layoutY="84.0" prefHeight="40.0" prefWidth="330.0" promptText="Enter your username">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
             <PasswordField fx:id="txt_password" layoutX="292.0" layoutY="151.0" prefHeight="40.0" prefWidth="330.0" promptText="Enter your Password">
                <font>
                   <Font size="15.0" />
                </font>
             </PasswordField>
+            <Button fx:id="id_btn_login" layoutX="213.0" layoutY="247.0" mnemonicParsing="false" onAction="#btn_login" prefHeight="50.0" prefWidth="260.0" style="-fx-background-color: #0fea88;" text="Login" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman Bold" size="25.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="pane_signup" layoutX="35.0" layoutY="166.0" prefHeight="311.0" prefWidth="685.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <AnchorPane fx:id="pane_signup" layoutX="35.0" layoutY="166.0" prefHeight="311.0" prefWidth="685.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Button fx:id="id_pane_signup" layoutX="213.0" layoutY="240.0" mnemonicParsing="false" onAction="#btn_signup" prefHeight="50.0" prefWidth="260.0" style="-fx-background-color: #0fea88;" text="SignUp" textFill="WHITE">
                <font>

@@ -97,6 +97,14 @@ public class Client {
         this.Statut_Cl = Statut_Cl;
         this.NewPass_Cl = NewPass_Cl;
     }
+
+    public Client(int id_Cl, String Pseaudo_Cl, String Photo_Cl, String mail_Cl, Date DateNaissance_Cl) {
+        this.id_Cl = id_Cl;
+        this.Pseaudo_Cl = Pseaudo_Cl;
+        this.Photo_Cl = Photo_Cl;
+        this.mail_Cl = mail_Cl;
+        this.DateNaissance_Cl = DateNaissance_Cl;
+    }
     private String Pseaudo_Cl;
     private String Photo_Cl;
     private String mail_Cl;

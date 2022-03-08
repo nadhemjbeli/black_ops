@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
@@ -76,22 +77,16 @@
                         <Insets top="14.0" />
                      </VBox.margin>
                   </TextField>
-                  <TextField fx:id="txt_id_cl" layoutX="10.0" layoutY="50.0" promptText="ID Client" style="-fx-background-color: #fff; -fx-prompt-text-fill: #707070;">
+                  <JFXComboBox fx:id="liste_cl" layoutX="10.0" layoutY="295.0" prefHeight="31.0" prefWidth="211.0" promptText="id Client" style="-fx-background-color: #fff;">
                      <VBox.margin>
                         <Insets top="14.0" />
                      </VBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="TEXT" />
-                     </cursor>
-                  </TextField>
-                  <TextField fx:id="txt_id_sous_cat" layoutX="10.0" layoutY="164.0" promptText="ID Sous Cat" style="-fx-background-color: #fff; -fx-prompt-text-fill: #707070;">
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="liste_sc" layoutX="10.0" layoutY="294.0" prefHeight="31.0" prefWidth="211.0" promptText="id Sous Cat" style="-fx-background-color: #fff;">
                      <VBox.margin>
                         <Insets top="14.0" />
                      </VBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="TEXT" />
-                     </cursor>
-                  </TextField>
+                  </JFXComboBox>
                   <TextField fx:id="date_video" editable="false" layoutX="10.0" layoutY="10.0" style="-fx-text-fill: #000; -fx-background-color: #e0e4e7;">
                      <VBox.margin>
                         <Insets top="14.0" />
@@ -232,6 +227,7 @@
             </Button>
          </children>
       </HBox>
+      <JFXComboBox />
       
    </children>
 </AnchorPane>

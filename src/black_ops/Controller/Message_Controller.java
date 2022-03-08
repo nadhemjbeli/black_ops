@@ -6,7 +6,9 @@
  */
 package black_ops.Controller;
 
+import black_ops.Entity.Client;
 import black_ops.Entity.Messagee;
+import black_ops.GUI.gestion_communaute.classes.MessageClient;
 import black_ops.config.MaConnexion;
 import java.sql.Connection;
 import java.sql.Date;
@@ -96,7 +98,7 @@ public class Message_Controller{
 
         ObservableList<Messagee> messages;
         messages = FXCollections.observableArrayList();
-        String sql="select * from message";
+        String sql="select * from message order by date_message desc";
         try {
             ste=mc.prepareStatement(sql);
             ResultSet rs=ste.executeQuery();
@@ -114,6 +116,92 @@ public class Message_Controller{
         }
         
         return messages;
+    } 
+    
+    public ObservableList<Messagee> afficherMessagesOrderDate(){
+
+        ObservableList<Messagee> messages;
+        messages = FXCollections.observableArrayList();
+        String sql="select * from message order by date_message asc";
+        try {
+            ste=mc.prepareStatement(sql);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+                Messagee message = new Messagee();
+                message.setId_message(rs.getInt("id_message"));
+                message.setContenu_message(rs.getString("contenu_message"));
+                message.setDate_message(rs.getTimestamp("date_message"));
+                message.setId_cl(rs.getInt("id_cl"));
+                message.setId_sous_cat(rs.getInt("id_souscat"));
+                messages.add(message);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return messages;
+    } 
+    
+    public ObservableList<MessageClient> afficherSousCatMessagesEtClients(){
+        
+        String sql="select * from client cl"
+                + " inner join message me on cl.id_cl=me.id_cl"
+//                + " inner join sous_categorie sc on sc.id_souscat = me.id_souscat"
+//                + " where sc.id_souscat = "+id_sc+" "
+                + " order by me.date_message;";
+        ObservableList<MessageClient> message_clients;
+        message_clients = FXCollections.observableArrayList();
+        try {
+            ste=mc.prepareStatement(sql);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+                MessageClient msgc = new MessageClient();
+                Messagee message = new Messagee();
+                message.setId_message(rs.getInt("id_message"));
+                message.setContenu_message(rs.getString("contenu_message"));
+                message.setDate_message(rs.getTimestamp("date_message"));
+                message.setId_cl(rs.getInt("me.id_cl"));
+                message.setId_sous_cat(rs.getInt("id_souscat"));
+                msgc.setMessage(message);
+                
+                Client client = new Client();
+                client.setId_Cl(rs.getInt("id_Cl"));
+                client.setPseaudo_Cl(rs.getString("Pseaudo_Cl"));
+                client.setDateNaissance_Cl(rs.getDate("DateNaissance_Cl"));
+                client.setMail_Cl(rs.getString("mail_Cl"));
+                client.setPhoto_Cl(rs.getString("Photo_Cl"));
+                msgc.setClient(client);
+                
+                message_clients.add(msgc);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return message_clients;
+    } 
+    
+    public Client afficher_client_dans_chat(String cl){
+        
+        System.out.println(cl);
+        String sql="select * from client where Pseaudo_Cl ='"+cl+"' ;";
+        Client client = new Client();
+        try {
+            ste=mc.prepareStatement(sql);
+            ResultSet rs=ste.executeQuery();
+            while(rs.next()){
+                client.setId_Cl(rs.getInt("id_Cl"));
+                client.setPseaudo_Cl(rs.getString("Pseaudo_Cl"));
+                client.setDateNaissance_Cl(rs.getDate("DateNaissance_Cl"));
+                client.setMail_Cl(rs.getString("mail_Cl"));
+                client.setPhoto_Cl(rs.getString("Photo_Cl"));
+                
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return client;
     } 
     
     public void DeleteMessage(int m){

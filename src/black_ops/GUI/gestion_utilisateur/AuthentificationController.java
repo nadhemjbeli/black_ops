@@ -8,6 +8,8 @@ package black_ops.GUI.gestion_utilisateur;
 
 import black_ops.GUI.gestion_communaute.ChatController;
 import black_ops.GUI.gestion_communaute.MessageController;
+import black_ops.GUI.gestion_communaute.user.Video_uploade_userController;
+import black_ops.GUI.gestion_communaute.user.video_list_user.Video_list_userController;
 import black_ops.config.MaConnexion;
 import java.io.File;
 
@@ -51,7 +53,6 @@ public class AuthentificationController implements Initializable {
 
     @FXML
     private AnchorPane pane_login;
-    @FXML
     private TextField txt_email;
     @FXML
     private Button id_btn_login;
@@ -80,6 +81,8 @@ public class AuthentificationController implements Initializable {
     private Button id_pane_signup;
     @FXML
     private TextField url;
+    @FXML
+    private TextField txt_name;
     
     
     
@@ -105,13 +108,21 @@ public class AuthentificationController implements Initializable {
         
         try{
             pst=cn.prepareStatement(sql);
-            pst.setString(1, txt_email.getText());
+            pst.setString(1, txt_name.getText());
             pst.setString(2, txt_password.getText());
             rs=pst.executeQuery();
             if(rs.next()){
-                ChatController.client_email = txt_email.getText();
-                JOptionPane.showMessageDialog(null, "E-mail and Password is Correct");
-                switchChat(event);
+                if(txt_name.getText().equals("admin")){
+                    JOptionPane.showMessageDialog(null, "welcome admin");
+                }
+                else{
+                    ChatController.client_name = txt_name.getText();
+                    Video_uploade_userController.client_name = txt_name.getText();
+                    Video_list_userController.client_name = txt_name.getText();
+                    JOptionPane.showMessageDialog(null, "bienvenu "+txt_name.getText()+" !");
+                    switchChat(event);
+                }
+                
             }else
                 JOptionPane.showMessageDialog(null, "Invalide E-mail Or Password");
         } catch (Exception e){
@@ -155,11 +166,11 @@ public class AuthentificationController implements Initializable {
 
     @FXML
     private String input_imagee(ActionEvent event) {
-        String id= txt_username_up.getText();
+        String name= txt_username_up.getText();
         Path to = null;
-         String  m = null;
-         String path = "src/Image/Imageclient";
-         JFileChooser chooser = new JFileChooser();
+        String  m = null;
+        String path = "src/Images/Imageclient";
+        JFileChooser chooser = new JFileChooser();
         
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "JPG & PNG Images", "jpg","jpeg","PNG");
@@ -173,7 +184,7 @@ public class AuthentificationController implements Initializable {
                 
                try {
                    Path from = Paths.get(chooser.getSelectedFile().toURI());
-                    to = Paths.get(path+"\\"+id+".png");
+                    to = Paths.get(path+"\\"+name+".png");
                        System.out.println("aa");
                    CopyOption[] options = new CopyOption[]{
                        StandardCopyOption.REPLACE_EXISTING,
@@ -192,12 +203,12 @@ public class AuthentificationController implements Initializable {
                    System.out.println();
                }
             }
-             url.setText(to.toString());
+             url.setText(name+".png");
              
             
         
     }
-      return to.toString();
+      return name+".png";
     }
 
     @FXML

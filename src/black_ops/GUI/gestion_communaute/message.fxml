@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXSnackbar?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
@@ -46,16 +47,16 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextArea>
-                  <TextField fx:id="txt_id_cl" layoutX="10.0" layoutY="50.0" promptText="ID Client" style="-fx-background-color: #fff; -fx-prompt-text-fill: #707070;">
+                  <JFXComboBox fx:id="liste_cl" onAction="#fill_client_combo" prefHeight="31.0" prefWidth="235.0" promptText="Client" style="-fx-background-color: white;">
                      <VBox.margin>
                         <Insets top="14.0" />
                      </VBox.margin>
-                  </TextField>
-                  <TextField fx:id="txt_id_sous_cat" layoutX="10.0" layoutY="164.0" promptText="ID Sous Cat" style="-fx-background-color: #fff; -fx-prompt-text-fill: #707070;">
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="liste_sc" layoutX="10.0" layoutY="129.0" onAction="#fill_s_c_combo" prefHeight="31.0" prefWidth="235.0" promptText="sous cat" style="-fx-background-color: white;">
                      <VBox.margin>
                         <Insets top="14.0" />
                      </VBox.margin>
-                  </TextField>
+                  </JFXComboBox>
                   <TextField fx:id="date_message" editable="false" layoutX="10.0" layoutY="10.0" style="-fx-text-fill: #000; -fx-background-color: #fff;">
                      <VBox.margin>
                         <Insets top="14.0" />
@@ -117,7 +118,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="22.0" layoutY="290.0" text="Date" textFill="#e0e4e7">
+            <Label layoutX="22.0" layoutY="298.0" text="Date" textFill="#e0e4e7">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
