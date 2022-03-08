@@ -34,6 +34,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -134,7 +135,35 @@ public class InscriptionJoueurController implements Initializable {
             System.out.println(ex.getMessage());
         }
         Joueur J1 = new Joueur(4, Nom, rang, ps, k);
+        if (ListeR.getSelectionModel().getSelectedItem().toString().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez une Equipe");
+            alert.showAndWait();
+            return;
+        }
+       
+        
+        
+         if (inp_Rang.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un Rang");
+            alert.showAndWait();
+            return;
+        }
+        if (inp_P.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un pseaudo valid ");
+            alert.showAndWait();
+            return;
+        }
         Jc.ajouterJoueur(J1);
+        
         Show_Joueur();
         SendSms();
 

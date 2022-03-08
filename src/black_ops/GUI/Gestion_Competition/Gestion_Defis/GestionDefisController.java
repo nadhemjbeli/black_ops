@@ -58,6 +58,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -145,6 +146,8 @@ public class GestionDefisController implements Initializable {
  private Parent root;
     @FXML
     private AnchorPane main;
+    @FXML
+    private AnchorPane parent;
      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -153,7 +156,7 @@ public class GestionDefisController implements Initializable {
     }    
 
     @FXML
-    private void Modifier_Defi(ActionEvent event) throws ParseException {
+    private void Modifier_Defi(ActionEvent event) throws ParseException, IOException {
      
      String Id_Defi = inp_Id_defi.getText();
             int id = Integer.parseInt(Id_Defi);
@@ -171,23 +174,100 @@ public class GestionDefisController implements Initializable {
             int pr = Integer.parseInt(prix);
             Defi dfi = new Defi(id,nom, desc, url, pr,date,Jeu, nbe,regle , rec);
             DefiController df = new DefiController();
+            
+
+            Show_defi();
+             if (inp_Id_defi.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un id de defi");
+            alert.showAndWait();
+            return;
+            
+        }
+              if (inp_Nom.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un Nom");
+            alert.showAndWait();
+            return;
+        }
+        if (inp_desc.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un description");
+            alert.showAndWait();
+            return;
+        }
+       
+        if (inp_img_defi.getText().isEmpty() )       
+                {
+                    
+                     Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Erreur");
+                alert.setContentText("Vous devez entrer l'image de defi " +inp_Nom.getText());
+                alert.showAndWait();
+                return;
+                }
+        
+         if (inp_prix.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un prix");
+            alert.showAndWait();
+            return;
+        }
+        if (inp_nbr_equipe.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un nombre d'equipe");
+            alert.showAndWait();
+            return;
+        }
+        
+        if (inp_Jeu.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un Jeu ");
+            alert.showAndWait();
+            return;
+        }   
+        
+     if (inp_regle_defis.getText().isEmpty()) {
+          Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez Les regle de defi");
+            alert.showAndWait();
+            return;
+
+     }
+//     final int input = JOptionPane.showConfirmDialog(null, 
+//      "Do you want to proceed?", "Select an Option...",JOptionPane.OK_CANCEL_OPTION);
+//        System.out.println(input);  
+        
+//      if(input == JOptionPane.OK_OPTION){
+//         df.UpdateDefi(dfi);
+//         Show_defi();
+//         System.out.println(JOptionPane.OK_OPTION);
+//      }
+//      if(input == JOptionPane.CANCEL_OPTION){
+//          System.out.println(JOptionPane.CANCEL_OPTION);
+//         }
+int options = JOptionPane.YES_NO_OPTION;
+        int result = JOptionPane.showConfirmDialog(null, "Vous etes sure de modifier  ce defi" ,"SERIOUS QUESTION", options, 3);
+        if (result == JOptionPane.YES_OPTION) {
             df.UpdateDefi(dfi);
-                       Recherche_Defi(event);
-
-            Show_defi();
- 
-    }
-
-    @FXML
-    private void Supprimer_defi(ActionEvent event) {
-         String Id_Defi = inp_Id_defi.getText();
-         int id = Integer.parseInt(Id_Defi);
-            Defi dfi = new Defi(id);
-            DefiController df = new DefiController();
-            df.DeleteDefi(dfi);
-            Show_defi();
-            Recherche_Defi(event);
-            DissForm();
+            Show_defi() ;
+        } else if (result == JOptionPane.NO_OPTION) {
+           Show_defi();
+        } 
+     
     }
 
     @FXML
@@ -208,14 +288,11 @@ public class GestionDefisController implements Initializable {
             Defi dfi = new Defi(999,nom, desc, url, pr, sqlDate , Jeu, nbe,regle , rec);
             DefiController df = new DefiController();
             
-            
-            
-            Recherche_Defi(event);
             if (inp_Nom.getText().isEmpty()) {
 
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Erreur");
-            alert.setContentText("Vous devez selectionnez un login");
+            alert.setContentText("Vous devez selectionnez un Nom");
             alert.showAndWait();
             return;
         }
@@ -223,7 +300,7 @@ public class GestionDefisController implements Initializable {
 
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Erreur");
-            alert.setContentText("Vous devez selectionnez un password");
+            alert.setContentText("Vous devez selectionnez un description");
             alert.showAndWait();
             return;
         }
@@ -233,7 +310,7 @@ public class GestionDefisController implements Initializable {
                     
                      Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Erreur");
-                alert.setContentText("Vous devez saisir un mail valid");
+                alert.setContentText("Vous devez entrer l'image de defi " +inp_Nom.getText());
                 alert.showAndWait();
                 return;
                 }
@@ -242,7 +319,7 @@ public class GestionDefisController implements Initializable {
 
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Erreur");
-            alert.setContentText("Vous devez selectionnez un nom");
+            alert.setContentText("Vous devez selectionnez un prix");
             alert.showAndWait();
             return;
         }
@@ -250,7 +327,7 @@ public class GestionDefisController implements Initializable {
 
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Erreur");
-            alert.setContentText("Vous devez selectionnez un prenom");
+            alert.setContentText("Vous devez selectionnez un nombre d'equipe");
             alert.showAndWait();
             return;
         }
@@ -259,7 +336,7 @@ public class GestionDefisController implements Initializable {
 
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Erreur");
-            alert.setContentText("Vous devez selectionnez un pays");
+            alert.setContentText("Vous devez selectionnez un Jeu ");
             alert.showAndWait();
             return;
         }   
@@ -267,11 +344,14 @@ public class GestionDefisController implements Initializable {
      if (inp_regle_defis.getText().isEmpty()) {
           Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Erreur");
-            alert.setContentText("Vous devez selectionnez un numéro de telephone");
+            alert.setContentText("Vous devez selectionnez Les regle de defi");
             alert.showAndWait();
             return;
 
      }
+            
+            Recherche_Defi(event);
+            
      df.ajouterDefi(dfi);
        Show_defi();
     }
@@ -562,6 +642,35 @@ public class GestionDefisController implements Initializable {
        gS.setItems(GestionStream);
         ObservableList<String> GestionJeu = FXCollections.observableArrayList("Gestion Jeu" ,"Gestion  Image", "Gestion  Skin" ,"Gestion  Champion"  );
        gJ.setItems(GestionJeu);
+    }
+
+    @FXML
+    private void Supprimer_defi(ActionEvent event) {
+        String Id_Defi = inp_Id_defi.getText();
+         int id = Integer.parseInt(Id_Defi);
+            Defi dfi = new Defi(id);
+            DefiController df = new DefiController();
+            if (inp_Id_defi.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un id de defi");
+            alert.showAndWait();
+            return;
+            
+        }
+            int options = JOptionPane.YES_NO_OPTION;
+        int result = JOptionPane.showConfirmDialog(null, "Vous etes sure de supprimer   ce defi" ,"SERIOUS QUESTION", options, 3);
+        if (result == JOptionPane.YES_OPTION) {
+            df.DeleteDefi(dfi);
+            Show_defi();
+            Recherche_Defi(event);
+            DissForm();
+        } else if (result == JOptionPane.NO_OPTION) {
+           Show_defi();
+        }
+            
+            
     }
     
      

@@ -32,6 +32,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
@@ -184,7 +185,61 @@ public class GestionDetailsDefisController implements Initializable {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+        if (ListEquipeA.getSelectionModel().getSelectedItem().toString().isEmpty()) {
 
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez l'equipe A");
+            alert.showAndWait();
+            return;
+        }
+        if (ListEquipeB.getSelectionModel().getSelectedItem().toString().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un l'equipe B");
+            alert.showAndWait();
+            return;
+        }
+       
+        if (ListDefi.getSelectionModel().getSelectedItem().toString().isEmpty())       
+                {
+                    
+                     Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Erreur");
+                alert.setContentText("Vous devez saisir un  Defi");
+                alert.showAndWait();
+                return;
+                }
+        
+        
+        if (inp_url.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez une image valid");
+            alert.showAndWait();
+            return;
+        }
+        
+        if (inp_score_finale.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un Score");
+            alert.showAndWait();
+            return;
+        }  
+        
+     
+ if (inp_Id_stat.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un Id de Match");
+            alert.showAndWait();
+            return;
+        }
        
        
         DetailsDefi dfi = new DetailsDefi(id, k, url, k1, score, k2);
@@ -201,11 +256,19 @@ public class GestionDetailsDefisController implements Initializable {
         int id = Integer.parseInt(Id_stat);
         DetailsDefi dfi = new DetailsDefi(id);
         DetailsDefiController dfc = new DetailsDefiController();
-        dfc.Delete_Details_Defi(dfi);
+        
+        if (inp_Id_stat.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un Id de Match");
+            alert.showAndWait();
+            return;
+        }
+        
+dfc.Delete_Details_Defi(dfi);
         Show_Match();
-
         QRimg.setImage(null);
-
     }
 
     @FXML
@@ -253,7 +316,51 @@ public class GestionDetailsDefisController implements Initializable {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+        if (ListEquipeA.getSelectionModel().getSelectedItem().toString().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez l'equipe A");
+            alert.showAndWait();
+            return;
+        }
+        if (ListEquipeB.getSelectionModel().getSelectedItem().toString().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un l'equipe B");
+            alert.showAndWait();
+            return;
+        }
+       
+        if (ListDefi.getSelectionModel().getSelectedItem().toString().isEmpty())       
+                {
+                    
+                     Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Erreur");
+                alert.setContentText("Vous devez saisir un  Defi");
+                alert.showAndWait();
+                return;
+                }
         
+        
+        if (inp_url.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez une image valid");
+            alert.showAndWait();
+            return;
+        }
+        
+        if (inp_score_finale.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un Score");
+            alert.showAndWait();
+            return;
+        }  
         DetailsDefi dfi = new DetailsDefi(33, k, url, k1, score, k2);
         DetailsDefiController dfc = new DetailsDefiController();
         dfc.Create_Details_Defi(dfi);

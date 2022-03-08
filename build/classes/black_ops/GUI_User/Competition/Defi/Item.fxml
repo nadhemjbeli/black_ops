@@ -10,15 +10,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" onMouseClicked="#click" onMousePressed="#click" prefHeight="215.0" prefWidth="225.0" stylesheets="@../../../../values/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI_User.Competition.Defi.ItemController">
+<AnchorPane id="AnchorPane" onMouseClicked="#click" onMousePressed="#click" prefHeight="215.0" prefWidth="225.0" style="-fx-border-color: #09a195; -fx-border-radius: 10px; -fx-border-width: 5px;" stylesheets="@../../../../values/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI_User.Competition.Defi.ItemController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutY="-20.0" prefHeight="166.0" prefWidth="145.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" layoutY="-20.0" prefHeight="166.0" prefWidth="145.0" style="-fx-background-color: #0f1316;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="TOP_RIGHT" prefHeight="73.0" prefWidth="205.0">
                <children>
-                  <Label fx:id="LabebNom" layoutX="15.0" layoutY="10.0" prefHeight="35.0" prefWidth="144.0" text="Daruis">
+                  <Label fx:id="LabebNom" layoutX="15.0" layoutY="10.0" prefHeight="35.0" prefWidth="144.0" text="Daruis" textFill="#e0e4e7">
                      <font>
-                        <Font name="Microsoft JhengHei Bold" size="25.0" />
+                        <Font name="Microsoft JhengHei Bold" size="16.0" />
                      </font>
                   </Label>
                </children>
@@ -37,9 +37,9 @@
             </HBox>
             <HBox alignment="TOP_RIGHT" prefHeight="0.0" prefWidth="225.0">
                <children>
-                  <Label fx:id="LabelDate" prefHeight="35.0" prefWidth="166.0" text="TopLaner">
+                  <Label fx:id="LabelDate" prefHeight="35.0" prefWidth="166.0" text="TopLaner" textFill="#e0e4e7">
                      <font>
-                        <Font name="Microsoft JhengHei Bold" size="25.0" />
+                        <Font name="Microsoft JhengHei Bold" size="19.0" />
                      </font>
                   </Label>
                </children>

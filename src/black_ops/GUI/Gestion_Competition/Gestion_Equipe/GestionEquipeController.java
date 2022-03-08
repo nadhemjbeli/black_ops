@@ -29,6 +29,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -131,6 +132,41 @@ public class GestionEquipeController implements Initializable {
         int nbr = Integer.parseInt(nbr_joueur);
         Equipe eq = new Equipe(id, Nom, url, date, nbr);
         EquipeController Ec = new EquipeController();
+         if (inp_Equipe.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un Id ");
+            alert.showAndWait();
+            return;
+        }
+        if (inp_Nom.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un Nom");
+            alert.showAndWait();
+            return;
+        }
+       
+        if (inp_url.getText().isEmpty())       
+                {
+                    
+                     Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Erreur");
+                alert.setContentText("Vous devez saisir un url valid");
+                alert.showAndWait();
+                return;
+                }
+        
+         if (inp_nbr.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un nombre valid ");
+            alert.showAndWait();
+            return;
+        }
         Ec.UpdateEquipe(eq);
         Show_Equipe();
     }
@@ -141,6 +177,15 @@ public class GestionEquipeController implements Initializable {
         int id = Integer.parseInt(Id_eq);
         Equipe eq = new Equipe(id);
         EquipeController Ec = new EquipeController();
+        if (inp_Equipe.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un pays");
+            alert.showAndWait();
+            return;
+        } 
+        
         Ec.DeleteEquipe(eq);
         Show_Equipe();
     }
@@ -156,8 +201,37 @@ public class GestionEquipeController implements Initializable {
         int nbr = Integer.parseInt(nbr_joueur);
         Equipe eq = new Equipe(3, Nom, url, dateJ, nbr);
         EquipeController Ec = new EquipeController();
+       
+        if (inp_Nom.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un Nom");
+            alert.showAndWait();
+            return;
+        }
+       
+        if (inp_url.getText().isEmpty())       
+                {
+                    
+                     Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Erreur");
+                alert.setContentText("Vous devez saisir un url valid");
+                alert.showAndWait();
+                return;
+                }
+        
+         if (inp_nbr.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un nombre valid ");
+            alert.showAndWait();
+            return;
+        }
         Ec.ajouterEquipe(eq);
         Show_Equipe();
+       
     }
 
     @FXML

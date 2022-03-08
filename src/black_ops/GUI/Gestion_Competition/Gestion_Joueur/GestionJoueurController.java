@@ -28,6 +28,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
@@ -39,6 +40,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -154,6 +156,24 @@ public class GestionJoueurController implements Initializable {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+         
+        if (inp_id.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un id valid ");
+            alert.showAndWait();
+            return;
+        }   
+        if (inp_Nom.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un Nom");
+            alert.showAndWait();
+            return;
+        }
+       // JOptionPane.showConfirmDialog(parentComponent, stage)
         Joueur J1 = new Joueur(4, Nom, rang, ps, k);
         Jc.UpdateJoueur(J1);
         Show_Joueur();
@@ -165,8 +185,18 @@ public class GestionJoueurController implements Initializable {
         String Id = inp_id.getText();
         int id = Integer.parseInt(Id);
         Joueur j = new Joueur(id);
+        
+        if (inp_id.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un id valid");
+            alert.showAndWait();
+            return;
+        }   
         Jc.DeleteJoueur(j);
         Show_Joueur();
+         
     }
 
     @FXML
@@ -193,6 +223,35 @@ public class GestionJoueurController implements Initializable {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
+        if (ListeR.getSelectionModel().getSelectedItem().toString().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez une Equipe");
+            alert.showAndWait();
+            return;
+        }
+       
+        
+        
+         if (inp_Rang.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un Rang");
+            alert.showAndWait();
+            return;
+        }
+        if (inp_P.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un pseaudo valid ");
+            alert.showAndWait();
+            return;
+        }
+       
+     
         Joueur J1 = new Joueur(4, Nom, rang, ps, k);
         Jc.ajouterJoueur(J1);
         Show_Joueur();

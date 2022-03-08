@@ -25,6 +25,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -120,6 +121,33 @@ public class InscriptionEquipeController implements Initializable {
         int nbr = Integer.parseInt(nbr_joueur);
         Equipe eq = new Equipe(3, Nom, url, dateJ, nbr);
         EquipeController Ec = new EquipeController();
+        if (inp_Nom.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un Nom");
+            alert.showAndWait();
+            return;
+        }
+       
+        if (inp_url.getText().isEmpty())       
+                {
+                    
+                     Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Erreur");
+                alert.setContentText("Vous devez saisir un url valid");
+                alert.showAndWait();
+                return;
+                }
+        
+         if (inp_nbr.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un nombre valid ");
+            alert.showAndWait();
+            return;
+        }
         Ec.ajouterEquipe(eq);
         Show_Equipe();
     }

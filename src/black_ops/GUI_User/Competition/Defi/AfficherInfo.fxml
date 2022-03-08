@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="898.0" prefWidth="1276.0" style="-fx-background-color: #172333 #172333;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI_User.Competition.Defi.AfficherInfoController">
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: #172333 #172333;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI_User.Competition.Defi.AfficherInfoController">
    <children>
       <HBox alignment="CENTER" layoutX="488.0" layoutY="14.0" prefHeight="44.0" prefWidth="422.0">
          <children>

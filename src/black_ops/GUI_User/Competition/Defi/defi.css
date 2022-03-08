@@ -1,7 +1,9 @@
 /*
  * Empty Stylesheet file.
  */
-
+#grid{
+    -fx-background-color : #0f1316 ;
+}
 .mainFxmlClass {
 
 }

@@ -18,7 +18,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: #e0e4e7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI.Gestion_Competition.Gestion_Defis.GestionDefisController">
+<AnchorPane id="AnchorPane" fx:id="parent" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: #e0e4e7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI.Gestion_Competition.Gestion_Defis.GestionDefisController">
    <children>
       <TableView fx:id="table" layoutX="300.0" layoutY="116.0" onMouseClicked="#handleMouseAction" prefHeight="590.0" prefWidth="1001.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="305.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
         <columns>
