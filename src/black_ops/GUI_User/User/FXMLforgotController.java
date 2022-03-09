@@ -9,8 +9,11 @@ package black_ops.GUI_User.User;
 import black_ops.Controller.Client_Controller;
 import java.io.IOException;
 import java.net.URL;
+import java.security.MessageDigest;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -176,8 +179,26 @@ String emailPW = null;
     }
 
     @FXML
-    private void resetPW(ActionEvent event) throws IOException {
+    public String Hash() throws Exception {
 
+        String mdp_user = "";
+
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        md.update(mdp_user.getBytes());
+
+        byte byteData[] = md.digest();
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < byteData.length; i++) {
+            sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        return sb.toString();
+
+    }
+    @FXML
+    private void resetPW(ActionEvent event) throws IOException, Exception {
+    String h=Hash ();
+      
         Client_Controller sU = new Client_Controller();
         String password = nvPw.getText();
         String cPassword = cnvPW.getText();
@@ -185,7 +206,7 @@ String emailPW = null;
         if   (!password.equals(cPassword)) {
             sU.alert_Box("Verifier mot de passe", "Veillez verifier votre mot de passe ");
         } else {
-            sU.modifierPassword(emailPW, sU.crypterPassword(password));
+            sU.modifierPassword(emailPW, (h+password));
             sU.information_Box("mot de passe", "mot de passe changer avec succes");
             BackToLogin();
 

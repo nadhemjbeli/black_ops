@@ -308,7 +308,7 @@ public class AuthentificationController implements Initializable {
         String id= txt_username_up.getText();
         Path to = null;
          String  m = null;
-         String path = "src/Image/Imageclient";
+         String path = "src/Images/Imageclient";
          JFileChooser chooser = new JFileChooser();
         
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
