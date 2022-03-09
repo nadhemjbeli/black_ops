@@ -5,7 +5,6 @@
  */
 package black_ops.Controller;
 
-import black_ops.Entity.Super;
 import black_ops.Entity.Contact;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,7 +35,7 @@ public class Contact_Controller {
             ste.setString(1, A.getNp_contact());
             ste.setString(2, A.getMail_contact());
             ste.setString(3, A.getMessage());
-            ste.setDate(4,A.getDate());
+            ste.setTimestamp(4,A.getDate());
             ste.executeUpdate();
             System.out.println("Personne Ajoutée");
         } catch (SQLException ex) {
@@ -51,7 +50,7 @@ public class Contact_Controller {
             ste.setString(1, A.getNp_contact());
             ste.setString(2,A.getMail_contact() );
             ste.setString(3, A.getMessage());
-            ste.setDate(4, A.getDate());
+            ste.setTimestamp(4, A.getDate());
             ste.setInt(5, A.getId_contact());
             ste.executeUpdate();
             System.out.println("Personne modifier");
@@ -74,7 +73,7 @@ public class Contact_Controller {
                 A.setNp_contact(rs.getString("Np_contact"));
                 A.setMail_contact(rs.getString("Mail_contact"));
                 A.setMessage(rs.getString("Message"));
-                A.setDate(rs.getDate("Date"));
+                A.setDate(rs.getTimestamp("Date"));
                 contact.add(A);
             }
         } catch (SQLException ex) {

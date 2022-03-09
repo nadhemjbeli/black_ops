@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -14,6 +18,54 @@
 
 <AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: #e0e4e7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI.gestion_utilisateur.AdminController">
    <children>
+      <AnchorPane fx:id="nav" prefHeight="706.0" prefWidth="297.0" style="-fx-background-color: #0f1316;" AnchorPane.rightAnchor="1003.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox prefHeight="558.0" prefWidth="200.0" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="100.0">
+               <children>
+                  <JFXComboBox fx:id="gc" onAction="#showGC" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Communaute" style="-fx-background-color: #0f1316; -fx-prompt-text-fill: #ffffff;" visibleRowCount="2">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="20.0" top="35.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="gcp" layoutX="30.0" layoutY="45.0" onAction="#showComp" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Competition" style="-fx-background-color: #0f1316; -fx-prompt-text-fill: #ffffff;" visibleRowCount="2">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="20.0" top="35.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <Button fx:id="gu" mnemonicParsing="false" onAction="#showU" prefHeight="25.0" prefWidth="151.0" text="Gestion Utlisateur" textFill="#0f1316">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="20.0" top="35.0" />
+                     </VBox.margin>
+                  </Button>
+                  <JFXComboBox fx:id="gCom" layoutX="30.0" layoutY="120.0" onAction="#showCommande" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Commande" style="-fx-background-color: #0f1316; -fx-prompt-text-fill: #ffffff;" visibleRowCount="2">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="20.0" top="35.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="gcat" layoutX="10.0" layoutY="235.0" onAction="#showCat" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Categorie" style="-fx-background-color: #0f1316; -fx-prompt-text-fill: #ffffff;" visibleRowCount="2">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="20.0" top="35.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="gS" layoutX="10.0" layoutY="260.0" onAction="#showS" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Stream" style="-fx-background-color: #0f1316; -fx-prompt-text-fill: #ffffff;" visibleRowCount="2">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="20.0" top="35.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="gJ" layoutX="10.0" layoutY="285.0" onAction="#showJ" prefHeight="25.0" prefWidth="150.0" promptText="Gestion Jeu" style="-fx-background-color: #0f1316; -fx-prompt-text-fill: #ffffff;" visibleRowCount="2">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="20.0" top="35.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
+               </children>
+            </VBox>
+            <ImageView fitHeight="128.0" fitWidth="140.0" layoutX="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Images/Logo_Blanc.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
       <TableView fx:id="table_messages" layoutX="360.0" layoutY="82.0" onMouseClicked="#handleMouseAction" prefHeight="518.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
         <columns>
             <TableColumn fx:id="col_id" maxWidth="300.0" prefWidth="180.0" text="id" />
@@ -21,7 +73,7 @@
             <TableColumn fx:id="col_grade" maxWidth="300.0" text="Grade" />
         </columns>
       </TableView>
-      <AnchorPane layoutX="20.0" layoutY="24.0" prefHeight="600.0" prefWidth="300.0" style="-fx-background-color: #0f1316;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="main" layoutX="20.0" layoutY="24.0" prefHeight="600.0" prefWidth="300.0" style="-fx-background-color: #0f1316;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox layoutX="62.0" layoutY="77.0" prefHeight="345.0" prefWidth="176.0" AnchorPane.bottomAnchor="278.0" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="77.0">
                <children>
@@ -66,6 +118,9 @@
                <graphic>
                   <FontAwesomeIconView fill="#e0e4e7" glyphName="PLUS" size="40" />
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button fx:id="btn_edit" layoutX="87.0" layoutY="490.0" mnemonicParsing="false" onAction="#edit_message" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: #0f1316; -fx-background-ra: 100%;" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="87.0">
                <font>
@@ -74,6 +129,9 @@
                <graphic>
                   <FontAwesomeIconView fill="#e0e4e7" glyphName="EDIT" size="40" />
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button fx:id="btn_delete" layoutX="156.0" layoutY="490.0" mnemonicParsing="false" onAction="#delete_message" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: #0f1316; -fx-background-ra: 100%;" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="156.0">
                <font>
@@ -82,6 +140,9 @@
                <graphic>
                   <FontAwesomeIconView fill="#e0e4e7" glyphName="TRASH" size="40" />
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button fx:id="btn_diselect" mnemonicParsing="false" onAction="#disselect" prefHeight="55.0" prefWidth="55.0" style="-fx-background-color: #0f1316; -fx-background-ra: 100%;" AnchorPane.bottomAnchor="55.0" AnchorPane.leftAnchor="222.0">
                <font>
@@ -90,16 +151,23 @@
                <graphic>
                   <FontAwesomeIconView fill="#e0e4e7" glyphName="MINUS" size="40" />
                </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </AnchorPane>
-      <Button fx:id="btn_refresh" layoutX="315.0" layoutY="9.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 100%; -fx-background-color: #e0e4e7;" AnchorPane.bottomAnchor="641.0" AnchorPane.leftAnchor="315.0" AnchorPane.rightAnchor="935.0" AnchorPane.topAnchor="9.0">
+      
+      <Button fx:id="btn_refresh" layoutX="410.0" layoutY="14.0" mnemonicParsing="false" onAction="#refreshTable" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 100%; -fx-background-color: #e0e4e7;" AnchorPane.bottomAnchor="636.0" AnchorPane.leftAnchor="410.0" AnchorPane.rightAnchor="840.0" AnchorPane.topAnchor="14.0">
          <graphic>
-            <FontAwesomeIconView fill="#09a195" glyphName="REFRESH" size="30" />
+            <FontAwesomeIconView fill="#09a195" glyphName="REFRESH" size="30" text="" />
          </graphic>
          <font>
             <Font size="14.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <HBox alignment="CENTER_RIGHT" layoutX="810.0" layoutY="10.0" prefHeight="50.0" prefWidth="343.0" AnchorPane.bottomAnchor="640.0" AnchorPane.leftAnchor="957.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
          <children>
@@ -114,5 +182,15 @@
             </Button>
          </children>
       </HBox>
+      <Button fx:id="hide" layoutX="315.0" layoutY="65.0" mnemonicParsing="false" onAction="#hide_nav_bar" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="30.0">
+         <graphic>
+            <FontAwesomeIconView fill="#09a195" glyphName="NAVICON" size="20" />
+         </graphic>
+      </Button>
+      <Button fx:id="show" mnemonicParsing="false" onAction="#show_nav_bar" AnchorPane.leftAnchor="350.0" AnchorPane.topAnchor="30.0">
+         <graphic>
+            <FontAwesomeIconView fill="#09a195" glyphName="NAVICON" size="20" />
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>

@@ -6,21 +6,28 @@
 package black_ops.GUI.gestion_utilisateur;
 
 import black_ops.Controller.Admin_Controller;
-import black_ops.Controller.Message_Controller;
-import black_ops.Entity.Messagee;
 import black_ops.Entity.Super;
+import com.jfoenix.controls.JFXComboBox;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -59,6 +66,31 @@ public class AdminController implements Initializable {
     private TextField txt_search;
     @FXML
     private Button btn_search;
+    @FXML
+    private AnchorPane nav;
+    @FXML
+    private JFXComboBox gc;
+    @FXML
+    private JFXComboBox gcp;
+    @FXML
+    private Button gu;
+    @FXML
+    private JFXComboBox gCom;
+    @FXML
+    private JFXComboBox gcat;
+    @FXML
+    private JFXComboBox gS;
+    @FXML
+    private JFXComboBox gJ;
+    @FXML
+    private AnchorPane main;
+    @FXML
+    private Button hide;
+    @FXML
+    private Button show;
+    private Stage stage;
+ private Scene scene;
+ private Parent root;
 
     /**
      * Initializes the controller class.
@@ -67,6 +99,8 @@ public class AdminController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         showAdmin();
+        main.setVisible(true);
+        ComboBoxListInti();
     }    
 
     @FXML
@@ -168,5 +202,166 @@ public class AdminController implements Initializable {
         
         table_messages.setItems(list);
     }
+
+    @FXML
+    private void show_nav_bar(ActionEvent event) {
+     nav.setVisible(true); 
+     hide.setVisible(true);
+     show.setVisible(false);
+     main.setVisible(false);
+     
+    }
+
+  
+
+    @FXML
+    private void hide_nav_bar(ActionEvent event) {
+        nav.setVisible(false); 
+     hide.setVisible(false);
+     show.setVisible(true);
+     main.setVisible(true);
+    }
+
+    @FXML
+    private void showGC(ActionEvent event) {
+        String s = gc.getSelectionModel().getSelectedItem().toString();
+        
+    }
+
+    @FXML
+    private void showComp(ActionEvent event) throws Exception {
+        
+        String s = gcp.getSelectionModel().getSelectedItem().toString();
+//       
+        switch(s){
+            case "Gestion Defi" :
+                 SwitchScene(stage,"Gestion_Competition/Gestion_Defis/GestionDefi",event);
+                 break ;
+            case "Gestion Matches" :
+                    SwitchScene(stage,"Gestion_Competition/Gestion_Details_Defis/GestionDetailsDefis",event);
+           break ; 
+            case "Gestion Joueurs" :
+                  SwitchScene(stage,"Gestion_Competition/Gestion_Joueur/GestionJoueur",event);
+           break ;
+            case "Gestion Equipe":
+                SwitchScene(stage,"Gestion_Competition/Gestion_Equipe/GestionEquipe",event);
+        }
+   
+    }
+
+    @FXML
+    private void showU(ActionEvent event) throws IOException, Exception {
+        root = FXMLLoader.load(getClass().getResource("Admin.fxml"));
+          
+  stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+  scene = new Scene(root);
+  stage.setScene(scene);
+  stage.show();
+        }  
+        
+    
+
+    @FXML
+    private void showCommande(ActionEvent event) throws Exception {
+        String s = gCom.getSelectionModel().getSelectedItem().toString();
+        switch(s){
+            case "Gestion Defi" :
+                 SwitchScene(stage,"Gestion_Competition/Gestion_Defis/GestionDefi",event);
+                 break ;
+            case "Gestion Matches" :
+                    SwitchScene(stage,"Gestion_Competition/Gestion_Details_Defis/GestionDetailsDefis",event);
+           break ; 
+            case "Gestion Joueurs" :
+                  SwitchScene(stage,"Gestion_Competition/Gestion_Joueur/GestionJoueur",event);
+           break ;
+            case "Gestion Equipe":
+                SwitchScene(stage,"Gestion_Competition/Gestion_Equipe/GestionEquipe",event);
+        }
+        
+    }
+
+    @FXML
+    private void showCat(ActionEvent event) throws Exception {
+        String s = gcat.getSelectionModel().getSelectedItem().toString();
+        switch(s){
+            case "Gestion Defi" :
+                 SwitchScene(stage,"Gestion_Competition/Gestion_Defis/GestionDefi",event);
+                 break ;
+            case "Gestion Matches" :
+                    SwitchScene(stage,"Gestion_Competition/Gestion_Details_Defis/GestionDetailsDefis",event);
+           break ; 
+            case "Gestion Joueurs" :
+                  SwitchScene(stage,"Gestion_Competition/Gestion_Joueur/GestionJoueur",event);
+           break ;
+            case "Gestion Equipe":
+                SwitchScene(stage,"Gestion_Competition/Gestion_Equipe/GestionEquipe",event);
+        }
+        
+    }
+
+    @FXML
+    private void showS(ActionEvent event) throws Exception {
+        String s = gS.getSelectionModel().getSelectedItem().toString();
+        switch(s){
+            case "Gestion Defi" :
+                 SwitchScene(stage,"Gestion_Competition/Gestion_Defis/GestionDefi",event);
+                 break ;
+            case "Gestion Matches" :
+                    SwitchScene(stage,"Gestion_Competition/Gestion_Details_Defis/GestionDetailsDefis",event);
+           break ; 
+            case "Gestion Joueurs" :
+                  SwitchScene(stage,"Gestion_Competition/Gestion_Joueur/GestionJoueur",event);
+           break ;
+            case "Gestion Equipe":
+                SwitchScene(stage,"Gestion_Competition/Gestion_Equipe/GestionEquipe",event);
+        }
+    }
+
+    @FXML
+    private void showJ(ActionEvent event) throws Exception {
+        String s = gJ.getSelectionModel().getSelectedItem().toString();
+        switch(s){
+            case "Gestion Defi" :
+                 SwitchScene(stage,"Gestion_Competition/Gestion_Defis/GestionDefi",event);
+                 break ;
+            case "Gestion Matches" :
+                    SwitchScene(stage,"Gestion_Competition/Gestion_Details_Defis/GestionDetailsDefis",event);
+           break ; 
+            case "Gestion Joueurs" :
+                  SwitchScene(stage,"Gestion_Competition/Gestion_Joueur/GestionJoueur",event);
+           break ;
+            case "Gestion Equipe":
+                SwitchScene(stage,"Gestion_Competition/Gestion_Equipe/GestionEquipe",event);
+                break ;
+        }
+    }
+  
+    public void SwitchScene(Stage stage ,String nom ,ActionEvent event ) throws Exception {
+        
+        String path = "/black_ops/GUI/" ;
+        
+    FXMLLoader loader = new FXMLLoader(getClass().getResource(path+nom+".fxml"));
+            Parent root = loader.load();
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+    }
+    public void ComboBoxListInti(){
+       nav.setVisible(false);  
+       ObservableList<String> GestionCommunaute = FXCollections.observableArrayList(" Gestion Message" ,"Gestion Video");
+       gc.setItems(GestionCommunaute);
+       ObservableList<String> GestionCompetition = FXCollections.observableArrayList("Gestion Defi" ,"Gestion Matches" ,"Gestion Joueurs","Gestion Equipe");
+       gcp.setItems(GestionCompetition);
+       ObservableList<String> GestionCommande = FXCollections.observableArrayList("Gestion Commande" ,"Gestion  Ligne Commande" );
+       gCom.setItems(GestionCommande);
+       ObservableList<String> GestionCategorie = FXCollections.observableArrayList("Gestion Categorie" ,"Gestion  SousCategorie" );
+       gcat.setItems(GestionCategorie);
+        ObservableList<String> GestionStream = FXCollections.observableArrayList("Stream Replay " ,"Stream Info " );
+       gS.setItems(GestionStream);
+        ObservableList<String> GestionJeu = FXCollections.observableArrayList("Gestion Jeu" ,"Gestion  Image", "Gestion  Skin" ,"Gestion  Champion"  );
+       gJ.setItems(GestionJeu);
+    }
+
     
 }

@@ -5,7 +5,7 @@
  */
 package black_ops.Entity;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
@@ -16,9 +16,9 @@ public class Contact {
     private String np_contact;
     private String mail_contact;
     private String message;
-    private Date date;
+    private Timestamp date;
 
-    public Contact(int id_contact, String np_contact, String mail_contact, String message, Date date) {
+    public Contact(int id_contact, String np_contact, String mail_contact, String message, Timestamp date) {
         this.id_contact = id_contact;
         this.np_contact = np_contact;
         this.mail_contact = mail_contact;
@@ -40,11 +40,11 @@ public class Contact {
         this.id_contact = id_contact;
     }
 
-    public Date getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 

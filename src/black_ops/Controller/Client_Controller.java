@@ -6,7 +6,6 @@
 package black_ops.Controller;
 
 import black_ops.Entity.Client;
-import black_ops.Entity.Contact;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,6 +13,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import black_ops.config.MaConnexion;
+import java.security.MessageDigest;
+import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javafx.scene.control.Alert;
+import javax.mail.Session;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.xml.bind.DatatypeConverter;
 
 /**
  *
@@ -105,5 +115,160 @@ public class Client_Controller {
         }catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    
+        
+}
+     public  void sendMail(String receveursList,String object,String corps) {
+        Properties properties = new Properties();
+        
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host","smtp.gmail.com");
+        properties.put("mail.smtp.port", "25"); 
+        
+        String MonEmail = "khalilkhemiri33@gmail.com";
+        String password = "Khalil951753";
+        
+
+
+
+
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+
+            @Override
+            protected javax.mail.PasswordAuthentication getPasswordAuthentication()
+            {
+                return new javax.mail.PasswordAuthentication(MonEmail, password);
+            }
+        
+        });
+        
+        javax.mail.Message message = prepareMessage(session,MonEmail,receveursList,object,corps);
+        
+        try {
+            javax.mail.Transport.send(message);
+        } catch (javax.mail.MessagingException ex) {
+            Logger.getLogger(Client_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        System.err.println("Message envoyÃ© avec succÃ¨s");
+    }
+    
+    private static javax.mail.Message prepareMessage(Session session,String email,String receveursList,String object,String corps)
+    {
+        javax.mail.Message message = new MimeMessage(session);
+        
+        try {
+            message.setFrom(new InternetAddress(email));
+            
+            message.setSubject(object);
+            message.setRecipient(javax.mail.Message.RecipientType.TO, new InternetAddress(receveursList));
+            message.setText(corps);
+            
+            return message;
+        } catch (javax.mail.MessagingException ex) {
+            Logger.getLogger(Client_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
+    }
+    public String getAlphaNumericString(int n) {
+
+        // chose a Character random from this String 
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789"
+                + "abcdefghijklmnopqrstuvxyz";
+
+        // create StringBuffer size of AlphaNumericString 
+        StringBuilder sb = new StringBuilder(n);
+
+        for (int i = 0; i < n; i++) {
+
+            // generate a random number between 
+            // 0 to AlphaNumericString variable length 
+            int index
+                    = (int) (AlphaNumericString.length()
+                    * Math.random());
+
+            // add Character one by one in end of sb 
+            sb.append(AlphaNumericString
+                    .charAt(index));
+        }
+
+        return sb.toString();
+    }
+    
+    public boolean verifierEmailBd(String email) { //Controle De Saisie si mail existe
+        PreparedStatement stmt = null;
+        ResultSet rst = null;
+        try {
+            String sql = "SELECT * FROM client WHERE mail_Cl=?";
+            stmt = mc.prepareStatement(sql);
+            stmt.setString(1, email);
+            rst = stmt.executeQuery();
+            if (rst.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return false;
+    }
+    public void information_Box(String title, String message) {
+        Alert dg = new Alert(Alert.AlertType.INFORMATION);
+        dg.setTitle(title);
+        dg.setContentText(message);
+        dg.show();
+    }
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+    public boolean testEmail(String mail) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(mail);
+        return matcher.find();
+    }
+    
+    public void alert_Box(String title, String message) {
+        Alert dg = new Alert(Alert.AlertType.WARNING);
+        dg.setTitle(title);
+        dg.setContentText(message);
+        dg.show();
+    }
+    
+        public static final Pattern VALID_PASSWORD_REGEX = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$", Pattern.CASE_INSENSITIVE);
+
+    public boolean testPassword(String password) {
+        Matcher matcher = VALID_PASSWORD_REGEX.matcher(password);
+        return matcher.find();
+    }
+    
+    public String crypterPassword(String password) {
+        String hashValue = "";
+        try {
+
+            MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+            messageDigest.update(password.getBytes());
+            byte[] digestedBytes = messageDigest.digest();
+            hashValue = DatatypeConverter.printHexBinary(digestedBytes).toLowerCase();
+
+        } catch (Exception e) {
+        }
+
+        return hashValue;
+    }
+    
+    public void modifierPassword(String mail, String password) {
+        PreparedStatement stmt;
+        try {
+
+            String sql = "UPDATE client SET pass_Cl=? WHERE mail_Cl=?";
+            stmt = mc.prepareStatement(sql);
+            stmt.setString(1, password);
+            stmt.setString(2, mail);
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Client_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }
+
