@@ -455,7 +455,7 @@ int options = JOptionPane.YES_NO_OPTION;
         String id =inp_Nom.getText();
           Path to = null;
          String  m = null;
-         String path = "src/Image/Image defi";
+         String path = "src/Images/Image defi";
          JFileChooser chooser = new JFileChooser();
         
         FileNameExtensionFilter filter = new FileNameExtensionFilter(

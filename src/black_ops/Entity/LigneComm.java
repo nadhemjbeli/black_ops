@@ -31,7 +31,16 @@ public class LigneComm {
 
     @Override
     public String toString() {
-        return "Ligne de Commande{" + "id = " + id + ", Quantite = " + quantite + ", Prix = " + prix + ", Id Defi = " + id_defi + ", Id Commande = " + id_commande +  '}';
+        return "LigneComm{" + "id=" + id + ", id_defi=" + id_defi + ", id_commande=" + id_commande + ", prix=" + prix + ", quantite=" + quantite + '}';
+    }
+
+   
+    
+    public String toString1() {
+        return "Votre Commande "+ "\n"
+                +", Quantite = " + quantite + ", "+"\n"
+                + "Prix = " + prix + "\n"
+               ;
     }
 
     public int getId() {

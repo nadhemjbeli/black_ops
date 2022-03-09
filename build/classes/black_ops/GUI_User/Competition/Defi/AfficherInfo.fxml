@@ -3,13 +3,14 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: #172333 #172333;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI_User.Competition.Defi.AfficherInfoController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #172333 #172333;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI_User.Competition.Defi.AfficherInfoController">
    <children>
       <HBox alignment="CENTER" layoutX="488.0" layoutY="14.0" prefHeight="44.0" prefWidth="422.0">
          <children>
@@ -24,8 +25,8 @@
             </Label>
          </children>
       </HBox>
-      <ImageView fx:id="img" fitHeight="337.0" fitWidth="691.0" layoutX="334.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true" />
-      <VBox layoutX="334.0" layoutY="438.0" prefHeight="75.0" prefWidth="378.0">
+      <ImageView fx:id="img" fitHeight="337.0" fitWidth="673.0" layoutX="323.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true" />
+      <VBox layoutX="14.0" layoutY="161.0" prefHeight="75.0" prefWidth="378.0">
          <children>
             <HBox prefHeight="50.0" prefWidth="332.0">
                <children>
@@ -55,7 +56,7 @@
             </HBox>
          </children>
       </VBox>
-      <VBox alignment="TOP_RIGHT" layoutX="25.0" layoutY="584.0" prefHeight="295.0" prefWidth="1237.0">
+      <VBox alignment="TOP_RIGHT" layoutX="14.0" layoutY="372.0" prefHeight="247.0" prefWidth="1000.0">
          <children>
             <HBox prefHeight="44.0" prefWidth="1237.0">
                <children>
@@ -91,9 +92,11 @@
             </HBox>
          </children>
       </VBox>
-      <Button layoutX="1166.0" layoutY="21.0" mnemonicParsing="false" onAction="#afficherInforma" style="-fx-background-color: #ffffff;">
+      <Button layoutX="1166.0" layoutY="21.0" mnemonicParsing="false" onAction="#afficherInforma" style="-fx-background-color: #ffffff;" AnchorPane.rightAnchor="80.0">
          <graphic>
             <FontAwesomeIconView fill="#190eed" glyphName="REFRESH" size="20" />
          </graphic></Button>
+      <Button fx:id="btn" layoutX="14.0" layoutY="258.0" mnemonicParsing="false" onAction="#passer" text="Passer une commande" />
+      <TextField fx:id="id" layoutX="25.0" layoutY="24.0" prefHeight="25.0" prefWidth="34.0" visible="false" />
    </children>
 </AnchorPane>

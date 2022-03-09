@@ -130,8 +130,9 @@ public ObservableList<Defi> getData()
               FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("../Defi/item.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
-            ItemController it = fxmlLoader.getController();
-                 it.setData(def.get(i), mylistener);
+               
+                ItemController it = fxmlLoader.getController();
+                it.setData(def.get(i), mylistener);
           
                 if (column == 3) {
                     column = 0;
@@ -166,8 +167,10 @@ public ObservableList<Defi> getData()
             Scene scene = new Scene(root);
             Stage stage=new Stage();
             
-        stage.setScene(scene);
-        stage.show();
+            stage.setScene(scene);
+            stage.setWidth(1300);
+            stage.setHeight(700);
+            stage.show();
             
         } catch (IOException ex) {
             System.out.println(ex.getMessage());

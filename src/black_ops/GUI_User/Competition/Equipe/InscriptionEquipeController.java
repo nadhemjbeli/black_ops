@@ -90,7 +90,7 @@ public class InscriptionEquipeController implements Initializable {
         String id = inp_Nom.getText();
         Path to = null;
         String m = null;
-        String path = "src/Image/Logo_Equipe";
+        String path = "src/Images/Logo_Equipe";
         JFileChooser chooser = new JFileChooser();
 
         FileNameExtensionFilter filter = new FileNameExtensionFilter(

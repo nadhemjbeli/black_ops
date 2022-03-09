@@ -728,7 +728,7 @@ public class GestionDetailsDefisController implements Initializable {
         String nom = id_eqa +" vs "+ id_eqb;
         Path to = null;
         String m = null;
-        String path = "src/Image/Matches";
+        String path = "src/Images/Matches";
         JFileChooser chooser = new JFileChooser();
 
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
