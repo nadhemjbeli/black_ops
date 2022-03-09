@@ -97,7 +97,7 @@ String emailPW = null;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("authentification.fxml"));
         Parent root = loader.load();
         Stage window = (Stage) resetPW.getScene().getWindow();
-        window.setScene(new Scene(root, 800, 800));
+        window.setScene(new Scene(root));
     }
 
     @FXML

@@ -3,9 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/ESPRIT/PiDev/crud_utilisateur/src/black_ops/Controller/Client_Controller.java</file>
-            <file>file:/D:/ESPRIT/PiDev/crud_utilisateur/src/black_ops/GUI/gestion_utilisateur/Main_Admin.java</file>
-            <file>file:/D:/ESPRIT/PiDev/crud_utilisateur/src/black_ops/GUI/gestion_utilisateur/AdminController.java</file>
+            <file>file:/D:/ESPRIT/PiDev/crud_utilisateur/src/black_ops/GUI_User/User/FXMLforgotController.java</file>
+            <file>file:/D:/ESPRIT/PiDev/crud_utilisateur/src/black_ops/GUI_User/User/AuthentificationController.java</file>
         </group>
     </open-files>
 </project-private>

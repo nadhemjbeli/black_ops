@@ -8,7 +8,6 @@ package black_ops.GUI_User.User;
 import black_ops.Controller.Client_Controller;
 import black_ops.config.MaConnexion;
 import java.io.File;
-
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.CopyOption;
@@ -31,19 +30,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import static sun.security.jgss.GSSUtil.login;
 
 /**
  * FXML Controller class
@@ -82,11 +82,10 @@ public class AuthentificationController implements Initializable {
     private Button id_pane_signup;
     @FXML
     private TextField url;
-    @FXML
-    private Label exit_button;
      Stage Stage1;
-    @FXML
     private AnchorPane anchorpanelglobal;
+    @FXML
+    private AnchorPane anchorpanelglobal1;
     
     
     
@@ -109,8 +108,62 @@ public class AuthentificationController implements Initializable {
     private void btn_login(ActionEvent event) throws Exception {
         cn=MaConnexion.getInstance().getCnx();
         String sql="Select * from client where mail_Cl = ? and pass_Cl =?   " ;
+        if (txt_email.getText().isEmpty() 
+                        || !txt_email.getText().contains("@") 
+                        || !txt_email.getText().contains(".") 
+                       //|| txt_email.getText().indexOf("@", 0) > email.getText().indexOf(".", 0) 
+                        || txt_email.getText().indexOf("#", 0) >= 0
+                        || txt_email.getText().indexOf("&", 0) >= 0
+                        || txt_email.getText().indexOf("(", 0) >= 0
+                        //| txt_email.getText().length() - email.getText().replace("@", "").length() > 1
+                        //|| txt_email.getText().length() - email.getText().replace(".", "").length() > 1
+                        || txt_email.getText().indexOf("Â§", 0) >= 0
+                        || txt_email.getText().indexOf("!", 0) >= 0
+                        || txt_email.getText().indexOf("Ã§", 0) >= 0
+                        || txt_email.getText().indexOf("Ã ", 0) >= 0
+                        || txt_email.getText().indexOf("Ã©", 0) >= 0
+                        || txt_email.getText().indexOf(")", 0) >= 0
+                        || txt_email.getText().indexOf("{", 0) >= 0
+                        || txt_email.getText().indexOf("}", 0) >= 0
+                        || txt_email.getText().indexOf("|", 0) >= 0
+                        || txt_email.getText().indexOf("$", 0) >= 0
+                        || txt_email.getText().indexOf("*", 0) >= 0
+                        || txt_email.getText().indexOf("â‚¬", 0) >= 0
+                        || txt_email.getText().indexOf("`", 0) >= 0
+                        || txt_email.getText().indexOf("\'", 0) >= 0
+                        || txt_email.getText().indexOf("\"", 0) >= 0
+                        || txt_email.getText().indexOf("%", 0) >= 0
+                        || txt_email.getText().indexOf("+", 0) >= 0
+                        || txt_email.getText().indexOf("=", 0) >= 0
+                        || txt_email.getText().indexOf("/", 0) >= 0
+                        || txt_email.getText().indexOf("\\", 0) >= 0
+                        || txt_email.getText().indexOf(":", 0) >= 0
+                        || txt_email.getText().indexOf(",", 0) >= 0
+                        || txt_email.getText().indexOf("?", 0) >= 0
+                        || txt_email.getText().indexOf(";", 0) >= 0
+                        || txt_email.getText().indexOf("Â°", 0) >= 0
+                        || txt_email.getText().indexOf("<", 0) >= 0
+                        || txt_email.getText().indexOf(">", 0) >= 0) 
+                {
+                    
+                     Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Erreur");
+                alert.setContentText("Vous devez saisir un mail valid");
+                alert.showAndWait();
+                return;
+                }
+        if (txt_password.getText().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setContentText("Vous devez selectionnez un password");
+            alert.showAndWait();
+            return;
+        }
+       
         
         try{
+            
             String h=Hash();
             String pwd="";
             pst=cn.prepareStatement(sql);
@@ -245,7 +298,7 @@ public class AuthentificationController implements Initializable {
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        LoginpaneShow();
         
     }    
    
@@ -329,6 +382,11 @@ public class AuthentificationController implements Initializable {
                 }
          
     }
+
+
+    
+
+   
     
 
     
