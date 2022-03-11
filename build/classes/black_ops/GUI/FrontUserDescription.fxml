@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="994.0" prefWidth="1570.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI.FrontUserDescriptionController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="1570.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="19.0">
+         <children>
+            <Text fx:id="titrepage" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Description">
+               <font>
+                  <Font name="Gordita-Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <Text fx:id="retour" layoutX="103.0" layoutY="108.0" onMouseClicked="#Afficherretour" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Retour">
+         <font>
+            <Font name="Orkney-Regular" size="15.0" />
+         </font>
+      </Text>
+      <FontAwesomeIconView fill="#09a195" glyphName="ARROW_LEFT" layoutX="75.0" layoutY="111.0" onMouseClicked="#Afficherretour" size="25" />
+      <ImageView fx:id="ImageDescription" fitHeight="434.0" fitWidth="622.0" layoutX="75.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="120.0" />
+      <Label fx:id="txttitre" layoutX="77.0" layoutY="629.0" style="-fx-font-weight: bold;" text="Label" AnchorPane.leftAnchor="120.0" />
+      <Label fx:id="txtdescription" layoutX="77.0" layoutY="682.0" prefHeight="100.0" prefWidth="600.0" text="Label" wrapText="true" AnchorPane.leftAnchor="120.0" />
+      <Label layoutX="842.0" layoutY="244.0" lineSpacing="9.0" prefHeight="363.0" prefWidth="588.0" text="Quand on veut faire des streams sur Twitch, il est incontournable de passer pas l’installation d’un encodeur vidéo. En plus de regrouper toutes les ressources audios et vidéos en un seul flux, il réduira considérablement la taille de celui-ci pour l’envoyer directement sur Twitch. Et ce, tout en conservant la même qualité vidéo et audio… D’où l’importance du réglage de son encodeur vidéo. À savoir, plus les préréglages sont rapides, plus cela demandera de la puissance à ton ordinateur.Un logiciel d’encodage vidéo va donc bien plus loin et est bien plus efficace qu’un simple logiciel de capture d’écran qui filme uniquement son écran.Tips: Pour réaliser un live Twitch, on te conseille d’avoir une bonne connexion internet, au moins 2,5 MB / seconde." wrapText="true" AnchorPane.rightAnchor="140.0" />
+      <Label layoutX="842.0" layoutY="204.0" style="-fx-font-size: 21;" text="Qu’est-ce qu’un logiciel d’encodage vidéo ?" textFill="#09a195" AnchorPane.rightAnchor="308.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="452.0" layoutX="825.0" layoutY="179.0" stroke="#09a195" strokeType="INSIDE" style="-fx-fill: transparent;" width="622.0" AnchorPane.rightAnchor="123.0" />
+      <Ellipse fill="#09a195" layoutX="1526.0" layoutY="100.0" onMouseClicked="#darkMode" radiusX="25.0" radiusY="25.0" stroke="#09a195" strokeType="INSIDE" style="-fx-fill: transparent;" visible="false" AnchorPane.rightAnchor="19.0" />
+      <Button fx:id="btnmoon" layoutX="1501.0" layoutY="74.0" mnemonicParsing="false" onAction="#changemode" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 50; -fx-background-color: transparent; -fx-border-color: #09a195;" AnchorPane.rightAnchor="19.0">
+         <graphic>
+            <FontAwesomeIconView fx:id="moonIcon" fill="#09a195" glyphName="MOON_ALT" size="30" />
+         </graphic>
+      </Button>
+      <Button fx:id="btnlight" layoutX="1501.0" layoutY="74.0" mnemonicParsing="false" onAction="#changemode" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 40; -fx-background-color: transparent; -fx-border-color: #09a195;" visible="false" AnchorPane.rightAnchor="19.0">
+         <graphic>
+            <FontAwesomeIconView fx:id="lightIcon" fill="#09a195" glyphName="SUN_ALT" size="30" />
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

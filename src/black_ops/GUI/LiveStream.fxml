@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="Pane" fx:id="Pane" prefHeight="994.0" prefWidth="1570.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI.LiveStreamingController">
+   <children>
+      <VBox fx:id="vboxmedia" layoutX="75.0" layoutY="189.0" prefHeight="670.0" prefWidth="900.0" />
+       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="1570.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="19.0">
+         <children>
+            <Text fx:id="titrepage" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="Text" text="Live Stream">
+               <font>
+                  <Font name="Gordita-Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="1020.0" layoutY="186.0" stroke="#09a195" strokeType="INSIDE" strokeWidth="102.0" width="200.0" AnchorPane.rightAnchor="350.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="200.0" layoutX="1314.0" layoutY="539.0" stroke="#09a195" strokeType="INSIDE" strokeWidth="102.0" width="200.0" AnchorPane.rightAnchor="56.0" />
+      <ScrollPane layoutX="1024.0" layoutY="189.0" prefHeight="545.0" prefWidth="486.0" AnchorPane.rightAnchor="60.0">
+         <content>
+            <VBox fx:id="vboxcommentaire" maxHeight="554.0" maxWidth="486.0" prefHeight="554.0" prefWidth="486.0" style="-fx-border-color: #09a195;" />
+         </content>
+      </ScrollPane>
+      <TextField fx:id="txtcomm" layoutX="1024.0" layoutY="753.0" prefHeight="31.0" prefWidth="397.0" AnchorPane.rightAnchor="149.0" />
+      <Button fx:id="btnsend" layoutX="1437.0" layoutY="753.0" mnemonicParsing="false" onAction="#ajoutercomm" style="-fx-background-color: #09a195;" text="Envoyer" textFill="WHITE" AnchorPane.rightAnchor="56.0">
+         <font>
+            <Font name="Orkney-Regular" size="15.0" />
+         </font></Button>
+      <Text fx:id="retour" layoutX="103.0" layoutY="108.0" onMouseClicked="#Afficherretour" strokeType="OUTSIDE" strokeWidth="0.0" text="Retour">
+         <font>
+            <Font name="Orkney-Regular" size="15.0" />
+         </font>
+      </Text>
+      <FontAwesomeIconView fill="#09a195" glyphName="ARROW_LEFT" layoutX="75.0" layoutY="111.0" onMouseClicked="#Afficherretour" size="25" />
+      <Label fx:id="nomlive" layoutX="508.0" layoutY="161.0" text="Label" />
+      <Label fx:id="nomlive1" layoutX="1201.0" layoutY="161.0" style="-fx-font-weight: bold;" text="Commentaire Chat" AnchorPane.rightAnchor="236.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="6.0" layoutX="-25.0" layoutY="283.0" rotate="90.0" stroke="#09a195" strokeType="INSIDE" strokeWidth="102.0" width="200.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="6.0" layoutX="73.0" layoutY="186.0" stroke="#09a195" strokeType="INSIDE" strokeWidth="102.0" width="200.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="6.0" layoutX="878.0" layoutY="688.0" rotate="90.0" stroke="#09a195" strokeType="INSIDE" strokeWidth="102.0" width="200.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="6.0" layoutX="779.0" layoutY="787.0" stroke="#09a195" strokeType="INSIDE" strokeWidth="102.0" width="200.0" />
+      <Rectangle fx:id="rectinsta" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="93.0" layoutX="37.0" layoutY="890.0" stroke="#09a195" strokeType="INSIDE" width="235.0" AnchorPane.leftAnchor="101.0" />
+      <Rectangle fx:id="rectfb" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="93.0" layoutX="470.0" layoutY="890.0" stroke="#09a195" strokeType="INSIDE" width="235.0" AnchorPane.leftAnchor="470.0" />
+      <Rectangle fx:id="rectyou" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="93.0" layoutX="1120.0" layoutY="890.0" stroke="#09a195" strokeType="INSIDE" width="235.0" AnchorPane.rightAnchor="101.0" />
+      <FontAwesomeIconView fill="#09a195" glyphName="INSTAGRAM" layoutX="114.0" layoutY="957.0" size="60" />
+      <FontAwesomeIconView fill="#09a195" glyphName="FACEBOOK_SQUARE" layoutX="482.0" layoutY="956.0" size="60" />
+      <FontAwesomeIconView fill="#09a195" glyphName="YOUTUBE" layoutX="1253.0" layoutY="956.0" size="60" AnchorPane.rightAnchor="265.5714302062988" />
+      <Rectangle fx:id="recttw" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="93.0" layoutX="864.0" layoutY="889.0" stroke="#09a195" strokeType="INSIDE" width="235.0" AnchorPane.rightAnchor="471.0" />
+      <FontAwesomeIconView fill="#09a195" glyphName="TWITCH" layoutX="879.0" layoutY="956.0" size="60" AnchorPane.rightAnchor="631.0" />
+      <Label layoutX="184.0" layoutY="905.0" text="Instagram" />
+      <Label layoutX="546.0" layoutY="905.0" text="Facebook" />
+      <Label layoutX="951.0" layoutY="905.0" text="Twitch" AnchorPane.rightAnchor="575.0" />
+      <Label layoutX="1315.0" layoutY="905.0" text="Youtube" AnchorPane.rightAnchor="196.0" />
+      <Label layoutX="184.0" layoutY="937.0" style="-fx-font-weight: bold;" text="Black_Ops" textFill="#09a195" />
+      <Label layoutX="550.0" layoutY="937.0" style="-fx-font-weight: bold;" text="Black Ops" textFill="#09a195" />
+      <Label layoutX="951.0" layoutY="937.0" style="-fx-font-weight: bold;" text="Black&amp;Ops" textFill="#09a195" AnchorPane.rightAnchor="541.0" />
+      <Label layoutX="1316.0" layoutY="937.0" style="-fx-font-weight: bold;" text="BlackOps" textFill="#09a195" AnchorPane.rightAnchor="186.0" />
+   <Button fx:id="btnmoon" layoutX="1501.0" layoutY="74.0" mnemonicParsing="false" onAction="#changemode" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 50; -fx-background-color: transparent; -fx-border-color: #09a195;" AnchorPane.rightAnchor="19.0">
+         <graphic>
+            <FontAwesomeIconView fx:id="moonIcon" fill="#09a195" glyphName="MOON_ALT" size="30" />
+         </graphic>
+      </Button>
+      <Button fx:id="btnlight" layoutX="1501.0" layoutY="74.0" mnemonicParsing="false" onAction="#changemode" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 40; -fx-background-color: transparent; -fx-border-color: #09a195;" visible="false" AnchorPane.rightAnchor="19.0">
+         <graphic>
+            <FontAwesomeIconView fx:id="lightIcon" fill="#09a195" glyphName="SUN_ALT" size="30" />
+         </graphic>
+      </Button>
+   </children>
+
+</AnchorPane>

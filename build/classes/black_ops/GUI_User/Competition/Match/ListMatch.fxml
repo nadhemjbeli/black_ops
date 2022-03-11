@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="Main" prefHeight="900.0" prefWidth="1800.0" style="-fx-background-color: #0f1316;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI_User.Competition.Match.ListMatchController">
+    <stylesheets>
+        <URL value="@listmatch.css" />
+    </stylesheets>
+   
+       <children> 
+           <HBox prefHeight="88.0" prefWidth="1950.0" style="-fx-background-color: #e0e4e7;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-380.0">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#Accueil" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Images/Logo.png" />
+               </image>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="39.0" right="50.0" top="10.0" />
+               </HBox.margin>
+            </ImageView>
+             <HBox alignment="CENTER" prefHeight="88.0" prefWidth="1137.0">
+               <children>
+                  <ComboBox fx:id="ComboJeux" onAction="#Showj" prefWidth="150.0" promptText="Jeux Video" style="-fx-border-color: #09a195; -fx-background-color: transparent;">
+                     <HBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="ComboStream" onAction="#NvabarTarget" prefWidth="150.0" promptText="Stream" style="-fx-border-color: #09a195; -fx-background-color: transparent;">
+                     <HBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="ComboCompétition" onAction="#showComp" prefWidth="150.0" promptText="Compétition" style="-fx-border-color: #09a195; -fx-background-color: transparent;">
+                     <HBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="ComboCommunaute" onAction="#showComu" prefWidth="150.0" promptText="Commuanté" style="-fx-border-color: #09a195; -fx-background-color: transparent;">
+                     <HBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </HBox.margin>
+                  </ComboBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="125.0">
+               <children>
+                        <FontAwesomeIconView fx:id="ComboUser" glyphName="USER" size="30" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+
+      <VBox fx:id="mat" layoutX="640.0" layoutY="315.0" prefHeight="549.0" prefWidth="579.0" AnchorPane.leftAnchor="640.0" AnchorPane.topAnchor="315.0">
+         <padding>
+            <Insets bottom="15.0" top="15.0" />
+         </padding>
+         <children>
+            <VBox fx:id="mat1" prefHeight="535.0" prefWidth="579.0">
+               <padding>
+                  <Insets bottom="15.0" top="15.0" />
+               </padding>
+            </VBox>
+         </children></VBox>
+      <HBox layoutX="699.0" layoutY="91.0" prefHeight="100.0" prefWidth="345.0" AnchorPane.rightAnchor="756.0" AnchorPane.topAnchor="91.0">
+         <children>
+            <FontAwesomeIconView fill="#e0e4e7" glyphName="SEARCH" size="30">
+               <HBox.margin>
+                  <Insets right="24.0" top="32.0" />
+               </HBox.margin>
+            </FontAwesomeIconView>
+            <TextField fx:id="search" onAction="#EnterRecherche" prefHeight="25.0" prefWidth="277.0" promptText="Recherhe">
+               <HBox.margin>
+                  <Insets top="35.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+      <Label fx:id="titre" layoutX="800.0" layoutY="212.0" prefHeight="72.0" prefWidth="253.0" text="List des Match" textAlignment="CENTER" AnchorPane.topAnchor="212.0">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

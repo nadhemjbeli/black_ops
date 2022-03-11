@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="Pane" fx:id="Pane" prefHeight="994.0" prefWidth="1570.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI.FrontUserWatChReplayController">
+   <children>
+      <VBox fx:id="vbox" layoutX="285.0" layoutY="155.0" prefHeight="549.0" prefWidth="1000.0" />
+      <Slider fx:id="sliderTime" layoutX="327.0" layoutY="707.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="18.0" prefWidth="917.0" style="-fx-cursor: hand;" />
+      <Text fx:id="retour" layoutX="103.0" layoutY="108.0" onMouseClicked="#Afficherretour" strokeType="OUTSIDE" strokeWidth="0.0" text="Retour">
+         <font>
+            <Font name="Orkney-Regular" size="15.0" />
+         </font>
+      </Text>
+      <FontAwesomeIconView fill="#09a195" glyphName="ARROW_LEFT" layoutX="75.0" layoutY="111.0" onMouseClicked="#Afficherretour" size="25" />
+      <Label fx:id="totaltime" layoutX="1191.0" layoutY="732.0" text="Label" />
+      <Label fx:id="currenttime" layoutX="1130.0" layoutY="732.0" text="Label" />
+      <Rectangle fx:id="rectainsta" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="93.0" layoutX="77.0" layoutY="891.0" stroke="#09a195" strokeType="INSIDE" width="235.0" AnchorPane.leftAnchor="77.0" />
+      <Rectangle fx:id="rectafb" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="93.0" layoutX="457.0" layoutY="891.0" stroke="#09a195" strokeType="INSIDE" width="235.0" />
+      <Rectangle fx:id="rectayou" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="93.0" layoutX="1277.0" layoutY="889.0" stroke="#09a195" strokeType="INSIDE" width="235.0" AnchorPane.rightAnchor="77.0" />
+      <Rectangle fx:id="rectatw" arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="93.0" layoutX="866.0" layoutY="891.0" stroke="#09a195" strokeType="INSIDE" width="235.0" AnchorPane.rightAnchor="469.0" />
+      <FontAwesomeIconView fill="#09a195" glyphName="INSTAGRAM" layoutX="86.0" layoutY="960.0" size="60" />
+      <FontAwesomeIconView fill="#09a195" glyphName="FACEBOOK_SQUARE" layoutX="470.0" layoutY="956.0" size="60" />
+      <FontAwesomeIconView fill="#09a195" glyphName="YOUTUBE" layoutX="1273.0" layoutY="958.0" size="60" AnchorPane.rightAnchor="245.57143020629883" />
+      <FontAwesomeIconView fill="#09a195" glyphName="TWITCH" layoutX="878.0" layoutY="960.0" size="60" AnchorPane.rightAnchor="632.0" />
+      <Label layoutX="156.0" layoutY="913.0" text="Instagram" />
+      <Label layoutX="538.0" layoutY="913.0" text="Facebook" />
+      <Label layoutX="961.0" layoutY="907.0" text="Twitch" AnchorPane.rightAnchor="565.0" />
+      <Label layoutX="1350.0" layoutY="911.0" text="Youtube" AnchorPane.rightAnchor="161.0" />
+      <Label layoutX="156.0" layoutY="945.0" style="-fx-font-weight: bold;" text="Black_Ops" textFill="#09a195" />
+      <Label layoutX="540.0" layoutY="945.0" style="-fx-font-weight: bold;" text="Black Ops" textFill="#09a195" />
+      <Label layoutX="961.0" layoutY="939.0" style="-fx-font-weight: bold;" text="Black&amp;Ops" textFill="#09a195" AnchorPane.rightAnchor="531.0" />
+      <Label layoutX="1352.0" layoutY="943.0" style="-fx-font-weight: bold;" text="BlackOps" textFill="#09a195" AnchorPane.rightAnchor="150.0" />
+   <Button fx:id="btnmoon" layoutX="1501.0" layoutY="74.0" mnemonicParsing="false" onAction="#changemode" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 50; -fx-background-color: transparent; -fx-border-color: #09a195;" AnchorPane.rightAnchor="19.0">
+         <graphic>
+            <FontAwesomeIconView fx:id="moonIcon" fill="#09a195" glyphName="MOON_ALT" size="30" />
+         </graphic>
+      </Button>
+      <Button fx:id="btnlight" layoutX="1501.0" layoutY="74.0" mnemonicParsing="false" onAction="#changemode" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 40; -fx-background-color: transparent; -fx-border-color: #09a195;" visible="false" AnchorPane.rightAnchor="19.0">
+         <graphic>
+            <FontAwesomeIconView fx:id="lightIcon" fill="#09a195" glyphName="SUN_ALT" size="30" />
+         </graphic>
+      </Button>  
+   </children>
+</AnchorPane>

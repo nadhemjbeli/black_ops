@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="990.0" prefWidth="1570.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI.DefiLiveController">
+   <children>
+      <ScrollPane fx:id="ScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="37.0" layoutY="187.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="797.0" prefWidth="450.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER" AnchorPane.leftAnchor="37.0">
+         <content>
+      
+             <VBox fx:id="box1" layoutX="60.0" layoutY="399.0" prefHeight="324.0" prefWidth="450.0" AnchorPane.leftAnchor="41.0" />
+  </content>
+        </ScrollPane>
+      <ScrollPane fx:id="ScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="562.0" layoutY="187.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="797.0" prefWidth="450.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER" AnchorPane.leftAnchor="562.0" AnchorPane.rightAnchor="558.0">
+         <content>
+            <VBox fx:id="box2" prefHeight="324.0" prefWidth="450.0" />
+         </content>
+      </ScrollPane>
+      <ScrollPane fx:id="ScrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" layoutX="1084.0" layoutY="187.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="797.0" prefWidth="450.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER" AnchorPane.rightAnchor="35.0">
+         <content>
+            <VBox fx:id="box3" prefHeight="324.0" prefWidth="450.0" />
+         </content>
+      </ScrollPane>
+         <HBox fx:id="hboxnavbar" prefHeight="88.0" prefWidth="1950.0" style="-fx-background-color: #e0e4e7;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-380.0">
+         <children>
+            <ImageView fx:id="ImageVue" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#Accueil" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../MediaStream/Logo.png" />
+               </image>
+               <HBox.margin>
+                  <Insets bottom="10.0" left="39.0" right="50.0" top="10.0" />
+               </HBox.margin>
+            </ImageView>
+             <HBox alignment="CENTER" prefHeight="88.0" prefWidth="1137.0">
+               <children>
+                  <ComboBox fx:id="ComboJeux" onAction="#Showj" prefWidth="150.0" promptText="Jeux Video" style="-fx-border-color: #09a195; -fx-background-color: transparent;">
+                     <HBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="ComboStream" onAction="#NvabarTarget" prefWidth="150.0" promptText="Stream" style="-fx-border-color: #09a195; -fx-background-color: transparent;">
+                     <HBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="ComboCompétition" onAction="#showComp" prefWidth="150.0" promptText="Compétition" style="-fx-border-color: #09a195; -fx-background-color: transparent;">
+                     <HBox.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="ComboCommunaute" onAction="#showComu" prefWidth="150.0" promptText="Commuanté" style="-fx-border-color: #09a195; -fx-background-color: transparent;">
+                     <HBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </HBox.margin>
+                  </ComboBox>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="125.0">
+               <children>
+                        <FontAwesomeIconView fx:id="ComboUser" glyphName="USER" size="30" />
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="2.0" layoutY="94.0" prefHeight="50.0" prefWidth="1590.0" style="-fx-background-color: transparent;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="109.0">
+         <children>
+            <Text fx:id="titrepage" strokeType="OUTSIDE" strokeWidth="0.0" text="Live Stream">
+               <font>
+                  <Font name="Gordita-Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+
+      </HBox>
+      
+      <Button fx:id="btnmoon" layoutX="1501.0" layoutY="120.0" mnemonicParsing="false" onAction="#changemode" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 50; -fx-background-color: transparent; -fx-border-color: #09a195;" AnchorPane.rightAnchor="19.0">
+         <graphic>
+            <FontAwesomeIconView fx:id="moonIcon" fill="#09a195" glyphName="MOON_ALT" size="30" />
+         </graphic>
+      </Button>
+      <Button fx:id="btnlight" layoutX="1501.0" layoutY="120.0" mnemonicParsing="false" onAction="#changemode" prefHeight="50.0" prefWidth="50.0" style="-fx-background-radius: 40; -fx-background-color: transparent; -fx-border-color: #09a195;" visible="false" AnchorPane.rightAnchor="19.0">
+         <graphic>
+            <FontAwesomeIconView fx:id="lightIcon" fill="#09a195" glyphName="SUN_ALT" size="30" />
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="778.0" prefWidth="981.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI.gestion_jeux.gestionImages.AfficherImageController">
+   <children>
+      <TextField fx:id="txtIdJeu" layoutX="349.0" layoutY="26.0" prefHeight="64.0" prefWidth="268.0" />
+      <ImageView fx:id="imgviewjeu" fitHeight="527.0" fitWidth="729.0" layoutX="119.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

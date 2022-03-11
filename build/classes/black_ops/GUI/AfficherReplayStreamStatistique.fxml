@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="994.0" prefWidth="1590.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="black_ops.GUI.AfficherReplayStreamStatistiqueController">
+   <content>
+      <AnchorPane prefHeight="993.0" prefWidth="1585.0" stylesheets="@style.css">
+         <children>
+            <BarChart fx:id="barchart" layoutX="197.0" layoutY="248.0" prefHeight="688.0" prefWidth="1313.0" style="-fx-border-color: #09a195;" title="Vues Statistique" AnchorPane.leftAnchor="197.0" AnchorPane.rightAnchor="197.0">
+              <xAxis>
+                <CategoryAxis fx:id="catX" side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="catY" side="LEFT" />
+              </yAxis>
+            </BarChart>
+            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="1590.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="19.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Replay Statistique">
+                     <font>
+                        <Font name="Gordita-Bold" size="24.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <Text fx:id="retour" layoutX="93.0" layoutY="98.0" onMouseClicked="#Afficherretour" strokeType="OUTSIDE" strokeWidth="0.0" text="Retour">
+               <font>
+                  <Font name="Orkney-Regular" size="15.0" />
+               </font>
+            </Text>
+            <FontAwesomeIconView fill="#09a195" glyphName="ARROW_LEFT" layoutX="65.0" layoutY="101.0" onMouseClicked="#Afficherretour" size="25" />
+         </children>
+      </AnchorPane>
+   </content>
+</ScrollPane>

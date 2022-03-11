@@ -1,0 +1,66 @@
+#Pane {
+    
+    -fx-background-color:#0f1316; 
+    
+}
+
+@font-face {
+    font-family: 'Orkney Medium';
+    src: url('../asset/orkney-medium.otf');
+
+}
+@font-face {
+    font-family: 'Gordita';
+    src: url('../asset/Gordita-Bold.otf');
+
+}
+@font-face {
+     font-family: 'Orkney';
+    src: url('../asset/orkney-bold.otf');
+
+}
+@font-face {
+    font-family: 'Orkney Light';
+    src: url('../asset/orkney-light.otf');
+
+}
+@font-face {
+    font-family: 'Orkney Regular';
+    src: url('../asset/orkney-regular.otf');
+
+}
+
+
+@font-face {
+     font-family: 'Gordita Medium';
+    src: url('../asset/Gordita-Medium.otf');
+
+}
+@font-face {
+    font-family: 'Gordita Light';
+    src: url('../asset/Gordita-Light.otf');
+
+}
+@font-face {
+    font-family: 'Gordita Regular';
+    src: url('../asset/Gordita-Regular.otf');
+    
+
+}
+
+.label{
+    
+    -fx-font-family:'Orkney' ;
+    -fx-Text-fill : white;
+        
+    
+}
+.Text {
+    
+    -fx-text-fill: white;
+}
+#ScrollPane{
+    -fx-background:transparent; 
+    -fx-background-color : transparent;
+    
+}
