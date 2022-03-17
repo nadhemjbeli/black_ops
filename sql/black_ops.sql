@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 02 mars 2022 à 10:01
+-- Généré le : jeu. 17 mars 2022 à 21:09
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 7.4.27
 
@@ -88,7 +88,7 @@ CREATE TABLE `client` (
   `Pseaudo_Cl` varchar(20) COLLATE utf8_bin NOT NULL,
   `Photo_Cl` longtext COLLATE utf8_bin NOT NULL,
   `mail_Cl` varchar(100) COLLATE utf8_bin NOT NULL,
-  `pass_Cl` varchar(50) COLLATE utf8_bin NOT NULL,
+  `pass_Cl` varchar(300) COLLATE utf8_bin NOT NULL,
   `DateNaissance_Cl` date NOT NULL,
   `Statut_Cl` varchar(10) COLLATE utf8_bin NOT NULL DEFAULT 'offline',
   `NewPass_Cl` int(1) NOT NULL DEFAULT 0
@@ -99,8 +99,12 @@ CREATE TABLE `client` (
 --
 
 INSERT INTO `client` (`id_Cl`, `Pseaudo_Cl`, `Photo_Cl`, `mail_Cl`, `pass_Cl`, `DateNaissance_Cl`, `Statut_Cl`, `NewPass_Cl`) VALUES
-(1, 'nadhem', 'image1.jpg', 'nadhem.jbeli@esprit.tn', '123456', '1998-06-10', 'online', 0),
-(2, 'khalil', 'khemiri', 'ok', 'okk', '2025-06-30', 'barra', 5);
+(2, 'nadhem', 'src\\Images\\Imageclient\\nadhem.png', 'nadhem', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855nadhem', '1990-01-01', 'offline', 0),
+(3, 'aziz@gmail.com', 'src\\Images\\Imageclient\\aziz@gmail.com.png', 'theghost', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855aziz', '1990-01-01', 'offline', 0),
+(4, 'az.tt.93@gmail.com', 'src\\Images\\Imageclient\\aziz@gmail.com.png', 'theghost', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855azizaziz', '1990-01-01', 'offline', 0),
+(5, 'jbeli', 'src\\Images\\Imageclient\\jbeli.png', 'jbeli', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855jbeli', '2022-02-28', 'offline', 0),
+(6, 'nadhem_jb', 'src\\Images\\Imageclient\\nadhem_jb.png', 'nadhemjbeli4@gmail.com', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855nadhem', '1998-10-06', 'offline', 0),
+(7, 'marioumet', 'src\\Images\\Imageclient\\marioumet.png', 'mariem@mariem.com', 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855mariem', '1999-06-10', 'offline', 0);
 
 -- --------------------------------------------------------
 
@@ -111,7 +115,7 @@ INSERT INTO `client` (`id_Cl`, `Pseaudo_Cl`, `Photo_Cl`, `mail_Cl`, `pass_Cl`, `
 CREATE TABLE `commande` (
   `id_Commande` int(11) NOT NULL,
   `date_commande` datetime NOT NULL DEFAULT current_timestamp(),
-  `Etat_commande` varchar(15) COLLATE utf8_bin NOT NULL,
+  `Etat_commande` varchar(24) COLLATE utf8_bin NOT NULL,
   `id_cl` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -120,8 +124,47 @@ CREATE TABLE `commande` (
 --
 
 INSERT INTO `commande` (`id_Commande`, `date_commande`, `Etat_commande`, `id_cl`) VALUES
-(1, '2022-02-16 00:42:00', 'en cours...', 1),
-(3, '2022-02-16 00:45:32', 'en cours...', 2);
+(1, '2022-03-09 10:51:04', 'Non Traite', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `commentaire`
+--
+
+CREATE TABLE `commentaire` (
+  `id_commentaire` int(11) NOT NULL,
+  `contenu_commentaire` varchar(250) COLLATE utf8_bin NOT NULL,
+  `date_commentaire` datetime NOT NULL DEFAULT current_timestamp(),
+  `id_livestream` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `commentaire`
+--
+
+INSERT INTO `commentaire` (`id_commentaire`, `contenu_commentaire`, `date_commentaire`, `id_livestream`) VALUES
+(95, 'hello hello hello', '2022-03-08 01:06:16', 12),
+(96, 'cscscsc', '2022-03-08 01:06:18', 12),
+(97, 'cscscscs', '2022-03-08 01:06:20', 12),
+(98, 'scscscscs', '2022-03-08 01:06:22', 12),
+(99, 'hello', '2022-03-08 01:08:26', 12),
+(100, 'how are y', '2022-03-08 01:08:31', 12),
+(101, 'fdfdfdf', '2022-03-09 01:39:34', 12),
+(102, 'dffdfdfdfdf', '2022-03-09 01:39:40', 12),
+(103, 'dfdfdfdf', '2022-03-09 01:40:00', 12),
+(104, 'dfdsfdsfs', '2022-03-09 01:44:09', 12),
+(105, 'fdsfdsfdsf', '2022-03-09 01:44:11', 12),
+(106, 'dfdfd', '2022-03-09 01:44:27', 12),
+(107, 'hghghgh', '2022-03-09 01:48:28', 12),
+(108, 'grgrgrg', '2022-03-09 01:48:32', 12),
+(109, 'ghghg', '2022-03-09 03:38:15', 12),
+(110, 'fd', '2022-03-09 03:42:20', 12),
+(111, 'kjkj', '2022-03-09 10:40:48', 12),
+(112, 'fgfgfg', '2022-03-09 10:43:07', 12),
+(113, 'ikikik', '2022-03-09 10:49:08', 12),
+(114, 'idqmofdj', '2022-03-10 07:09:43', 12),
+(115, 'nice video', '2022-03-14 23:13:44', 12);
 
 -- --------------------------------------------------------
 
@@ -168,7 +211,12 @@ CREATE TABLE `defi` (
 --
 
 INSERT INTO `defi` (`id_Defi`, `nom_Defi`, `Description_Defi`, `img_Defi`, `prix_Defi`, `date_Defi`, `jeu_Defi`, `nbr_equipe_Defi`, `Régle_Defi`, `Recompense_Defi`) VALUES
-(1, 'Pro_Lol', 'Bienvenue au tournoi League of Legends organisé par Black Ops. Il s\'agit d\'un tournoi 5 contre 5.\r\n\r\n', 'E:\\Black Ops\\lol.jpg', 100, '2022-02-11 19:56:48', 'League of Legends', 10, '1. Veuillez traiter l\'organisateur du tournoi et ses participants avec respect, sinon vous serez disqualifié pour comportement inapproprié.\r\n2. Veuillez vous inscrire à temps et être là au début du tournoi. Vous (ou votre équipe) avez été disqualifié en raison de votre absence au tournoi.\r\n3. Vous et les membres de votre équipe devez vous inscrire pour vous qualifier pour l\'événement.\r\n4. Vous pouvez participer à ce tournoi si votre nom d\'inscription correspond à votre surnom de jeu. S\'ils diffèrent, vous serez disqualifié.', '500 Dt.\r\nLes réclamations de prix doivent être complétées dans les 24 heures suivant la fin du tournoi, sinon le prix risque d\'être pénalisé. Les réclamations peuvent prendre jusqu\'à 72 heures pour être traitées.');
+(1, 'Pro_Lol', 'Bienvenue au tournoi League of Legends organisé par Black Ops. Il s\'agit d\'un tournoi 5 contre 5.\r\n\r\n', 'src/black_ops/MediaStream/fd30e.jpg', 100, '2022-02-11 19:56:48', 'League of Legends', 10, '1. Veuillez traiter l\'organisateur du tournoi et ses participants avec respect, sinon vous serez disqualifié pour comportement inapproprié.\r\n2. Veuillez vous inscrire à temps et être là au début du tournoi. Vous (ou votre équipe) avez été disqualifié en raison de votre absence au tournoi.\r\n3. Vous et les membres de votre équipe devez vous inscrire pour vous qualifier pour l\'événement.\r\n4. Vous pouvez participer à ce tournoi si votre nom d\'inscription correspond à votre surnom de jeu. S\'ils diffèrent, vous serez disqualifié.', '500 Dt.\r\nLes réclamations de prix doivent être complétées dans les 24 heures suivant la fin du tournoi, sinon le prix risque d\'être pénalisé. Les réclamations peuvent prendre jusqu\'à 72 heures pour être traitées.'),
+(3, 'Pro_CSGO', 'Bienvenue au tournoi CS GO organisé par Black Ops. Il s\'agit d\'un tournoi 5 contre 5.\r\n\r\n', 'src/black_ops/MediaStream/csgo.jpg', 100, '2022-02-11 19:56:48', 'League of Legends', 10, '1. Veuillez traiter l\'organisateur du tournoi et ses participants avec respect, sinon vous serez disqualifié pour comportement inapproprié.\r\n2. Veuillez vous inscrire à temps et être là au début du tournoi. Vous (ou votre équipe) avez été disqualifié en raison de votre absence au tournoi.\r\n3. Vous et les membres de votre équipe devez vous inscrire pour vous qualifier pour l\'événement.\r\n4. Vous pouvez participer à ce tournoi si votre nom d\'inscription correspond à votre surnom de jeu. S\'ils diffèrent, vous serez disqualifié.', '500 Dt.\r\nLes réclamations de prix doivent être complétées dans les 24 heures suivant la fin du tournoi, sinon le prix risque d\'être pénalisé. Les réclamations peuvent prendre jusqu\'à 72 heures pour être traitées.'),
+(4, 'CsGo Tournoi', 'Defi Cs go contient 10 equipes  ', 'src\\Images\\Image defi\\CsGo Tournoi.png', 100, '2022-03-09 00:00:00', 'Cs Go', 10, 'pas de tricherie', '10000'),
+(5, 'Pro Lol v 2', 'Defi League of Leagends', 'src\\Images\\Image defi\\Pro Lol v 2.png', 120, '2022-03-09 00:00:00', 'League of leagends', 10, 'Pas de noob champions ', '12000'),
+(6, 'Valorant E_Gaming', 'Defi Valorant 10 Equipes ', 'src\\Images\\Image defi\\Valorant E_Gaming.png', 450, '2022-03-09 00:00:00', 'Valorant', 10, 'indertid de jouer avec Reyna', '4500'),
+(7, 'PES_Esport', 'PES E_Sport 2022', 'src\\Images\\Image defi\\PES_Esport.png', 50, '2022-03-09 00:00:00', 'Pro Soccer Evolution', 10, 'tous est autorise', '1500');
 
 -- --------------------------------------------------------
 
@@ -190,8 +238,7 @@ CREATE TABLE `details_defi` (
 --
 
 INSERT INTO `details_defi` (`id_Statistique`, `EquipeA`, `imgScore`, `EquipeB`, `Score_finale`, `id_defi`) VALUES
-(3, 1, 'url', 3, '9 - 5', 1),
-(4, 1, 'url', 3, '9 - 5', 1);
+(1, 1, '', 2, '', 1);
 
 -- --------------------------------------------------------
 
@@ -213,8 +260,7 @@ CREATE TABLE `equipe` (
 
 INSERT INTO `equipe` (`id_Equipe`, `nom_Equipe`, `logo_Equipe`, `date`, `nbr_joueur_Equipe`) VALUES
 (1, 'Es_Gaming', 'E:\\Black Ops\\esgaming.png', '2022-02-11 19:58:43', 5),
-(3, 'Blac_ops2', 'url', '2022-02-16 00:00:00', 7),
-(4, 'Blac_ops', 'url', '2022-02-16 00:00:00', 5);
+(2, 'Fnatic', 'E:\\Black Ops\\fnatic.png', '2022-02-11 19:59:05', 5);
 
 -- --------------------------------------------------------
 
@@ -227,14 +273,6 @@ CREATE TABLE `image` (
   `Url_Image` varchar(255) COLLATE utf8_bin NOT NULL,
   `Id_jeu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
---
--- Déchargement des données de la table `image`
---
-
-INSERT INTO `image` (`Id_Image`, `Url_Image`, `Id_jeu`) VALUES
-(3, 'E:/Image/Astra.jpg', 2),
-(4, 'E:/Image/Astra.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -255,10 +293,7 @@ CREATE TABLE `jeu` (
 --
 
 INSERT INTO `jeu` (`Id_Jeu`, `Nom`, `description`, `Url`, `id_souscat`) VALUES
-(2, 'League of Legends', 'League of Legends (abrégé LoL) est un jeu vidéo sorti en 2009 de type arène de bataille en ligne, free-to-play, développé et édité par Riot Games sur Windows et Mac OS. Le mode principal du jeu voit s\'affronter deux équipes de 5 joueurs en temps réel dans des parties d\'une durée d\'environ une demi-heure, chaque équipe occupant et défendant sa propre base sur la carte. Chacun des dix joueurs contrôle un personnage à part entière parmi les plus de 150 qui sont proposés. Ces personnages, connus sous le nom de « champions » dans le jeu, disposent de compétences uniques et d\'un style de jeu qui leur est propre. Ils gagnent en puissance au fil de la partie en amassant des points d\'expérience ainsi qu\'en achetant des objets, dans le but de battre l\'équipe adverse. L\'objectif d\'une partie est de détruire le « Nexus » ennemi, une large structure située au centre de chaque base. D\'autres modes de jeu, généralement moins compétitifs et se basant quasiment toujours sur le mode principal, sont également présents — à l\'exception de Teamfight Tactics, un auto battler sorti en 2019 sans grand rapport avec le mode principal et qui dispose de sa propre communauté.', 'https://signup.euw.leagueoflegends.com/fr/signup/redownload', 3),
-(4, 'Valorant', 'est un jeu de tir à la première personne gratuit développé et publié par Riot Games, pour Microsoft Windows. D’abord teasé sous le nom de code Project A en octobre 2019, le jeu a commencé une période de bêta fermée avec un accès limité le 7 avril 2020, suivie d’une sortie officielle le 2 juin 2020. Le développement du jeu a commencé en 2014. Valorant s’inspire de la série de jeux de tir tactiques Counter-Strike, empruntant plusieurs mécanismes tels que le menu d’achat, les motifs de pulvérisation et l’imprécision lors des déplacements.', 'https://playvalorant.com/ar-ae/', 1),
-(5, 'Valorant', 'est un jeu de tir à la première personne gratuit développé et publié par Riot Games, pour Microsoft Windows. D’abord teasé sous le nom de code Project A en octobre 2019, le jeu a commencé une période de bêta fermée avec un accès limité le 7 avril 2020, suivie d’une sortie officielle le 2 juin 2020. Le développement du jeu a commencé en 2014. Valorant s’inspire de la série de jeux de tir tactiques Counter-Strike, empruntant plusieurs mécanismes tels que le menu d’achat, les motifs de pulvérisation et l’imprécision lors des déplacements.', 'https://playvalorant.com/ar-ae/', 1),
-(6, 'Valorant', 'est un jeu de tir à la première personne gratuit développé et publié par Riot Games, pour Microsoft Windows. D’abord teasé sous le nom de code Project A en octobre 2019, le jeu a commencé une période de bêta fermée avec un accès limité le 7 avril 2020, suivie d’une sortie officielle le 2 juin 2020. Le développement du jeu a commencé en 2014. Valorant s’inspire de la série de jeux de tir tactiques Counter-Strike, empruntant plusieurs mécanismes tels que le menu d’achat, les motifs de pulvérisation et l’imprécision lors des déplacements.', 'https://playvalorant.com/ar-ae/', 1);
+(2, 'League of Legends', 'League of Legends (abrégé LoL) est un jeu vidéo sorti en 2009 de type arène de bataille en ligne, free-to-play, développé et édité par Riot Games sur Windows et Mac OS. Le mode principal du jeu voit s\'affronter deux équipes de 5 joueurs en temps réel dans des parties d\'une durée d\'environ une demi-heure, chaque équipe occupant et défendant sa propre base sur la carte. Chacun des dix joueurs contrôle un personnage à part entière parmi les plus de 150 qui sont proposés. Ces personnages, connus sous le nom de « champions » dans le jeu, disposent de compétences uniques et d\'un style de jeu qui leur est propre. Ils gagnent en puissance au fil de la partie en amassant des points d\'expérience ainsi qu\'en achetant des objets, dans le but de battre l\'équipe adverse. L\'objectif d\'une partie est de détruire le « Nexus » ennemi, une large structure située au centre de chaque base. D\'autres modes de jeu, généralement moins compétitifs et se basant quasiment toujours sur le mode principal, sont également présents — à l\'exception de Teamfight Tactics, un auto battler sorti en 2019 sans grand rapport avec le mode principal et qui dispose de sa propre communauté.', 'https://signup.euw.leagueoflegends.com/fr/signup/redownload', 3);
 
 -- --------------------------------------------------------
 
@@ -280,8 +315,7 @@ CREATE TABLE `joueur` (
 
 INSERT INTO `joueur` (`id_Joueur`, `nom_Joueur`, `rang_Joueur`, `Pseaudo_Joueur`, `id_equipe`) VALUES
 (1, 'Ali', 'Bronze', 'ali007', 1),
-(2, 'Ahmed', 'Bronze', 'Ahmed009', 1),
-(3, 'nadhem', 'golden', 'nadhem1', 3);
+(2, 'Ahmed', 'Bronze', 'Ahmed009', 1);
 
 -- --------------------------------------------------------
 
@@ -296,6 +330,37 @@ CREATE TABLE `lignecommande` (
   `id_defi` int(11) NOT NULL,
   `id_commande` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `lignecommande`
+--
+
+INSERT INTO `lignecommande` (`id_LigneCommande`, `quantite_Billet`, `prix_Billet`, `id_defi`, `id_commande`) VALUES
+(1, 1, 100, 3, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `live_stream`
+--
+
+CREATE TABLE `live_stream` (
+  `id_LiveStream` int(11) NOT NULL,
+  `Nom_LiveStream` varchar(100) COLLATE utf8_bin NOT NULL,
+  `Path_LiveStream` varchar(500) COLLATE utf8_bin NOT NULL,
+  `Visibilite_LiveStream` varchar(150) COLLATE utf8_bin NOT NULL,
+  `id_defi` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `live_stream`
+--
+
+INSERT INTO `live_stream` (`id_LiveStream`, `Nom_LiveStream`, `Path_LiveStream`, `Visibilite_LiveStream`, `id_defi`) VALUES
+(1, 'Fnatic vs Invictus Gaming ', 'xZLFVV2qxQQ', 'Afficher', 1),
+(12, 'Cloud 9 vs Team Liquid', 'Weu3oyYb680', 'En cours', 1),
+(23, 'Samsung vs SK Telecom', 'MohnyOOxv2I', 'En cours', 3),
+(24, 'DAMWON Gaming vs Suning G1', 'MPlGWKm-jdg', 'Masquer', 1);
 
 -- --------------------------------------------------------
 
@@ -316,9 +381,32 @@ CREATE TABLE `message` (
 --
 
 INSERT INTO `message` (`id_message`, `date_message`, `Contenu_message`, `id_cl`, `id_souscat`) VALUES
-(1, '2022-02-12 14:28:12', 'bonsoir, je suis un nouveau membre', 1, 1),
-(2, '2022-02-12 14:28:12', 'bonjour!! je suis un nouveau membre', 1, 1),
-(4, '2022-02-26 13:28:12', 'hello my name is jbeli nadhem', 2, 1);
+(1, '2022-03-09 07:34:52', 'dsdsqdsqdsq', 2, 1),
+(2, '2022-03-09 07:34:57', 'dsqdsqdqd', 2, 1),
+(3, '2022-03-09 08:08:09', 'qui peut jouer avec nous league of legends ?', 5, 1),
+(4, '2022-03-09 09:49:39', 'mesg', 2, 1),
+(5, '2022-03-11 00:17:05', 'bonjour', 6, 1),
+(6, '2022-03-12 20:04:41', 'come here abd rahmen', 2, 1),
+(7, '2022-03-14 22:23:28', 'i love you nadhem', 7, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `mode`
+--
+
+CREATE TABLE `mode` (
+  `id_mode` int(11) NOT NULL,
+  `dark_mode` int(11) NOT NULL DEFAULT 0,
+  `light_mode` int(11) NOT NULL DEFAULT 1
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `mode`
+--
+
+INSERT INTO `mode` (`id_mode`, `dark_mode`, `light_mode`) VALUES
+(1, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -331,9 +419,20 @@ CREATE TABLE `replay_stream` (
   `nom_Replay` varchar(150) COLLATE utf8_bin NOT NULL,
   `URL_video` varchar(255) COLLATE utf8_bin NOT NULL,
   `Date` datetime NOT NULL DEFAULT current_timestamp(),
-  `Description_Replay` longtext COLLATE utf8_bin NOT NULL,
+  `Description_Replay` varchar(300) COLLATE utf8_bin NOT NULL,
+  `vues_Replay` int(11) NOT NULL DEFAULT 0,
   `id_souscat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `replay_stream`
+--
+
+INSERT INTO `replay_stream` (`id_Replay`, `nom_Replay`, `URL_video`, `Date`, `Description_Replay`, `vues_Replay`, `id_souscat`) VALUES
+(2, 'Fnatic vs Team BDS', 'FNC_vs_BDS.mp4', '2022-02-12 15:51:41', 'Fnatic vs Team BDS Highlights | LEC Spring 2022 Week 8 Day 1 | FNC vs BDS', 11, 2),
+(4, 'Fnatic vs Illuminar', 'Fnatic vs Illuminar.mp4', '2022-02-12 16:26:24', 'HIGHLIGHTS - PGL Major Qualifier | CSGO', 3, 2),
+(5, 'Team Liquid vs Cloud9', 'Team Liquid vs Cloud9.mp4', '2022-02-28 22:12:36', 'Team Liquid vs Cloud9 Highlights | LCS Spring 2022 Week 2 Day 1 | TL vs C9', 0, 2),
+(10, 'Fnatic vs Misfits Gaming', 'Fnatic vs Misfits Gaming.mp4', '2022-03-08 00:41:21', 'Fnatic vs Misfits Gaming Highlights | LEC Spring 2022 Week 8 Day 2 | FNC vs MSF', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -366,7 +465,8 @@ CREATE TABLE `sous_categorie` (
 INSERT INTO `sous_categorie` (`id_SousCat`, `nom_SousCat`, `id_cat`) VALUES
 (1, 'Information', 2),
 (2, 'Replay', 2),
-(3, 'stratégie', 1);
+(3, 'stratégie', 1),
+(4, 'Live', 2);
 
 -- --------------------------------------------------------
 
@@ -376,10 +476,23 @@ INSERT INTO `sous_categorie` (`id_SousCat`, `nom_SousCat`, `id_cat`) VALUES
 
 CREATE TABLE `stream_info` (
   `id_Stream` int(11) NOT NULL,
+  `nom_Stream` varchar(75) COLLATE utf8_bin NOT NULL,
   `image_Stream` varchar(255) COLLATE utf8_bin NOT NULL,
   `description_Stream` longtext COLLATE utf8_bin NOT NULL,
   `id_souscat` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `stream_info`
+--
+
+INSERT INTO `stream_info` (`id_Stream`, `nom_Stream`, `image_Stream`, `description_Stream`, `id_souscat`) VALUES
+(1, 'Twitch studio beta', 'twitch-4aRVhk.png', 'Twitch a été créé afin d\'avoir un site consacré à la branche jeux vidéo de Justin.tv, qui était la partie la plus populaire du service. Le nouveau site va alors surpasser son parent, qui ferme en août 2014, pour que l\'entreprise se concentre essentiellement sur Twitch.', 1),
+(30, 'Open Broadcaster Software', '600px-Open_Broadcaster_Software_Logo.png', 'Le logiciel de streaming Open Broadcaster Software est une excellente option pour la diffusion en live. C’est un projet open-source qui allie puissance et flexibilité et surtout, il a été conçu par la communauté du streaming afin d’être en phase avec ses besoins !\n', 1),
+(31, 'XSplit Gamecaster', 'xsplit-logo-vector.png', 'Le logiciel XSplit Gamecaster est de très haute qualité. Il s’agit d’une version gratuite du logiciel haut-de-gamme XSplit Broadcaster. Très élégant, il bénéficie de nombreuses de mises à jour, sans être très coûteux.', 1),
+(32, 'Lightstream ', 'images.png', 'Lightstream est un logiciel de live streaming par navigateur. Selon leur équipe marketing, ils sont « les Google Docs de la production vidéo en direct ». Le studio Lightstream exploite la puissance du Cloud pour votre streaming.\nCe logiciel (gratuit) offre des tonnes de fonctionnalités intéressantes. Il propose un hébergement pour les guests.', 1),
+(33, 'Streamlabs OBS', 'unnamed.png', 'Streamlabs OBS a marié deux services populaires pour créer un outil puissant. Il s’est appuyé sur les outils de streaming Streamlabs et a intégré le logiciel open source OBS (que les gamers utilisaient déjà en masse) pour créer un seul et unique logiciel !', 1),
+(34, 'Wirecast', 'wirecast-frPMDM.png', 'Que vous utilisiez leur version Studio ou Pro, le logiciel Wirecast édité par Telestream est une excellente option pour vos besoins en streaming.', 1);
 
 -- --------------------------------------------------------
 
@@ -402,11 +515,11 @@ CREATE TABLE `video_uploade` (
 --
 
 INSERT INTO `video_uploade` (`id_Vdeo`, `nom_Video`, `date_Video`, `description_Video`, `url_Video`, `id_souscat`, `id_cl`) VALUES
-(1, 'un video', '2022-02-12 18:58:53', 'vvv', '4.mp4', 1, 1),
-(3, 'video 3', '2022-02-27 01:22:59', 'dsc', '3.mp4', 1, 1),
-(4, 'un video', '2022-03-01 00:21:54', 'vvv', '2', 1, 1),
-(5, 'aaa', '2022-03-01 00:22:03', 'description', '5.mp4', 1, 1),
-(9, 'aa', '2022-03-01 19:08:52', 'description', '', 1, 1);
+(1, 'hey', '2022-03-09 08:55:40', '', '', 1, 2),
+(2, 'hey', '2022-03-09 08:55:52', 'des', '2.mp4', 1, 2),
+(3, 'valo', '2022-03-09 09:06:02', 'jeux en ligne 5v5', '3.mp4', 1, 5),
+(5, 'video', '2022-03-14 23:11:41', 'descriptionnnn', '', 1, 2),
+(6, 'dsqoifj', '2022-03-14 23:16:30', 'osjdqoj', '', 1, 2);
 
 --
 -- Index pour les tables déchargées
@@ -445,6 +558,13 @@ ALTER TABLE `client`
 ALTER TABLE `commande`
   ADD PRIMARY KEY (`id_Commande`),
   ADD KEY `id_cl` (`id_cl`);
+
+--
+-- Index pour la table `commentaire`
+--
+ALTER TABLE `commentaire`
+  ADD PRIMARY KEY (`id_commentaire`),
+  ADD KEY `id_livestream` (`id_livestream`);
 
 --
 -- Index pour la table `contact`
@@ -504,12 +624,25 @@ ALTER TABLE `lignecommande`
   ADD KEY `id_commande` (`id_commande`);
 
 --
+-- Index pour la table `live_stream`
+--
+ALTER TABLE `live_stream`
+  ADD PRIMARY KEY (`id_LiveStream`),
+  ADD KEY `id_defi` (`id_defi`);
+
+--
 -- Index pour la table `message`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`id_message`),
   ADD KEY `id_cl` (`id_cl`),
   ADD KEY `id_souscat` (`id_souscat`);
+
+--
+-- Index pour la table `mode`
+--
+ALTER TABLE `mode`
+  ADD PRIMARY KEY (`id_mode`);
 
 --
 -- Index pour la table `replay_stream`
@@ -573,13 +706,19 @@ ALTER TABLE `champion`
 -- AUTO_INCREMENT pour la table `client`
 --
 ALTER TABLE `client`
-  MODIFY `id_Cl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_Cl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `id_Commande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_Commande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT pour la table `commentaire`
+--
+ALTER TABLE `commentaire`
+  MODIFY `id_commentaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
 
 --
 -- AUTO_INCREMENT pour la table `contact`
@@ -591,37 +730,37 @@ ALTER TABLE `contact`
 -- AUTO_INCREMENT pour la table `defi`
 --
 ALTER TABLE `defi`
-  MODIFY `id_Defi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_Defi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `details_defi`
 --
 ALTER TABLE `details_defi`
-  MODIFY `id_Statistique` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_Statistique` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `equipe`
 --
 ALTER TABLE `equipe`
-  MODIFY `id_Equipe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_Equipe` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `image`
 --
 ALTER TABLE `image`
-  MODIFY `Id_Image` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `Id_Image` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `jeu`
 --
 ALTER TABLE `jeu`
-  MODIFY `Id_Jeu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `Id_Jeu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `joueur`
 --
 ALTER TABLE `joueur`
-  MODIFY `id_Joueur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_Joueur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `lignecommande`
@@ -630,16 +769,28 @@ ALTER TABLE `lignecommande`
   MODIFY `id_LigneCommande` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT pour la table `live_stream`
+--
+ALTER TABLE `live_stream`
+  MODIFY `id_LiveStream` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
 -- AUTO_INCREMENT pour la table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_message` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT pour la table `mode`
+--
+ALTER TABLE `mode`
+  MODIFY `id_mode` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `replay_stream`
 --
 ALTER TABLE `replay_stream`
-  MODIFY `id_Replay` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_Replay` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `skin`
@@ -651,19 +802,19 @@ ALTER TABLE `skin`
 -- AUTO_INCREMENT pour la table `sous_categorie`
 --
 ALTER TABLE `sous_categorie`
-  MODIFY `id_SousCat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_SousCat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `stream_info`
 --
 ALTER TABLE `stream_info`
-  MODIFY `id_Stream` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_Stream` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT pour la table `video_uploade`
 --
 ALTER TABLE `video_uploade`
-  MODIFY `id_Vdeo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_Vdeo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Contraintes pour les tables déchargées
@@ -680,6 +831,12 @@ ALTER TABLE `champion`
 --
 ALTER TABLE `commande`
   ADD CONSTRAINT `commande_ibfk_1` FOREIGN KEY (`id_cl`) REFERENCES `client` (`id_Cl`);
+
+--
+-- Contraintes pour la table `commentaire`
+--
+ALTER TABLE `commentaire`
+  ADD CONSTRAINT `commentaire_ibfk_1` FOREIGN KEY (`id_livestream`) REFERENCES `live_stream` (`id_LiveStream`);
 
 --
 -- Contraintes pour la table `details_defi`
@@ -713,6 +870,12 @@ ALTER TABLE `joueur`
 ALTER TABLE `lignecommande`
   ADD CONSTRAINT `lignecommande_ibfk_2` FOREIGN KEY (`id_defi`) REFERENCES `defi` (`id_Defi`),
   ADD CONSTRAINT `lignecommande_ibfk_3` FOREIGN KEY (`id_commande`) REFERENCES `commande` (`id_Commande`);
+
+--
+-- Contraintes pour la table `live_stream`
+--
+ALTER TABLE `live_stream`
+  ADD CONSTRAINT `live_stream_ibfk_1` FOREIGN KEY (`id_defi`) REFERENCES `defi` (`id_Defi`);
 
 --
 -- Contraintes pour la table `message`

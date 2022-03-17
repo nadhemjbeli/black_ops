@@ -108,7 +108,7 @@ public class ChatController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
 //        fill_c_combo();
-Navbar();
+        Navbar();
         ComboBoxListInti();
         System.out.println("username: "+client_name);
         System.out.println("sous_cat: "+id_sous_categorie);
